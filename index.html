@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>جامعة التكوين المتواصل - قسنطينة | بوابة الطالب</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* تعريف الخطوط المرفوعة في المستودع */
+        @font-face {
+            font-family: 'HanaFont';
+            src: url('./hana.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'TheSansPlain';
+            src: url('./TheSans-Plain.otf (1).ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* تطبيق الخطوط حسب المتطلبات */
+        .font-hana {
+            font-family: 'HanaFont', sans-serif;
+        }
+
+        body, .font-sans-plain {
+            font-family: 'TheSansPlain', system-ui, -apple-system, sans-serif;
+        }
+
+        /* أنيميشن الدوائر الخمس لصفحة التحميل */
+        .loader-dots div {
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+        .loader-dots div:nth-child(1) {
+            left: 8px;
+            animation: loader-dots1 0.6s infinite;
+        }
+        .loader-dots div:nth-child(2) {
+            left: 8px;
+            animation: loader-dots2 0.6s infinite;
+        }
+        .loader-dots div:nth-child(3) {
+            left: 32px;
+            animation: loader-dots2 0.6s infinite;
+        }
+        .loader-dots div:nth-child(4) {
+            left: 56px;
+            animation: loader-dots2 0.6s infinite;
+        }
+        .loader-dots div:nth-child(5) {
+            left: 80px;
+            animation: loader-dots3 0.6s infinite;
+        }
+        @keyframes loader-dots1 {
+            0% { transform: scale(0); }
+            100% { transform: scale(1); }
+        }
+        @keyframes loader-dots3 {
+            0% { transform: scale(1); }
+            100% { transform: scale(0); }
+        }
+        @keyframes loader-dots2 {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(24px, 0); }
+        }
+
+        /* إخفاء شريط التمرير للـ Tabs */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased selection:bg-emerald-500 selection:text-white min-h-screen flex flex-col">
+
+    <!-- 1. واجهة التحميل الأولى (Splash Screen) -->
+    <div id="splash-screen" class="fixed inset-0 bg-white z-50 flex flex-col justify-center items-center transition-opacity duration-500">
+        <div class="relative w-28 h-10 loader-dots mb-4">
+            <div class="absolute top-3 w-4 h-4 rounded-full bg-blue-600"></div>
+            <div class="absolute top-3 w-4 h-4 rounded-full bg-emerald-500"></div>
+            <div class="absolute top-3 w-4 h-4 rounded-full bg-amber-500"></div>
+            <div class="absolute top-3 w-4 h-4 rounded-full bg-red-500"></div>
+            <div class="absolute top-3 w-4 h-4 rounded-full bg-purple-600"></div>
+        </div>
+        <p class="font-sans-plain text-gray-600 text-lg tracking-wide animate-pulse">جَارٍ التَّحْمِيلِ...</p>
+    </div>
+
+    <!-- 2. الواجهة الرئيسية للمنصة -->
+    <div id="app-content" class="hidden flex-1 flex flex-col">
+        <!-- الشريط العلوي (Header) -->
+        <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+                <div class="flex items-center space-x-4 space-x-reverse">
+                    <img src="./IMG_20260914_010117.jpg" alt="شعار الجامعة" class="h-14 w-auto object-contain">
+                    <div>
+                        <h1 class="font-hana text-xl sm:text-2xl text-blue-900 font-bold">جامعة التكوين المتواصل</h1>
+                        <p class="font-sans-plain text-xs text-gray-500">مركز قسنطينة - بوابة الطالب الإلكترونية</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3 space-x-reverse">
+                    <div class="hidden sm:block text-left pl-3 border-l border-gray-200">
+                        <p class="font-sans-plain font-semibold text-sm text-gray-700">عبد الحكيم العشي</p>
+                        <p class="font-sans-plain text-xs text-gray-500">علوم اقتصادية وتسيير</p>
+                    </div>
+                    <button class="w-10 h-10 rounded-full bg-blue-50 text-blue-900 flex items-center justify-center font-bold text-sm border border-blue-200">
+                        ع ح
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- المحتوى والتصنيفات -->
+        <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+            <!-- شريط التنقل السريع -->
+            <div class="flex space-x-2 space-x-reverse overflow-x-auto no-scrollbar pb-4 mb-6 border-b border-gray-200">
+                <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn active font-hana px-5 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap bg-blue-900 text-white transition-all">
+                    <i class="fa-solid fa-chart-pie ml-2"></i>لوحة القيادة
+                </button>
+                <button onclick="switchTab('personal')" id="tab-personal" class="tab-btn font-hana px-5 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap bg-white text-gray-600 hover:bg-gray-100 transition-all">
+                    <i class="fa-solid fa-id-card ml-2"></i>الملف الشخصي والأكاديمي
+                </button>
+                <button onclick="switchTab('courses')" id="tab-courses" class="tab-btn font-hana px-5 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap bg-white text-gray-600 hover:bg-gray-100 transition-all">
+                    <i class="fa-solid fa-book-open ml-2"></i>المقررات والتوقيت
+                </button>
+                <button onclick="switchTab('grades')" id="tab-grades" class="tab-btn font-hana px-5 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap bg-white text-gray-600 hover:bg-gray-100 transition-all">
+                    <i class="fa-solid fa-square-poll-vertical ml-2"></i>كشوف النقاط
+                </button>
+                <button onclick="switchTab('services')" id="tab-services" class="tab-btn font-hana px-5 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap bg-white text-gray-600 hover:bg-gray-100 transition-all">
+                    <i class="fa-solid fa-hand-holding-hand ml-2"></i>الخدمات الجامعية
+                </button>
+                <button onclick="switchTab('requests')" id="tab-requests" class="tab-btn font-hana px-5 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap bg-white text-gray-600 hover:bg-gray-100 transition-all">
+                    <i class="fa-solid fa-file-signature ml-2"></i>الطلبات والطعون
+                </button>
+            </div>
+
+            <!-- محتوى التبويبات -->
+            <div id="content-area">
+                <!-- لوحة القيادة -->
+                <div id="view-dashboard" class="space-y-6">
+                    <div class="bg-gradient-to-r from-blue-900 to-indigo-800 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row justify-between items-center">
+                        <div>
+                            <h2 class="font-hana text-2xl font-bold mb-2">مرحباً بك في بوابة جامعة التكوين المتواصل</h2>
+                            <p class="font-sans-plain text-blue-100 text-sm">تابع كافة خدماتك الجامعية، الجدول الزمني، وكشوف النقاط من مكان واحد.</p>
+                        </div>
+                        <span class="mt-4 md:mt-0 font-sans-plain bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-xs border border-white/20">السنة الجامعية: 2026-2027</span>
+                    </div>
+
+                    <!-- بطاقات سريعة -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 font-sans-plain">
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-4 space-x-reverse">
+                            <div class="w-12 h-12 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <div>
+                                <p class="text-xs text-gray-500">التخصص الحالي</p>
+                                <p class="font-bold text-gray-800">علوم اقتصادية وتسيير</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-4 space-x-reverse">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl"><i class="fa-solid fa-check-circle"></i></div>
+                            <div>
+                                <p class="text-xs text-gray-500">حالة التسجيل</p>
+                                <p class="font-bold text-emerald-600">مسجل بشكل نظامي</p>
+                            </div>
+                        </div>
+                        <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 flex items-center space-x-4 space-x-reverse">
+                            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl"><i class="fa-solid fa-clock"></i></div>
+                            <div>
+                                <p class="text-xs text-gray-500">الامتحان القادم</p>
+                                <p class="font-bold text-gray-800">محاسبة مالية 1 (15 مايو)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- الملف الشخصي -->
+                <div id="view-personal" class="hidden space-y-6 font-sans-plain">
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
+                        <h3 class="font-hana text-lg font-bold text-gray-800 mb-4 border-b pb-2">المعلومات الشخصية والدراسية</h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500 block text-xs">الاسم الكامل:</span> <span class="font-bold text-gray-800">عبد الحكيم العشي</span></div>
+                            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500 block text-xs">رقم التسجيل:</span> <span class="font-bold text-gray-800">2626250014</span></div>
+                            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500 block text-xs">المركز الجامعي:</span> <span class="font-bold text-gray-800">قسنطينة</span></div>
+                            <div class="p-3 bg-gray-50 rounded-xl"><span class="text-gray-500 block text-xs">المستوى الدراسي:</span> <span class="font-bold text-gray-800">السنة الأولى ليسانس</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- باقي التبويبات تظهر ديناميكياً -->
+                <div id="view-courses" class="hidden font-sans-plain bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="font-hana text-lg font-bold text-gray-800 mb-4">المقررات والتوقيت الأسبوعي</h3>
+                    <p class="text-gray-500 text-sm">يتم تحميل الجدول الزمني للمحاضرات والأعمال الموجهة...</p>
+                </div>
+                <div id="view-grades" class="hidden font-sans-plain bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="font-hana text-lg font-bold text-gray-800 mb-4">كشوف النقاط</h3>
+                    <p class="text-gray-500 text-sm">عرض كشوف العلامات للفصول الدراسية الحالي والسابق.</p>
+                </div>
+                <div id="view-services" class="hidden font-sans-plain bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="font-hana text-lg font-bold text-gray-800 mb-4">الخدمات الجامعية</h3>
+                    <p class="text-gray-500 text-sm">متابعة ملف المنحة، الإيواء، والنقل الجامعي.</p>
+                </div>
+                <div id="view-requests" class="hidden font-sans-plain bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+                    <h3 class="font-hana text-lg font-bold text-gray-800 mb-4">الطلبات والطعون</h3>
+                    <p class="text-gray-500 text-sm">إيداع طلبات العطلة الأكاديمية، إعادة الإدماج، والطعن في التوجيه.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // التحكم في صفحة التحميل الأولى
+        window.addEventListener('load', () => {
+            const splash = document.getElementById('splash-screen');
+            const content = document.getElementById('app-content');
+
+            setTimeout(() => {
+                splash.classList.add('opacity-0');
+                setTimeout(() => {
+                    splash.style.display = 'none';
+                    content.classList.remove('hidden');
+                }, 500);
+            }, 2000); // عرض 2 ثوانٍ كحد أدنى
+        });
+
+        // التنقل بين التبويبات
+        function switchTab(tabName) {
+            const views = ['dashboard', 'personal', 'courses', 'grades', 'services', 'requests'];
+            views.forEach(v => {
+                const viewEl = document.getElementById(`view-${v}`);
+                const tabEl = document.getElementById(`tab-${v}`);
+                if (v === tabName) {
+                    viewEl.classList.remove('hidden');
+                    tabEl.classList.add('bg-blue-900', 'text-white');
+                    tabEl.classList.remove('bg-white', 'text-gray-600');
+                } else {
+                    viewEl.classList.add('hidden');
+                    tabEl.classList.remove('bg-blue-900', 'text-white');
+                    tabEl.classList.add('bg-white', 'text-gray-600');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
+
