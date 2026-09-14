@@ -33,6 +33,11 @@
             font-family: 'TheSansPlain', system-ui, -apple-system, sans-serif;
         }
 
+        /* خلفية باللون الأخضر البارد */
+        .cool-green-bg {
+            background-color: #1b3b36;
+        }
+
         /* أنيميشن دوران الدوائر الخمس حول المركز */
         .spinner-container {
             position: relative;
@@ -59,13 +64,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* خط قوس قزح الرسمي للعنوان */
-        .rainbow-text {
-            background: linear-gradient(90deg, #ef4444, #f59e0b, #10b981, #06b6d4, #3b82f6, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
         /* شريط الملاحظة المتحرك */
         .marquee-container {
             overflow: hidden;
@@ -89,7 +87,7 @@
         }
     </style>
 </head>
-<body id="dynamic-body" class="transition-colors duration-1000 text-gray-800 antialiased min-h-screen flex flex-col justify-between">
+<body class="cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between">
 
     <!-- 1. واجهة التحميل الأولى (Splash Screen) -->
     <div id="splash-screen" class="fixed inset-0 bg-white z-50 flex flex-col justify-center items-center transition-opacity duration-500">
@@ -104,79 +102,80 @@
     </div>
 
     <!-- 2. واجهة الدخول والاستمارة -->
-    <div id="login-screen" class="opacity-0 transition-opacity duration-700 max-w-2xl mx-auto px-4 py-8 w-full flex-1 flex flex-col justify-center">
-        <!-- الترويسة والشعار -->
-        <div class="text-center text-white space-y-2 mb-6">
-            <div class="flex justify-center mb-3">
-                <img src="./IMG_20260914_010117.jpg" alt="شعار الجامعة" class="w-24 h-24 rounded-full object-cover border-4 border-white/20 shadow-md">
+    <div id="login-screen" class="opacity-0 transition-opacity duration-700 max-w-xl mx-auto px-4 pt-4 pb-8 w-full flex-1 flex flex-col items-center">
+        
+        <!-- الترويسة الشعار بجانب الكتابة المرفوعة للأعلى -->
+        <div class="flex items-center justify-center space-x-4 space-x-reverse text-white mb-4 w-full">
+            <img src="./IMG_20260914_010117.jpg" alt="شعار الجامعة" class="w-16 h-16 rounded-full object-cover border-2 border-white/30 shadow-sm flex-shrink-0">
+            <div class="text-right">
+                <p class="font-sans-plain text-xs sm:text-sm font-semibold leading-tight">الجمهورية الجزائرية الديمقراطية الشعبية</p>
+                <p class="font-sans-plain text-xs font-medium leading-tight text-emerald-100">وزارة التعليم العالي والبحث العلمي</p>
+                <p class="font-sans-plain text-xs sm:text-sm font-bold leading-tight mt-0.5">جامعة التكوين المتواصل - قسنطينة</p>
             </div>
-            <p class="font-sans-plain text-sm sm:text-base font-semibold drop-shadow-sm">الجمهورية الجزائرية الديمقراطية الشعبية</p>
-            <p class="font-sans-plain text-xs sm:text-sm font-medium drop-shadow-sm">وزارة التعليم العالي والبحث العلمي</p>
-            <p class="font-sans-plain text-sm sm:text-base font-bold drop-shadow-sm">جامعة التكوين المتواصل - قسنطينة</p>
         </div>
 
-        <!-- العنوان الرئيسي الملون -->
-        <div class="text-center mb-6">
-            <h1 class="font-hana text-2xl sm:text-3xl font-extrabold rainbow-text drop-shadow">مرحبا بك في بوابة الطالب الجامعي</h1>
+        <!-- العنوان الرئيسي باللون الأبيض -->
+        <div class="text-center mb-4">
+            <h1 class="font-hana text-xl sm:text-2xl font-bold text-white tracking-wide">مرحبا بك في بوابة الطالب الجامعي</h1>
         </div>
 
         <!-- الشريط المتحرك -->
-        <div class="bg-[#fef3c7] border-2 border-red-600 rounded-xl p-3 mb-6 shadow-md marquee-container">
-            <div class="marquee-content font-sans-plain font-bold text-black text-sm sm:text-base">
+        <div class="w-full bg-[#fef3c7] border-2 border-red-600 rounded-xl p-2.5 mb-3 shadow-md marquee-container">
+            <div class="marquee-content font-sans-plain font-bold text-black text-xs sm:text-sm">
                 ملاحظة: لن يتم تفعيل حسابات الطلبة الذين لم يدفعوا حقوق التسجيل للسنة الجامعية 2026-2027 .
             </div>
         </div>
 
         <!-- عبارة التوفيق -->
-        <p class="font-sans-plain text-center text-white text-xs sm:text-sm font-medium mb-6 drop-shadow">
+        <p class="font-sans-plain text-center text-white text-xs font-medium mb-4">
             تتمنى إدارة جامعة التكوين المتواصل قسنطينة لطلابها كل التوفيق في دراستهم ومسارهم الجامعي.
         </p>
 
-        <!-- البطاقة البيضاء (تظهر بظهور تدريجي) -->
-        <div id="card-container" class="opacity-0 transition-opacity duration-700 bg-white rounded-2xl p-6 sm:p-8 shadow-2xl border border-gray-100">
+        <!-- البطاقة البيضاء الأساسية -->
+        <div id="card-container" class="opacity-0 transition-opacity duration-700 bg-white rounded-2xl p-5 sm:p-6 shadow-2xl border border-gray-100 w-full">
             
             <!-- رسالة الخطأ العليا -->
-            <div id="error-banner" class="hidden mb-4 p-3 bg-red-100 border-r-4 border-red-600 text-red-700 font-sans-plain font-bold text-center text-sm rounded">
+            <div id="error-banner" class="hidden mb-4 p-2.5 bg-red-100 border-r-4 border-red-600 text-red-700 font-sans-plain font-bold text-center text-xs rounded">
                 يرجى التأكد من صحة معلوماتك.
             </div>
 
             <!-- نموذج الدخول -->
-            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-5 font-sans-plain">
+            <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4 font-sans-plain">
                 <div>
-                    <label class="block text-gray-700 font-bold text-sm mb-1">سنة البكالوريا</label>
-                    <input type="text" id="bac-year" placeholder="أدخل سنة البكالوريا" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
-                    <span id="err-year" class="hidden text-red-600 text-xs font-bold mt-1 block">حقل مطلوب</span>
+                    <label class="block text-gray-700 font-bold text-xs mb-1">سنة البكالوريا</label>
+                    <input type="text" id="bac-year" oninput="checkFormCompletion()" placeholder="أدخل سنة البكالوريا" class="w-full px-3.5 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-xs">
+                    <span id="err-year" class="hidden text-red-600 text-[11px] font-bold mt-1 block">حقل مطلوب</span>
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 font-bold text-sm mb-1">رقم التسجيل</label>
-                    <input type="text" id="reg-num" placeholder="أدخل رقم التسجيل" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
-                    <span id="err-reg" class="hidden text-red-600 text-xs font-bold mt-1 block">حقل مطلوب</span>
+                    <label class="block text-gray-700 font-bold text-xs mb-1">رقم التسجيل</label>
+                    <input type="text" id="reg-num" oninput="checkFormCompletion()" placeholder="أدخل رقم التسجيل" class="w-full px-3.5 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-xs">
+                    <span id="err-reg" class="hidden text-red-600 text-[11px] font-bold mt-1 block">حقل مطلوب</span>
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 font-bold text-sm mb-1">الرقم السري</label>
-                    <input type="password" id="secret-pass" placeholder="أدخل الرقم السري" class="w-full px-4 py-2.5 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
-                    <span id="err-pass" class="hidden text-red-600 text-xs font-bold mt-1 block">حقل مطلوب</span>
+                    <label class="block text-gray-700 font-bold text-xs mb-1">الرقم السري</label>
+                    <input type="password" id="secret-pass" oninput="checkFormCompletion()" placeholder="أدخل الرقم السري" class="w-full px-3.5 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-xs">
+                    <span id="err-pass" class="hidden text-red-600 text-[11px] font-bold mt-1 block">حقل مطلوب</span>
                 </div>
 
                 <!-- اختبار الكابتشا -->
-                <div class="bg-gray-50 border border-gray-300 rounded-xl p-4 flex items-center justify-between">
-                    <div class="flex items-center space-x-3 space-x-reverse">
-                        <input type="checkbox" id="captcha-check" onchange="toggleButtonState()" class="w-5 h-5 text-emerald-600 rounded focus:ring-emerald-500 cursor-pointer">
-                        <label for="captcha-check" class="text-sm text-gray-700 font-bold cursor-pointer selection:bg-none">أنا لست برنامج روبوت</label>
+                <div class="bg-gray-50 border border-gray-300 rounded-xl p-3 flex items-center justify-between">
+                    <div class="flex items-center space-x-2.5 space-x-reverse">
+                        <input type="checkbox" id="captcha-check" onchange="checkFormCompletion()" class="w-4 h-4 text-emerald-600 rounded focus:ring-emerald-500 cursor-pointer">
+                        <label for="captcha-check" class="text-xs text-gray-700 font-bold cursor-pointer">أنا لست برنامج روبوت</label>
                     </div>
-                    <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="recaptcha" class="w-8 h-8 opacity-70">
+                    <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="recaptcha" class="w-7 h-7 opacity-70">
                 </div>
 
                 <!-- زر تسجيل الدخول الأخضر -->
-                <button type="submit" id="submit-btn" disabled class="w-full py-3 px-6 rounded-xl font-hana font-bold text-white bg-emerald-600 opacity-50 cursor-not-allowed transition-all duration-300 shadow-md">
+                <button type="submit" id="submit-btn" disabled class="w-full py-2.5 px-6 rounded-xl font-hana font-bold text-white bg-emerald-600 opacity-40 cursor-not-allowed transition-all duration-300 shadow">
                     تسجيل الدخول
                 </button>
             </form>
 
             <!-- مؤشر التحميل الفرعي أسفل البطاقة -->
-            <div id="sub-loading" class="hidden flex-col items-center justify-center mt-6 pt-4 border-t border-gray-100">
+            <div id="sub-loading" class="hidden flex-col items-center justify-center my-6 py-4">
                 <div class="spinner-container mb-3">
                     <div class="spinner-dot"></div>
                     <div class="spinner-dot"></div>
@@ -184,27 +183,30 @@
                     <div class="spinner-dot"></div>
                     <div class="spinner-dot"></div>
                 </div>
-                <p class="font-sans-plain text-gray-600 text-sm animate-pulse">جار التحميل...</p>
+                <p class="font-sans-plain text-gray-600 text-xs animate-pulse">جار التحميل...</p>
             </div>
 
-            <!-- بطاقة معلومات الطالب (تظهر بعد الدخول والانتظار العشوائي) -->
+            <!-- بطاقة معلومات الطالب (البطاقة الثانية المصممة بنفس التنسيق تماماً) -->
             <div id="student-info-card" class="hidden font-sans-plain space-y-4">
-                <div class="space-y-2 border-b border-gray-200 pb-4 text-sm sm:text-base">
-                    <div class="flex justify-between border-b border-gray-100 py-1.5"><span class="text-gray-500">رقم التسجيل:</span><span id="info-reg" class="font-bold text-gray-800"></span></div>
-                    <div class="flex justify-between border-b border-gray-100 py-1.5"><span class="text-gray-500">اللقب:</span><span id="info-lname" class="font-bold text-gray-800"></span></div>
-                    <div class="flex justify-between border-b border-gray-100 py-1.5"><span class="text-gray-500">الإسم:</span><span id="info-fname" class="font-bold text-gray-800"></span></div>
-                    <div class="flex justify-between border-b border-gray-100 py-1.5"><span class="text-gray-500">تاريخ الميلاد:</span><span id="info-dob" class="font-bold text-gray-800"></span></div>
-                    <div class="flex justify-between border-b border-gray-100 py-1.5"><span class="text-gray-500">مكان الميلاد:</span><span id="info-pob" class="font-bold text-gray-800"></span></div>
-                    <div class="flex justify-between border-b border-gray-100 py-1.5"><span class="text-gray-500">الميدان:</span><span id="info-field" class="font-bold text-gray-800"></span></div>
-                    <div class="flex justify-between border-b border-gray-100 py-1.5"><span class="text-gray-500">الفرع:</span><span id="info-branch" class="font-bold text-gray-800"></span></div>
-                    <div class="flex justify-between border-b border-gray-100 py-1.5"><span class="text-gray-500">التخصص:</span><span id="info-spec" class="font-bold text-gray-800"></span></div>
-                    <div class="flex justify-between border-b border-gray-100 py-1.5"><span class="text-gray-500">المستوى:</span><span id="info-level" class="font-bold text-gray-800"></span></div>
-                    <div class="flex justify-between py-1.5"><span class="text-gray-500">معدل الانتقال:</span><span id="info-grade" class="font-bold text-emerald-600"></span></div>
+                <div class="space-y-2 text-xs sm:text-sm text-gray-700">
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">رقم التسجيل:</span><span id="info-reg" class="font-bold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">اللقب:</span><span id="info-lname" class="font-bold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">الاسم:</span><span id="info-fname" class="font-bold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">تاريخ الميلاد:</span><span id="info-dob" class="font-bold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">مكان الميلاد:</span><span id="info-pob" class="font-bold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">الميدان:</span><span id="info-field" class="font-bold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">الفرع:</span><span id="info-branch" class="font-bold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">التخصص:</span><span id="info-spec" class="font-bold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">المستوى:</span><span id="info-level" class="font-bold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">معدل الانتقال:</span><span id="info-grade" class="font-bold text-emerald-600"></span></div>
+                    <div class="flex justify-between items-center py-1"><span class="font-semibold text-gray-500">اللاحظة:</span><span class="font-bold text-gray-900">بتقدير مقبول</span></div>
                 </div>
 
-                <button onclick="goToPortal()" class="w-full py-3 px-6 rounded-xl font-hana font-bold text-white bg-amber-500 hover:bg-amber-600 transition-all shadow-md">
-                    التالي
-                </button>
+                <div class="pt-2">
+                    <button onclick="goToPortal()" class="w-full py-2.5 px-6 rounded-xl font-hana font-bold text-gray-900 bg-amber-400 hover:bg-amber-500 transition-all shadow-md text-sm">
+                        التالي
+                    </button>
+                </div>
             </div>
 
         </div>
@@ -212,7 +214,6 @@
 
     <!-- 3. الواجهة الرئيسية للمنصة (المنصة النهائية) -->
     <div id="app-content" class="hidden flex-1 flex-col bg-gray-50 min-h-screen text-gray-800">
-        <!-- الشريط العلوي (Header) -->
         <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
                 <div class="flex items-center space-x-4 space-x-reverse">
@@ -233,9 +234,7 @@
             </div>
         </header>
 
-        <!-- المحتوى والتصنيفات -->
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
-            <!-- شريط التنقل السريع -->
             <div class="flex space-x-2 space-x-reverse overflow-x-auto no-scrollbar pb-4 mb-6 border-b border-gray-200">
                 <button onclick="switchTab('dashboard')" id="tab-dashboard" class="tab-btn active font-hana px-5 py-2.5 rounded-xl text-sm font-medium whitespace-nowrap bg-blue-900 text-white transition-all">
                     <i class="fa-solid fa-chart-pie ml-2"></i>لوحة القيادة
@@ -324,37 +323,12 @@
         </main>
     </div>
 
-    <!-- التذييل الأنيق للواجهة -->
-    <footer id="main-footer" class="py-4 text-center text-white font-sans-plain text-sm border-t border-white/10 my-auto">
+    <!-- التذييل -->
+    <footer id="main-footer" class="py-3 text-center text-white/80 font-sans-plain text-xs my-auto">
         جامعة التكوين المتواصل 2026-2027
     </footer>
 
     <script>
-        // مصفوفة تحتوي على 20 لوناً وتدرجاً خلفياً راقياً
-        const backgroundList = [
-            "linear-gradient(135deg, #2d3748, #1a202c)",
-            "linear-gradient(135deg, #1e3a8a, #0f172a)",
-            "linear-gradient(135deg, #312e81, #1e1b4b)",
-            "linear-gradient(135deg, #065f46, #022c22)",
-            "linear-gradient(135deg, #831843, #500724)",
-            "linear-gradient(135deg, #7c2d12, #451a03)",
-            "linear-gradient(135deg, #1e293b, #0f172a)",
-            "linear-gradient(135deg, #4c1d95, #2e1065)",
-            "linear-gradient(135deg, #164e63, #083344)",
-            "linear-gradient(135deg, #701a75, #4a044e)",
-            "linear-gradient(135deg, #365314, #1a2e05)",
-            "linear-gradient(135deg, #111827, #030712)",
-            "linear-gradient(135deg, #18181b, #09090b)",
-            "linear-gradient(135deg, #27272a, #18181b)",
-            "linear-gradient(135deg, #0f766e, #115e59)",
-            "linear-gradient(135deg, #3730a3, #312e81)",
-            "linear-gradient(135deg, #854d0e, #713f12)",
-            "linear-gradient(135deg, #9f1239, #881337)",
-            "linear-gradient(135deg, #3f6212, #365314)",
-            "linear-gradient(135deg, #15803d, #166534)"
-        ];
-
-        // قاعدة بيانات الطلاب المعتمدة
         const studentsDatabase = {
             "2025_36105411_zxcvbnm2025": {
                 reg: "36105411",
@@ -384,11 +358,7 @@
 
         let currentActiveStudent = null;
 
-        // تطبيق خلفية عشوائية عند كل دخول
         window.addEventListener('load', () => {
-            const randomBg = backgroundList[Math.floor(Math.random() * backgroundList.length)];
-            document.getElementById('dynamic-body').style.background = randomBg;
-
             const splash = document.getElementById('splash-screen');
             const loginScreen = document.getElementById('login-screen');
             const cardContainer = document.getElementById('card-container');
@@ -400,27 +370,31 @@
                     loginScreen.classList.remove('opacity-0');
                     setTimeout(() => {
                         cardContainer.classList.remove('opacity-0');
-                    }, 300);
+                    }, 200);
                 }, 500);
             }, 2000);
         });
 
-        // توهج وتفعيل الزر عند اختيار الكابتشا
-        function toggleButtonState() {
-            const isChecked = document.getElementById('captcha-check').checked;
+        // التحقق من اكتمال كافة الخانات لتفعيل التوهج والزر
+        function checkFormCompletion() {
+            const yearVal = document.getElementById('bac-year').value.trim();
+            const regVal = document.getElementById('reg-num').value.trim();
+            const passVal = document.getElementById('secret-pass').value.trim();
+            const isCaptchaChecked = document.getElementById('captcha-check').checked;
+
             const btn = document.getElementById('submit-btn');
-            if (isChecked) {
+
+            if (yearVal !== '' && regVal !== '' && passVal !== '' && isCaptchaChecked) {
                 btn.disabled = false;
-                btn.classList.remove('opacity-50', 'cursor-not-allowed');
-                btn.classList.add('hover:bg-emerald-500', 'shadow-lg', 'ring-4', 'ring-emerald-300');
+                btn.classList.remove('opacity-40', 'cursor-not-allowed');
+                btn.classList.add('hover:bg-emerald-500', 'ring-4', 'ring-emerald-300', 'shadow-lg');
             } else {
                 btn.disabled = true;
-                btn.classList.add('opacity-50', 'cursor-not-allowed');
-                btn.classList.remove('hover:bg-emerald-500', 'shadow-lg', 'ring-4', 'ring-emerald-300');
+                btn.classList.add('opacity-40', 'cursor-not-allowed');
+                btn.classList.remove('hover:bg-emerald-500', 'ring-4', 'ring-emerald-300', 'shadow-lg');
             }
         }
 
-        // المعالجة المباشرة للتحقق والتسجيل
         function handleLogin(e) {
             e.preventDefault();
 
@@ -435,7 +409,6 @@
 
             let isValid = true;
 
-            // إزالة الإطارات الحمراء السابقة
             [yearInput, regInput, passInput].forEach(inp => inp.classList.remove('border-red-500'));
             [errYear, errReg, errPass, errorBanner].forEach(el => el.classList.add('hidden'));
 
@@ -467,13 +440,11 @@
 
             currentActiveStudent = student;
 
-            // إخفاء النموذج وإظهار مؤشر التحميل الفرعي
             document.getElementById('login-form').classList.add('hidden');
             const subLoading = document.getElementById('sub-loading');
             subLoading.classList.remove('hidden');
             subLoading.classList.add('flex');
 
-            // وقت عشوائي بين 3 إلى 10 ثوانٍ
             const randomTime = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000;
 
             setTimeout(() => {
@@ -483,7 +454,6 @@
             }, randomTime);
         }
 
-        // عرض بطاقة معلومات الطالب
         function showStudentInfoCard(s) {
             document.getElementById('info-reg').textContent = s.reg;
             document.getElementById('info-lname').textContent = s.lname;
@@ -499,7 +469,6 @@
             document.getElementById('student-info-card').classList.remove('hidden');
         }
 
-        // الانتقال إلى البوابة وتعبئة البيانات النهائية
         function goToPortal() {
             document.getElementById('student-info-card').classList.add('hidden');
             const subLoading = document.getElementById('sub-loading');
@@ -511,7 +480,7 @@
             setTimeout(() => {
                 document.getElementById('login-screen').classList.add('hidden');
                 document.getElementById('main-footer').classList.add('hidden');
-                document.body.style.background = '#f9fafb';
+                document.body.className = "bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col justify-between";
 
                 const appContent = document.getElementById('app-content');
                 appContent.classList.remove('hidden');
@@ -531,7 +500,6 @@
             }, randomTime);
         }
 
-        // التنقل بين تبويبات المنصة
         function switchTab(tabName) {
             const views = ['dashboard', 'personal', 'courses', 'grades', 'services', 'requests'];
             views.forEach(v => {
