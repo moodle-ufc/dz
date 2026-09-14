@@ -26,7 +26,6 @@
             font-style: normal;
         }
 
-        /* تطبيق الخطوط حسب المتطلبات */
         .font-hana {
             font-family: 'HanaFont', sans-serif;
         }
@@ -35,44 +34,33 @@
             font-family: 'TheSansPlain', system-ui, -apple-system, sans-serif;
         }
 
-        /* أنيميشن الدوائر الخمس لصفحة التحميل */
-        .loader-dots div {
-            animation-timing-function: cubic-bezier(0, 1, 1, 0);
-        }
-        .loader-dots div:nth-child(1) {
-            left: 8px;
-            animation: loader-dots1 0.6s infinite;
-        }
-        .loader-dots div:nth-child(2) {
-            left: 8px;
-            animation: loader-dots2 0.6s infinite;
-        }
-        .loader-dots div:nth-child(3) {
-            left: 32px;
-            animation: loader-dots2 0.6s infinite;
-        }
-        .loader-dots div:nth-child(4) {
-            left: 56px;
-            animation: loader-dots2 0.6s infinite;
-        }
-        .loader-dots div:nth-child(5) {
-            left: 80px;
-            animation: loader-dots3 0.6s infinite;
-        }
-        @keyframes loader-dots1 {
-            0% { transform: scale(0); }
-            100% { transform: scale(1); }
-        }
-        @keyframes loader-dots3 {
-            0% { transform: scale(1); }
-            100% { transform: scale(0); }
-        }
-        @keyframes loader-dots2 {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(24px, 0); }
+        /* أنيميشن دوران الدوائر الخمس حول المركز */
+        .spinner-container {
+            position: relative;
+            width: 70px;
+            height: 70px;
+            animation: spin 1.8s linear infinite;
         }
 
-        /* إخفاء شريط التمرير للـ Tabs */
+        .spinner-dot {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+        }
+
+        /* توزيع الدوائر الخمس بشكل متساوٍ على المحيط الدائري */
+        .spinner-dot:nth-child(1) { bg-color: #2563eb; top: 0; left: 28px; background-color: #2563eb; }
+        .spinner-dot:nth-child(2) { bg-color: #10b981; top: 18px; right: 2px; background-color: #10b981; }
+        .spinner-dot:nth-child(3) { bg-color: #f59e0b; bottom: 6px; right: 10px; background-color: #f59e0b; }
+        .spinner-dot:nth-child(4) { bg-color: #ef4444; bottom: 6px; left: 10px; background-color: #ef4444; }
+        .spinner-dot:nth-child(5) { bg-color: #8b5cf6; top: 18px; left: 2px; background-color: #8b5cf6; }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .no-scrollbar::-webkit-scrollbar {
             display: none;
         }
@@ -86,14 +74,14 @@
 
     <!-- 1. واجهة التحميل الأولى (Splash Screen) -->
     <div id="splash-screen" class="fixed inset-0 bg-white z-50 flex flex-col justify-center items-center transition-opacity duration-500">
-        <div class="relative w-28 h-10 loader-dots mb-4">
-            <div class="absolute top-3 w-4 h-4 rounded-full bg-blue-600"></div>
-            <div class="absolute top-3 w-4 h-4 rounded-full bg-emerald-500"></div>
-            <div class="absolute top-3 w-4 h-4 rounded-full bg-amber-500"></div>
-            <div class="absolute top-3 w-4 h-4 rounded-full bg-red-500"></div>
-            <div class="absolute top-3 w-4 h-4 rounded-full bg-purple-600"></div>
+        <div class="spinner-container mb-6">
+            <div class="spinner-dot"></div>
+            <div class="spinner-dot"></div>
+            <div class="spinner-dot"></div>
+            <div class="spinner-dot"></div>
+            <div class="spinner-dot"></div>
         </div>
-        <p class="font-sans-plain text-gray-600 text-lg tracking-wide animate-pulse">جَارٍ التَّحْمِيلِ...</p>
+        <p class="font-sans-plain text-gray-600 text-lg tracking-wide animate-pulse">جار التحميل...</p>
     </div>
 
     <!-- 2. الواجهة الرئيسية للمنصة -->
@@ -150,7 +138,7 @@
                 <div id="view-dashboard" class="space-y-6">
                     <div class="bg-gradient-to-r from-blue-900 to-indigo-800 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row justify-between items-center">
                         <div>
-                            <h2 class="font-hana text-2xl font-bold mb-2">مرحباً بك في بوابة جامعة التكوين المتواصل</h2>
+                            <h2 class="font-hana text-2xl font-bold mb-2">مرحبا بك في بوابة جامعة التكوين المتواصل</h2>
                             <p class="font-sans-plain text-blue-100 text-sm">تابع كافة خدماتك الجامعية، الجدول الزمني، وكشوف النقاط من مكان واحد.</p>
                         </div>
                         <span class="mt-4 md:mt-0 font-sans-plain bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-xs border border-white/20">السنة الجامعية: 2026-2027</span>
@@ -182,7 +170,7 @@
                     </div>
                 </div>
 
-                <!-- الملف الشخصي -->
+                <!-- باقي التبويبات -->
                 <div id="view-personal" class="hidden space-y-6 font-sans-plain">
                     <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100">
                         <h3 class="font-hana text-lg font-bold text-gray-800 mb-4 border-b pb-2">المعلومات الشخصية والدراسية</h3>
@@ -195,7 +183,6 @@
                     </div>
                 </div>
 
-                <!-- باقي التبويبات تظهر ديناميكياً -->
                 <div id="view-courses" class="hidden font-sans-plain bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                     <h3 class="font-hana text-lg font-bold text-gray-800 mb-4">المقررات والتوقيت الأسبوعي</h3>
                     <p class="text-gray-500 text-sm">يتم تحميل الجدول الزمني للمحاضرات والأعمال الموجهة...</p>
@@ -217,7 +204,6 @@
     </div>
 
     <script>
-        // التحكم في صفحة التحميل الأولى
         window.addEventListener('load', () => {
             const splash = document.getElementById('splash-screen');
             const content = document.getElementById('app-content');
@@ -228,10 +214,9 @@
                     splash.style.display = 'none';
                     content.classList.remove('hidden');
                 }, 500);
-            }, 2000); // عرض 2 ثوانٍ كحد أدنى
+            }, 2000);
         });
 
-        // التنقل بين التبويبات
         function switchTab(tabName) {
             const views = ['dashboard', 'personal', 'courses', 'grades', 'services', 'requests'];
             views.forEach(v => {
@@ -251,4 +236,3 @@
     </script>
 </body>
 </html>
-
