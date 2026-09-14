@@ -98,13 +98,13 @@
             <div class="spinner-dot"></div>
             <div class="spinner-dot"></div>
         </div>
-        <p class="font-sans-plain text-gray-600 text-lg tracking-wide animate-pulse">جار التحميل...</p>
+        <p class="font-sans-plain text-gray-600 text-lg tracking-wide animate-pulse">جار التحميل</p>
     </div>
 
     <!-- 2. واجهة الدخول والاستمارة -->
     <div id="login-screen" class="opacity-0 transition-opacity duration-700 max-w-xl mx-auto px-4 pt-4 pb-8 w-full flex-1 flex flex-col items-center">
         
-        <!-- الترويسة الشعار بجانب الكتابة المرفوعة للأعلى -->
+        <!-- الترويسة والشعار -->
         <div class="flex items-center justify-center space-x-4 space-x-reverse text-white mb-4 w-full">
             <img src="./IMG_20260914_010117.jpg" alt="شعار الجامعة" class="w-16 h-16 rounded-full object-cover border-2 border-white/30 shadow-sm flex-shrink-0">
             <div class="text-right">
@@ -114,7 +114,7 @@
             </div>
         </div>
 
-        <!-- العنوان الرئيسي باللون الأبيض -->
+        <!-- العنوان الرئيسي -->
         <div class="text-center mb-4">
             <h1 class="font-hana text-xl sm:text-2xl font-bold text-white tracking-wide">مرحبا بك في بوابة الطالب الجامعي</h1>
         </div>
@@ -159,6 +159,12 @@
                     <span id="err-pass" class="hidden text-red-600 text-[11px] font-bold mt-1 block">حقل مطلوب</span>
                 </div>
 
+                <!-- خيار حفظ معلومات تسجيل الدخول -->
+                <div class="flex items-center space-x-2 space-x-reverse py-1">
+                    <input type="checkbox" id="remember-me" class="w-4 h-4 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500 cursor-pointer">
+                    <label for="remember-me" class="text-xs text-gray-600 font-bold cursor-pointer">حفظ معلومات تسجيل الدخول</label>
+                </div>
+
                 <!-- اختبار الكابتشا -->
                 <div class="bg-gray-50 border border-gray-300 rounded-xl p-3 flex items-center justify-between">
                     <div class="flex items-center space-x-2.5 space-x-reverse">
@@ -174,7 +180,7 @@
                 </button>
             </form>
 
-            <!-- مؤشر التحميل الفرعي أسفل البطاقة -->
+            <!-- مؤشر التحميل الفرعي -->
             <div id="sub-loading" class="hidden flex-col items-center justify-center my-6 py-4">
                 <div class="spinner-container mb-3">
                     <div class="spinner-dot"></div>
@@ -183,10 +189,10 @@
                     <div class="spinner-dot"></div>
                     <div class="spinner-dot"></div>
                 </div>
-                <p class="font-sans-plain text-gray-600 text-xs animate-pulse">جار التحميل...</p>
+                <p class="font-sans-plain text-gray-600 text-xs animate-pulse">جار التحميل</p>
             </div>
 
-            <!-- بطاقة معلومات الطالب (البطاقة الثانية المصممة بنفس التنسيق تماماً) -->
+            <!-- بطاقة معلومات الطالب المصممة بنفس الشكل -->
             <div id="student-info-card" class="hidden font-sans-plain space-y-4">
                 <div class="space-y-2 text-xs sm:text-sm text-gray-700">
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">رقم التسجيل:</span><span id="info-reg" class="font-bold text-gray-900"></span></div>
@@ -199,7 +205,7 @@
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">التخصص:</span><span id="info-spec" class="font-bold text-gray-900"></span></div>
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">المستوى:</span><span id="info-level" class="font-bold text-gray-900"></span></div>
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">معدل الانتقال:</span><span id="info-grade" class="font-bold text-emerald-600"></span></div>
-                    <div class="flex justify-between items-center py-1"><span class="font-semibold text-gray-500">اللاحظة:</span><span class="font-bold text-gray-900">بتقدير مقبول</span></div>
+                    <div class="flex justify-between items-center py-1"><span class="font-semibold text-gray-500">الملاحظة:</span><span class="font-bold text-gray-900">بتقدير مقبول</span></div>
                 </div>
 
                 <div class="pt-2">
@@ -212,7 +218,7 @@
         </div>
     </div>
 
-    <!-- 3. الواجهة الرئيسية للمنصة (المنصة النهائية) -->
+    <!-- 3. الواجهة الرئيسية للمنصة -->
     <div id="app-content" class="hidden flex-1 flex-col bg-gray-50 min-h-screen text-gray-800">
         <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-30">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
@@ -261,7 +267,7 @@
                     <div class="bg-gradient-to-r from-blue-900 to-indigo-800 rounded-2xl p-6 text-white shadow-lg flex flex-col md:flex-row justify-between items-center">
                         <div>
                             <h2 class="font-hana text-2xl font-bold mb-2">مرحبا بك في بوابة جامعة التكوين المتواصل</h2>
-                            <p class="font-sans-plain text-blue-100 text-sm">تابع كافة خدماتك الجامعية، الجدول الزمني، وكشوف النقاط من مكان واحد.</p>
+                            <p class="font-sans-plain text-blue-100 text-sm">تابع كافة خدماتك الجامعية، الجدول الزمني، وكشوف النقاط من مكان واحد</p>
                         </div>
                         <span class="mt-4 md:mt-0 font-sans-plain bg-white/10 backdrop-blur-md px-4 py-2 rounded-xl text-xs border border-white/20">السنة الجامعية: 2026-2027</span>
                     </div>
@@ -305,19 +311,19 @@
 
                 <div id="view-courses" class="hidden font-sans-plain bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                     <h3 class="font-hana text-lg font-bold text-gray-800 mb-4">المقررات والتوقيت الأسبوعي</h3>
-                    <p class="text-gray-500 text-sm">يتم تحميل الجدول الزمني للمحاضرات والأعمال الموجهة...</p>
+                    <p class="text-gray-500 text-sm">يتم تحميل الجدول الزمني للمحاضرات والأعمال الموجهة</p>
                 </div>
                 <div id="view-grades" class="hidden font-sans-plain bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                     <h3 class="font-hana text-lg font-bold text-gray-800 mb-4">كشوف النقاط</h3>
-                    <p class="text-gray-500 text-sm">عرض كشوف العلامات للفصول الدراسية الحالي والسابق.</p>
+                    <p class="text-gray-500 text-sm">عرض كشوف العلامات للفصول الدراسية الحالي والسابق</p>
                 </div>
                 <div id="view-services" class="hidden font-sans-plain bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                     <h3 class="font-hana text-lg font-bold text-gray-800 mb-4">الخدمات الجامعية</h3>
-                    <p class="text-gray-500 text-sm">متابعة ملف المنحة، الإيواء، والنقل الجامعي.</p>
+                    <p class="text-gray-500 text-sm">متابعة ملف المنحة، الإيواء، والنقل الجامعي</p>
                 </div>
                 <div id="view-requests" class="hidden font-sans-plain bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                     <h3 class="font-hana text-lg font-bold text-gray-800 mb-4">الطلبات والطعون</h3>
-                    <p class="text-gray-500 text-sm">إيداع طلبات العطلة الأكاديمية، إعادة الإدماج، والطعن في التوجيه.</p>
+                    <p class="text-gray-500 text-sm">إيداع طلبات العطلة الأكاديمية، إعادة الإدماج، والطعن في التوجيه</p>
                 </div>
             </div>
         </main>
@@ -357,11 +363,27 @@
         };
 
         let currentActiveStudent = null;
+        let currentState = 'login'; // 'login', 'info', 'portal'
 
         window.addEventListener('load', () => {
             const splash = document.getElementById('splash-screen');
             const loginScreen = document.getElementById('login-screen');
             const cardContainer = document.getElementById('card-container');
+
+            // إعداد حالة التاريخ الأولية
+            history.replaceState({ step: 'login' }, '', '');
+
+            // استرجاع معلومات الدخول المحفوظة إن وجدت
+            const savedYear = localStorage.getItem('ufc_saved_year');
+            const savedReg = localStorage.getItem('ufc_saved_reg');
+            const savedPass = localStorage.getItem('ufc_saved_pass');
+
+            if (savedYear && savedReg && savedPass) {
+                document.getElementById('bac-year').value = savedYear;
+                document.getElementById('reg-num').value = savedReg;
+                document.getElementById('secret-pass').value = savedPass;
+                document.getElementById('remember-me').checked = true;
+            }
 
             setTimeout(() => {
                 splash.classList.add('opacity-0');
@@ -375,7 +397,18 @@
             }, 2000);
         });
 
-        // التحقق من اكتمال كافة الخانات لتفعيل التوهج والزر
+        // التعامل مع زر الرجوع في المتصفح/الهاتف
+        window.onpopstate = function(event) {
+            if (!event.state) return;
+            const targetStep = event.state.step;
+
+            if (targetStep === 'login') {
+                showLoginView();
+            } else if (targetStep === 'info') {
+                showStudentInfoView();
+            }
+        };
+
         function checkFormCompletion() {
             const yearVal = document.getElementById('bac-year').value.trim();
             const regVal = document.getElementById('reg-num').value.trim();
@@ -401,6 +434,7 @@
             const yearInput = document.getElementById('bac-year');
             const regInput = document.getElementById('reg-num');
             const passInput = document.getElementById('secret-pass');
+            const rememberMe = document.getElementById('remember-me').checked;
 
             const errYear = document.getElementById('err-year');
             const errReg = document.getElementById('err-reg');
@@ -430,6 +464,17 @@
 
             if (!isValid) return;
 
+            // حفظ البيانات في المتصفح إذا تم تحديد الخيار
+            if (rememberMe) {
+                localStorage.setItem('ufc_saved_year', yearInput.value.trim());
+                localStorage.setItem('ufc_saved_reg', regInput.value.trim());
+                localStorage.setItem('ufc_saved_pass', passInput.value.trim());
+            } else {
+                localStorage.removeItem('ufc_saved_year');
+                localStorage.removeItem('ufc_saved_reg');
+                localStorage.removeItem('ufc_saved_pass');
+            }
+
             const key = `${yearInput.value.trim()}_${regInput.value.trim()}_${passInput.value.trim()}`;
             const student = studentsDatabase[key];
 
@@ -450,6 +495,9 @@
             setTimeout(() => {
                 subLoading.classList.add('hidden');
                 subLoading.classList.remove('flex');
+                
+                history.pushState({ step: 'info' }, '', '');
+                currentState = 'info';
                 showStudentInfoCard(student);
             }, randomTime);
         }
@@ -478,6 +526,9 @@
             const randomTime = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000;
 
             setTimeout(() => {
+                history.pushState({ step: 'portal' }, '', '');
+                currentState = 'portal';
+
                 document.getElementById('login-screen').classList.add('hidden');
                 document.getElementById('main-footer').classList.add('hidden');
                 document.body.className = "bg-gray-50 text-gray-800 antialiased min-h-screen flex flex-col justify-between";
@@ -498,6 +549,34 @@
                 document.getElementById('p-reg').textContent = currentActiveStudent.reg;
                 document.getElementById('p-level').textContent = currentActiveStudent.level;
             }, randomTime);
+        }
+
+        function showLoginView() {
+            currentState = 'login';
+            document.getElementById('app-content').classList.add('hidden');
+            document.getElementById('app-content').classList.remove('flex');
+            document.getElementById('login-screen').classList.remove('hidden');
+            document.getElementById('main-footer').classList.remove('hidden');
+            document.body.className = "cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between";
+
+            document.getElementById('student-info-card').classList.add('hidden');
+            document.getElementById('sub-loading').classList.add('hidden');
+            document.getElementById('sub-loading').classList.remove('flex');
+            document.getElementById('login-form').classList.remove('hidden');
+        }
+
+        function showStudentInfoView() {
+            currentState = 'info';
+            document.getElementById('app-content').classList.add('hidden');
+            document.getElementById('app-content').classList.remove('flex');
+            document.getElementById('login-screen').classList.remove('hidden');
+            document.getElementById('main-footer').classList.remove('hidden');
+            document.body.className = "cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between";
+
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('sub-loading').classList.add('hidden');
+            document.getElementById('sub-loading').classList.remove('flex');
+            document.getElementById('student-info-card').classList.remove('hidden');
         }
 
         function switchTab(tabName) {
