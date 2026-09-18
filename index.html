@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جامعة التكوين المتواصل - قسنطينة | بوابة الطالب</title>
+    <title>جامعة التكوين المتواصل | بوابة الطالب</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,14 +33,14 @@
             font-family: 'TheSansPlain', system-ui, -apple-system, sans-serif;
         }
 
-        /* خلفية باللون الأخضر البارد للواجهات الأولى */
+        /* خلفية باللون الأخضر البارد للواجهات الأولى والهيدر */
         .cool-green-bg {
             background-color: #1b3b36;
         }
 
-        /* خلفية أزرق بارد جداً للهيدر */
-        .very-cool-blue {
-            background-color: #e6f3ff;
+        /* لون الخلفية للواجهة الثالثة (بيج غامق جداً) */
+        .deep-dark-beige-bg {
+            background-color: #d1c7bd;
         }
 
         /* أنيميشن دوران الدوائر الخمس */
@@ -100,7 +100,7 @@
         }
     </style>
 </head>
-<body class="cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between transition-colors duration-700">
+<body id="main-body" class="cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between transition-colors duration-700">
 
     <!-- 1. واجهة التحميل الأولى (Splash Screen) -->
     <div id="splash-screen" class="fixed inset-0 bg-white z-50 flex flex-col justify-center items-center fade-transition">
@@ -114,7 +114,7 @@
         <p class="font-sans-plain text-gray-600 text-lg tracking-wide animate-pulse">جار التحميل</p>
     </div>
 
-    <!-- 2. واجهة الدخول والاستمارة -->
+    <!-- 2. واجهة الدخول والاستمارة (الواجهتان 1 و 2) -->
     <div id="login-screen" class="opacity-0 fade-transition max-w-xl mx-auto px-4 pt-4 pb-8 w-full flex-1 flex flex-col items-center">
         
         <!-- الترويسة والشعار -->
@@ -123,7 +123,7 @@
             <div class="text-right">
                 <p class="font-sans-plain text-xs sm:text-sm font-semibold leading-tight">الجمهورية الجزائرية الديمقراطية الشعبية</p>
                 <p class="font-sans-plain text-xs font-medium leading-tight text-emerald-100">وزارة التعليم العالي والبحث العلمي</p>
-                <p class="font-sans-plain text-xs sm:text-sm font-bold leading-tight mt-0.5">جامعة التكوين المتواصل - قسنطينة</p>
+                <p class="font-sans-plain text-xs sm:text-sm font-bold leading-tight mt-0.5">جامعة التكوين المتواصل</p>
             </div>
         </div>
 
@@ -141,7 +141,7 @@
 
         <!-- عبارة التوفيق -->
         <p class="font-sans-plain text-center text-white text-xs font-medium mb-4">
-            تتمنى إدارة جامعة التكوين المتواصل قسنطينة لطلابها كل التوفيق في دراستهم ومسارهم الجامعي
+            تتمنى إدارة جامعة التكوين المتواصل لطلابها كل التوفيق في دراستهم ومسارهم الجامعي
         </p>
 
         <!-- البطاقة البيضاء الأساسية -->
@@ -193,7 +193,7 @@
                 </button>
             </form>
 
-            <!-- مؤشر التحميل الفرعي بتأثير تدريجي -->
+            <!-- مؤشر التحميل الفرعي -->
             <div id="sub-loading" class="hidden flex-col items-center justify-center my-6 py-4 opacity-0 fade-transition">
                 <div class="spinner-container mb-3">
                     <div class="spinner-dot"></div>
@@ -205,10 +205,14 @@
                 <p class="font-sans-plain text-gray-600 text-xs animate-pulse">جار التحميل</p>
             </div>
 
-            <!-- بطاقة معلومات الطالب (الواجهة الثانية) -->
+            <!-- بطاقة معلومات الطالب (الواجهة 2) -->
             <div id="student-info-card" class="hidden font-sans-plain space-y-4 opacity-0 fade-transition">
                 <div class="space-y-2 text-xs sm:text-sm text-gray-700">
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">رقم التسجيل:</span><span id="info-reg" class="font-bold text-gray-900"></span></div>
+                    
+                    <!-- إضافة حقل الجامعة الجديد تحت رقم التسجيل مباشرة -->
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">الجامعة:</span><span id="info-univ" class="font-bold text-emerald-800 text-left"></span></div>
+                    
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">اللقب:</span><span id="info-lname" class="font-bold text-gray-900"></span></div>
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">الاسم:</span><span id="info-fname" class="font-bold text-gray-900"></span></div>
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">تاريخ الميلاد:</span><span id="info-dob" class="font-bold text-gray-900"></span></div>
@@ -218,7 +222,7 @@
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">التخصص:</span><span id="info-spec" class="font-bold text-gray-900"></span></div>
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">المستوى:</span><span id="info-level" class="font-bold text-gray-900"></span></div>
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">معدل الانتقال:</span><span id="info-grade" class="font-bold text-emerald-600"></span></div>
-                    <div class="flex justify-between items-center py-1"><span class="font-semibold text-gray-500">الملاحظة:</span><span class="font-bold text-gray-900">بتقدير مقبول</span></div>
+                    <div class="flex justify-between items-center py-1"><span class="font-semibold text-gray-500">الملاحظة:</span><span id="info-note" class="font-bold text-gray-900"></span></div>
                 </div>
 
                 <div class="pt-2">
@@ -231,33 +235,33 @@
         </div>
     </div>
 
-    <!-- 3. الواجهة الثالثة الرئيسية (مطابقة للصورة الثالثة تماماً) -->
-    <div id="app-content" class="hidden flex-1 flex-col bg-white min-h-screen text-gray-800 opacity-0 fade-transition">
+    <!-- 3. الواجهة الثالثة الرئيسية المحدثة بالكامل -->
+    <div id="app-content" class="hidden flex-1 flex-col deep-dark-beige-bg min-h-screen text-gray-800 opacity-0 fade-transition">
         
-        <!-- الهيدر بالأزرق البارد (نفس الواجهة والصورة 3) -->
-        <header class="very-cool-blue border-b border-sky-200 sticky top-0 z-30 shadow-sm py-2 px-4 sm:px-8">
+        <!-- الهيدر بالأخضر الداكن البارد (مطابق للواجهة 1 و 2) -->
+        <header class="cool-green-bg text-white border-b border-emerald-900/40 sticky top-0 z-30 shadow-md py-2.5 px-4 sm:px-8">
             <div class="max-w-7xl mx-auto flex items-center justify-between">
                 
-                <!-- اليسار من الصورة (يمين الصفحة برمجياً): اللقب والاسم بجانبه دائرة الأيقونة "اع" -->
+                <!-- جهة بيانات الطالب والصورة -->
                 <div class="flex items-center space-x-3 space-x-reverse">
                     <div class="text-right">
-                        <p id="portal-user-name" class="font-sans-plain font-bold text-sm sm:text-base text-gray-900 leading-tight"></p>
-                        <p id="portal-user-level" class="font-sans-plain text-xs text-gray-600 leading-tight mt-0.5"></p>
-                        <p id="portal-user-spec" class="font-sans-plain text-xs text-blue-800 font-bold leading-tight"></p>
+                        <p id="portal-user-name" class="font-sans-plain font-bold text-sm sm:text-base text-white leading-tight"></p>
+                        <p id="portal-user-level" class="font-sans-plain text-xs text-emerald-200 leading-tight mt-0.5"></p>
+                        <p id="portal-user-spec" class="font-sans-plain text-xs text-amber-300 font-bold leading-tight"></p>
                     </div>
-                    <!-- دائرة الصورة / الأحرف بجانب الاسم مباشرة -->
-                    <div id="portal-avatar" class="w-11 h-11 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-sm shadow-sm flex-shrink-0">
-                        اع
+                    <!-- دائرة صورة الطالب الشخصية -->
+                    <div class="w-11 h-11 rounded-full border-2 border-white/40 shadow-sm overflow-hidden flex-shrink-0 bg-emerald-800">
+                        <img id="portal-user-img" src="" alt="صورة الطالب" class="w-full h-full object-cover">
                     </div>
                 </div>
 
-                <!-- اليمين من الصورة: شعار الجامعة ومكتوب جامعة التكوين المتواصل - مركز قسنطينة - بوابة الطالب -->
+                <!-- جهة شعار الجامعة وعنوان المنصة (تم حذف كلمة قسنطينة) -->
                 <div class="flex items-center space-x-3 space-x-reverse">
                     <div class="text-left sm:text-right hidden sm:block">
-                        <h1 class="font-hana text-base sm:text-lg text-blue-900 font-bold leading-tight">جامعة التكوين المتواصل</h1>
-                        <p class="font-sans-plain text-[11px] sm:text-xs text-blue-700 font-medium">مركز قسنطينة - بوابة الطالب</p>
+                        <h1 class="font-hana text-base sm:text-lg text-white font-bold leading-tight">جامعة التكوين المتواصل</h1>
+                        <p class="font-sans-plain text-[11px] sm:text-xs text-emerald-100 font-medium">بوابة الطالب</p>
                     </div>
-                    <img src="./IMG_20260914_010117.jpg" alt="شعار الجامعة" class="h-11 w-11 rounded-full object-cover border border-sky-300 shadow-sm flex-shrink-0">
+                    <img src="./IMG_20260914_010117.jpg" alt="شعار الجامعة" class="h-11 w-11 rounded-full object-cover border border-white/30 shadow-sm flex-shrink-0">
                 </div>
 
             </div>
@@ -266,64 +270,100 @@
         <!-- محتوى الواجهة الثالثة -->
         <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
             
-            <!-- البطاقة الكبيرة باللون البيج بظهور تدريجي -->
-            <div id="main-beige-card" class="opacity-0 fade-transition bg-[#faf6eb] border border-stone-300 rounded-3xl p-5 sm:p-7 shadow-sm">
+            <!-- البطاقة الكبيرة البيج بالداخل -->
+            <div id="main-beige-card" class="opacity-0 fade-transition bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-7 shadow-sm">
                 
                 <!-- شبكة البطاقات (كل 3 خانات جنب بعض) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     
-                    <!-- بطاقة 1 -->
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center justify-between">
-                        <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المعلومات الشخصية</span>
-                        <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-user"></i></div>
+                    <!-- بطاقة 1: المعلومات الشخصية -->
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المعلومات الشخصية</span>
+                            <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-user"></i></div>
+                        </div>
+                        <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
+                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">الاطلاع على معلوماتي الشخصية، العنوان، الحالة العائلية...</p>
                     </div>
 
-                    <!-- بطاقة 2 -->
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center justify-between">
-                        <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المعلومات الدراسية</span>
-                        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-graduation-cap"></i></div>
+                    <!-- بطاقة 2: المعلومات الدراسية -->
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المعلومات الدراسية</span>
+                            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-graduation-cap"></i></div>
+                        </div>
+                        <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
+                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">مراجعة تسجيلاتي الدراسي في المسار الجامعي</p>
                     </div>
 
-                    <!-- بطاقة 3 -->
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center justify-between">
-                        <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">التوقيت الأسبوعي</span>
-                        <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-calendar-days"></i></div>
+                    <!-- بطاقة 3: التوقيت الأسبوعي -->
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">التوقيت الأسبوعي</span>
+                            <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-calendar-days"></i></div>
+                        </div>
+                        <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
+                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">تنظيم حصص الدراسة كل أسبوع: محاضرات، أعمال تطبيقية، أعمال موجهة، ملتقيات...</p>
                     </div>
 
-                    <!-- بطاقة 4 -->
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center justify-between">
-                        <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المقررات الدراسية</span>
-                        <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-book-open"></i></div>
+                    <!-- بطاقة 4: المقررات الدراسية -->
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المقررات الدراسية</span>
+                            <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-book-open"></i></div>
+                        </div>
+                        <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
+                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">مراقبة المقاييس الدراسية المعنية في كل سداسي، الدروس، النسب...</p>
                     </div>
 
-                    <!-- بطاقة 5 -->
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center justify-between">
-                        <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الأعمال الموجهة</span>
-                        <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-pen-ruler"></i></div>
+                    <!-- بطاقة 5: الأعمال الموجهة -->
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الأعمال الموجهة</span>
+                            <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-pen-ruler"></i></div>
+                        </div>
+                        <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
+                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">فحص عملية إنجاز الأعمال الموجهة في كل مقياس، النقاط...</p>
                     </div>
 
-                    <!-- بطاقة 6 -->
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center justify-between">
-                        <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">كشوف النقاط</span>
-                        <div class="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-square-poll-vertical"></i></div>
+                    <!-- بطاقة 6: كشوف النقاط -->
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">كشوف النقاط</span>
+                            <div class="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-square-poll-vertical"></i></div>
+                        </div>
+                        <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
+                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">الإطلاع على كشوف نقاطي في المسار الجامعي</p>
                     </div>
 
-                    <!-- بطاقة 7 -->
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center justify-between">
-                        <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الغيابات والإقصاءات</span>
-                        <div class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-user-xmark"></i></div>
+                    <!-- بطاقة 7: الغيابات والإقصاءات -->
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الغيابات والإقصاءات</span>
+                            <div class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-user-xmark"></i></div>
+                        </div>
+                        <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
+                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">تسجيل الاقصاءات، الغيابات في النظام المركزي للجامعة</p>
                     </div>
 
-                    <!-- بطاقة 8 -->
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center justify-between">
-                        <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الخدمات الجامعية</span>
-                        <div class="w-8 h-8 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-hand-holding-hand"></i></div>
+                    <!-- بطاقة 8: الخدمات الجامعية -->
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الخدمات الجامعية</span>
+                            <div class="w-8 h-8 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-hand-holding-hand"></i></div>
+                        </div>
+                        <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
+                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">تقديم ومراجعة طلبات التحويل، الإقامة، النقل، المنحة، العطلة الأكاديمية...</p>
                     </div>
 
-                    <!-- بطاقة 9 -->
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex items-center justify-between">
-                        <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">طرح إشكالية</span>
-                        <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-circle-question"></i></div>
+                    <!-- بطاقة 9: طرح إشكالية -->
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                        <div class="flex items-center justify-between w-full mb-2">
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">طرح إشكالية</span>
+                            <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-circle-question"></i></div>
+                        </div>
+                        <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
+                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">تقديم استفسار حول مشكلة معينة تخص الإطار الأكاديمي</p>
                     </div>
 
                 </div>
@@ -332,8 +372,8 @@
 
         </main>
 
-        <!-- التذييل بالأسفل -->
-        <footer class="py-4 text-center text-gray-500 font-sans-plain text-xs border-t border-gray-100 mt-auto">
+        <!-- التذييل السفلي للواجهة الثالثة -->
+        <footer class="py-4 text-center text-stone-700 font-sans-plain text-xs border-t border-stone-300/60 mt-auto font-bold">
             جامعة التكوين المتواصل 2026-2027
         </footer>
     </div>
@@ -344,21 +384,26 @@
     </footer>
 
     <script>
+        // قاعدة البيانات المحدثة بالكامل
         const studentsDatabase = {
-            "2025_36105411_zxcvbnm2025": {
+            "2025_36105411_26012007": {
                 reg: "36105411",
+                univ: "جامعة التكوين المتواصل - الجزائر وسط (جامعة الجزائر 03)",
                 lname: "العشي",
                 fname: "عبد الحكيم",
                 dob: "22-05-2007",
                 pob: "سكيكدة",
-                field: "آداب ولغات أجنبية",
-                branch: "لغة إنجليزية",
-                spec: "إنجليزية تقنية",
+                field: "علوم اقتصادية وتجارية وعلوم التسيير",
+                branch: "علوم مالية ومحاسبة",
+                spec: "محاسبة",
                 level: "ليسانس سنة أولى",
-                grade: "12.43"
+                grade: "12.39",
+                note: "بتقدير قريب من الجيد",
+                photo: "./3.jpg"
             },
             "2026_36107606_22052007": {
                 reg: "36107606",
+                univ: "جامعة التكوين المتواصل - قسنطينة",
                 lname: "بودرومة",
                 fname: "عبد المالك",
                 dob: "26-01-2007",
@@ -367,12 +412,13 @@
                 branch: "علوم مالية ومحاسبة",
                 spec: "محاسبة",
                 level: "ليسانس سنة أولى",
-                grade: "10.89"
+                grade: "10.89",
+                note: "بتقدير مقبول",
+                photo: "./4.jpg"
             }
         };
 
         let currentActiveStudent = null;
-        let currentState = 'login';
 
         window.addEventListener('load', () => {
             const splash = document.getElementById('splash-screen');
@@ -392,7 +438,6 @@
                 document.getElementById('remember-me').checked = true;
             }
 
-            // ظهور واجهة التحميل الأولى ثم الاختفاء التدريجي
             setTimeout(() => {
                 splash.classList.add('opacity-0');
                 setTimeout(() => {
@@ -491,7 +536,6 @@
 
             currentActiveStudent = student;
 
-            // اختفاء نموذج الدخول تدريجيا
             const loginForm = document.getElementById('login-form');
             loginForm.classList.add('opacity-0');
             
@@ -502,7 +546,7 @@
                 subLoading.classList.add('flex');
                 setTimeout(() => subLoading.classList.remove('opacity-0'), 50);
 
-                const randomTime = Math.floor(Math.random() * (10000 - 3000 + 1)) + 3000;
+                const randomTime = Math.floor(Math.random() * (7000 - 3000 + 1)) + 3000;
 
                 setTimeout(() => {
                     subLoading.classList.add('opacity-0');
@@ -511,7 +555,6 @@
                         subLoading.classList.remove('flex');
                         
                         history.pushState({ step: 'info' }, '', '');
-                        currentState = 'info';
                         showStudentInfoCard(student);
                     }, 400);
                 }, randomTime);
@@ -520,6 +563,7 @@
 
         function showStudentInfoCard(s) {
             document.getElementById('info-reg').textContent = s.reg;
+            document.getElementById('info-univ').textContent = s.univ;
             document.getElementById('info-lname').textContent = s.lname;
             document.getElementById('info-fname').textContent = s.fname;
             document.getElementById('info-dob').textContent = s.dob;
@@ -529,6 +573,7 @@
             document.getElementById('info-spec').textContent = s.spec;
             document.getElementById('info-level').textContent = s.level;
             document.getElementById('info-grade').textContent = s.grade;
+            document.getElementById('info-note').textContent = s.note;
 
             const card = document.getElementById('student-info-card');
             card.classList.remove('hidden');
@@ -546,13 +591,11 @@
                 subLoading.classList.add('flex');
                 setTimeout(() => subLoading.classList.remove('opacity-0'), 50);
 
-                // جار التحميل 3 ثواني
                 setTimeout(() => {
                     subLoading.classList.add('opacity-0');
 
                     setTimeout(() => {
                         history.pushState({ step: 'portal' }, '', '');
-                        currentState = 'portal';
 
                         subLoading.classList.add('hidden');
                         subLoading.classList.remove('flex');
@@ -563,50 +606,46 @@
                         setTimeout(() => {
                             loginScreen.classList.add('hidden');
                             document.getElementById('main-footer').classList.add('hidden');
-                            document.body.className = "bg-white text-gray-800 antialiased min-h-screen flex flex-col justify-between";
+                            
+                            // تغيير خلفية الصفحة بالكامل للون البيج الغامق جداً
+                            document.getElementById('main-body').className = "deep-dark-beige-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between";
 
                             const appContent = document.getElementById('app-content');
                             appContent.classList.remove('hidden');
                             appContent.classList.add('flex');
 
-                            // اسم ولقب الطالب والأيقونة
+                            // اسم الطالب وصورته
                             const lnameFname = `${currentActiveStudent.lname} ${currentActiveStudent.fname}`;
                             document.getElementById('portal-user-name').textContent = lnameFname;
                             document.getElementById('portal-user-level').textContent = currentActiveStudent.level;
                             document.getElementById('portal-user-spec').textContent = currentActiveStudent.spec;
-                            
-                            // الحروف الأولى للاسم واللقب داخل الدائرة
-                            const initials = `${currentActiveStudent.lname[0] || ''}${currentActiveStudent.fname[0] || ''}`;
-                            document.getElementById('portal-avatar').textContent = initials;
+                            document.getElementById('portal-user-img').src = currentActiveStudent.photo;
 
                             // إظهار الواجهة الثالثة تدريجياً
                             setTimeout(() => {
                                 appContent.classList.remove('opacity-0');
 
-                                // إظهار البطاقة البيج تدريجياً
                                 setTimeout(() => {
                                     const beigeCard = document.getElementById('main-beige-card');
                                     beigeCard.classList.remove('opacity-0');
 
-                                    // إظهار البطاقات الـ 9 بتتابع تدريجي
                                     const cards = document.querySelectorAll('.fade-card');
                                     cards.forEach((card, index) => {
                                         setTimeout(() => {
                                             card.classList.add('show');
-                                        }, 120 + (index * 100));
+                                        }, 100 + (index * 90));
                                     });
-                                }, 300);
+                                }, 250);
 
                             }, 50);
                         }, 400);
                     }, 400);
 
-                }, 3000);
+                }, 2500);
             }, 400);
         }
 
         function showLoginView() {
-            currentState = 'login';
             const appContent = document.getElementById('app-content');
             appContent.classList.add('opacity-0');
 
@@ -616,7 +655,7 @@
 
                 document.getElementById('login-screen').classList.remove('hidden');
                 document.getElementById('main-footer').classList.remove('hidden');
-                document.body.className = "cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between";
+                document.getElementById('main-body').className = "cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between";
 
                 document.getElementById('student-info-card').classList.add('hidden');
                 document.getElementById('sub-loading').classList.add('hidden');
@@ -634,7 +673,6 @@
         }
 
         function showStudentInfoView() {
-            currentState = 'info';
             const appContent = document.getElementById('app-content');
             appContent.classList.add('opacity-0');
 
@@ -644,7 +682,7 @@
 
                 document.getElementById('login-screen').classList.remove('hidden');
                 document.getElementById('main-footer').classList.remove('hidden');
-                document.body.className = "cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between";
+                document.getElementById('main-body').className = "cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between";
 
                 document.getElementById('login-form').classList.add('hidden');
                 document.getElementById('sub-loading').classList.add('hidden');
