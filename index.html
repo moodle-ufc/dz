@@ -20,7 +20,8 @@
 
         @font-face {
             font-family: 'TheSansPlain';
-            src: url('./TheSans-Plain.otf (1).ttf') format('truetype');
+            src: url('./TheSansPlain.otf%20(1).ttf') format('truetype'),
+                 url('./TheSansPlain.otf (1).ttf') format('truetype');
             font-weight: normal;
             font-style: normal;
         }
@@ -30,7 +31,7 @@
         }
 
         body, .font-sans-plain {
-            font-family: 'TheSansPlain', system-ui, -apple-system, sans-serif;
+            font-family: 'TheSansPlain', system-ui, -apple-system, sans-serif !important;
         }
 
         /* خلفية باللون الأخضر البارد للواجهات الأولى والهيدر */
@@ -209,10 +210,7 @@
             <div id="student-info-card" class="hidden font-sans-plain space-y-4 opacity-0 fade-transition">
                 <div class="space-y-2 text-xs sm:text-sm text-gray-700">
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">رقم التسجيل:</span><span id="info-reg" class="font-bold text-gray-900"></span></div>
-                    
-                    <!-- إضافة حقل الجامعة الجديد تحت رقم التسجيل مباشرة -->
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">الجامعة:</span><span id="info-univ" class="font-bold text-emerald-800 text-left"></span></div>
-                    
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">اللقب:</span><span id="info-lname" class="font-bold text-gray-900"></span></div>
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">الاسم:</span><span id="info-fname" class="font-bold text-gray-900"></span></div>
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">تاريخ الميلاد:</span><span id="info-dob" class="font-bold text-gray-900"></span></div>
@@ -235,10 +233,10 @@
         </div>
     </div>
 
-    <!-- 3. الواجهة الثالثة الرئيسية المحدثة بالكامل -->
+    <!-- 3. الواجهة الثالثة الرئيسية -->
     <div id="app-content" class="hidden flex-1 flex-col deep-dark-beige-bg min-h-screen text-gray-800 opacity-0 fade-transition">
         
-        <!-- الهيدر بالأخضر الداكن البارد (مطابق للواجهة 1 و 2) -->
+        <!-- الهيدر بالأخضر الداكن البارد -->
         <header class="cool-green-bg text-white border-b border-emerald-900/40 sticky top-0 z-30 shadow-md py-2.5 px-4 sm:px-8">
             <div class="max-w-7xl mx-auto flex items-center justify-between">
                 
@@ -255,7 +253,7 @@
                     </div>
                 </div>
 
-                <!-- جهة شعار الجامعة وعنوان المنصة (تم حذف كلمة قسنطينة) -->
+                <!-- جهة شعار الجامعة وعنوان المنصة -->
                 <div class="flex items-center space-x-3 space-x-reverse">
                     <div class="text-left sm:text-right hidden sm:block">
                         <h1 class="font-hana text-base sm:text-lg text-white font-bold leading-tight">جامعة التكوين المتواصل</h1>
@@ -270,10 +268,9 @@
         <!-- محتوى الواجهة الثالثة -->
         <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
             
-            <!-- البطاقة الكبيرة البيج بالداخل -->
             <div id="main-beige-card" class="opacity-0 fade-transition bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-7 shadow-sm">
                 
-                <!-- شبكة البطاقات (كل 3 خانات جنب بعض) -->
+                <!-- شبكة البطاقات التسع -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     
                     <!-- بطاقة 1: المعلومات الشخصية -->
@@ -283,7 +280,7 @@
                             <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-user"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">الاطلاع على معلوماتي الشخصية، العنوان، الحالة العائلية...</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">الاطلاع على معلوماتي الشخصية، العنوان، الحالة العائلية...</p>
                     </div>
 
                     <!-- بطاقة 2: المعلومات الدراسية -->
@@ -293,7 +290,7 @@
                             <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-graduation-cap"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">مراجعة تسجيلاتي الدراسي في المسار الجامعي</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">مراجعة تسجيلاتي الدراسي في المسار الجامعي</p>
                     </div>
 
                     <!-- بطاقة 3: التوقيت الأسبوعي -->
@@ -303,7 +300,7 @@
                             <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-calendar-days"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">تنظيم حصص الدراسة كل أسبوع: محاضرات، أعمال تطبيقية، أعمال موجهة، ملتقيات...</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تنظيم حصص الدراسة كل أسبوع: محاضرات، أعمال تطبيقية، أعمال موجهة، ملتقيات...</p>
                     </div>
 
                     <!-- بطاقة 4: المقررات الدراسية -->
@@ -313,7 +310,7 @@
                             <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-book-open"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">مراقبة المقاييس الدراسية المعنية في كل سداسي، الدروس، النسب...</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">مراقبة المقاييس الدراسية المعنية في كل سداسي، الدروس، النسب...</p>
                     </div>
 
                     <!-- بطاقة 5: الأعمال الموجهة -->
@@ -323,7 +320,7 @@
                             <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-pen-ruler"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">فحص عملية إنجاز الأعمال الموجهة في كل مقياس، النقاط...</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">فحص عملية إنجاز الأعمال الموجهة في كل مقياس، النقاط...</p>
                     </div>
 
                     <!-- بطاقة 6: كشوف النقاط -->
@@ -333,7 +330,7 @@
                             <div class="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-square-poll-vertical"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">الإطلاع على كشوف نقاطي في المسار الجامعي</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">الإطلاع على كشوف نقاطي في المسار الجامعي</p>
                     </div>
 
                     <!-- بطاقة 7: الغيابات والإقصاءات -->
@@ -343,7 +340,7 @@
                             <div class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-user-xmark"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">تسجيل الاقصاءات، الغيابات في النظام المركزي للجامعة</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تسجيل الاقصاءات، الغيابات في النظام المركزي للجامعة</p>
                     </div>
 
                     <!-- بطاقة 8: الخدمات الجامعية -->
@@ -353,7 +350,7 @@
                             <div class="w-8 h-8 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-hand-holding-hand"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">تقديم ومراجعة طلبات التحويل، الإقامة، النقل، المنحة، العطلة الأكاديمية...</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تقديم ومراجعة طلبات التحويل، الإقامة، النقل، المنحة، العطلة الأكاديمية...</p>
                     </div>
 
                     <!-- بطاقة 9: طرح إشكالية -->
@@ -363,7 +360,7 @@
                             <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-circle-question"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans text-[11px] text-gray-600 leading-relaxed mt-1">تقديم استفسار حول مشكلة معينة تخص الإطار الأكاديمي</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تقديم استفسار حول مشكلة معينة تخص الإطار الأكاديمي</p>
                     </div>
 
                 </div>
@@ -372,7 +369,6 @@
 
         </main>
 
-        <!-- التذييل السفلي للواجهة الثالثة -->
         <footer class="py-4 text-center text-stone-700 font-sans-plain text-xs border-t border-stone-300/60 mt-auto font-bold">
             جامعة التكوين المتواصل 2026-2027
         </footer>
@@ -384,7 +380,6 @@
     </footer>
 
     <script>
-        // قاعدة البيانات المحدثة بالكامل
         const studentsDatabase = {
             "2025_36105411_26012007": {
                 reg: "36105411",
@@ -399,7 +394,7 @@
                 level: "ليسانس سنة أولى",
                 grade: "12.39",
                 note: "بتقدير قريب من الجيد",
-                photo: "./3.jpg"
+                photo: "./IMG_20260914_211327.jpg"
             },
             "2026_36107606_22052007": {
                 reg: "36107606",
@@ -414,7 +409,7 @@
                 level: "ليسانس سنة أولى",
                 grade: "10.89",
                 note: "بتقدير مقبول",
-                photo: "./4.jpg"
+                photo: "./IMG_20260914_211339.jpg"
             }
         };
 
@@ -607,21 +602,18 @@
                             loginScreen.classList.add('hidden');
                             document.getElementById('main-footer').classList.add('hidden');
                             
-                            // تغيير خلفية الصفحة بالكامل للون البيج الغامق جداً
                             document.getElementById('main-body').className = "deep-dark-beige-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between";
 
                             const appContent = document.getElementById('app-content');
                             appContent.classList.remove('hidden');
                             appContent.classList.add('flex');
 
-                            // اسم الطالب وصورته
                             const lnameFname = `${currentActiveStudent.lname} ${currentActiveStudent.fname}`;
                             document.getElementById('portal-user-name').textContent = lnameFname;
                             document.getElementById('portal-user-level').textContent = currentActiveStudent.level;
                             document.getElementById('portal-user-spec').textContent = currentActiveStudent.spec;
                             document.getElementById('portal-user-img').src = currentActiveStudent.photo;
 
-                            // إظهار الواجهة الثالثة تدريجياً
                             setTimeout(() => {
                                 appContent.classList.remove('opacity-0');
 
