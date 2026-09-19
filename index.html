@@ -98,22 +98,22 @@
             transform: translateY(0);
         }
 
-        /* التأثير الخاص بظهور البطاقات (صعود تدريجي) */
+        /* التأثير الخاص بظهور البطاقات والنافذة المنبثقة (صعود تدريجي) */
         .slide-up-enter {
             opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(24px) scale(0.96);
+            transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .slide-up-active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
         }
 
         /* خروج تدريجي عادي بدون حركة عند الإغلاق */
         .fade-out-exit {
             opacity: 0;
-            transition: opacity 0.35s ease-out;
+            transition: opacity 0.3s ease-out;
         }
     </style>
 </head>
@@ -244,15 +244,22 @@
         <header class="cool-green-bg text-white border-b border-emerald-900/40 sticky top-0 z-30 shadow-md py-2.5 px-4 sm:px-8">
             <div class="max-w-7xl mx-auto flex items-center justify-between">
                 
+                <!-- جهة اليمين: معلومات الطالب + الصورة + زر تسجيل الخروج جنبها على اليسار -->
                 <div class="flex items-center space-x-3 space-x-reverse">
                     <div class="text-right">
                         <p id="portal-user-name" class="font-sans-plain font-bold text-sm sm:text-base text-white leading-tight"></p>
                         <p id="portal-user-level" class="font-sans-plain text-xs text-emerald-200 leading-tight mt-0.5"></p>
                         <p id="portal-user-spec" class="font-sans-plain text-xs text-amber-300 font-bold leading-tight"></p>
                     </div>
+                    
                     <div class="w-11 h-11 rounded-full border-2 border-white/40 shadow-sm overflow-hidden flex-shrink-0 bg-emerald-800">
                         <img id="portal-user-img" src="" alt="صورة الطالب" class="w-full h-full object-cover">
                     </div>
+
+                    <!-- زر تسجيل الخروج بنفس ديزاين "تسجيل مؤكد" وبأحمر غامق على يسار الصورة -->
+                    <button onclick="openLogoutModal()" class="inline-block bg-red-700 hover:bg-red-800 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm transition-all duration-200 cursor-pointer active:scale-95 flex-shrink-0 mr-1">
+                        تسجيل الخروج
+                    </button>
                 </div>
 
                 <div class="flex items-center space-x-3 space-x-reverse">
@@ -367,10 +374,8 @@
                 </div>
             </div>
 
-            <!-- 4. بطاقة المعلومات الشخصية (بشريط مستقل مطابِق) -->
+            <!-- 4. بطاقة المعلومات الشخصية -->
             <div id="personal-info-card" class="hidden slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
-                
-                <!-- الشريط المنفصل للعنوان والعودة -->
                 <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
                     <div class="flex items-center space-x-2.5 space-x-reverse">
                         <div class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-sm">
@@ -384,7 +389,6 @@
                     </button>
                 </div>
 
-                <!-- محتوى المعلومات الشخصية -->
                 <div class="bg-white border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-sm font-sans-plain divide-y divide-gray-100 text-xs sm:text-sm">
                     <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">الرقم :</span><span id="p-reg" class="font-bold text-gray-900"></span></div>
                     <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">اللقب بالحروف اللاتينية :</span><span id="p-lname-en" class="font-bold text-gray-900"></span></div>
@@ -423,10 +427,8 @@
                 </div>
             </div>
 
-            <!-- 5. بطاقة المعلومات الدراسية (تأتي بالشريط المنفصل المستقل كما في طلبك) -->
+            <!-- 5. بطاقة المعلومات الدراسية -->
             <div id="academic-info-card" class="hidden slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
-                
-                <!-- الشريط المنفصل للعنوان والعودة (تم تعديل النص إلى "المعلومات الدراسية" فقط) -->
                 <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
                     <div class="flex items-center space-x-2.5 space-x-reverse">
                         <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm">
@@ -440,7 +442,6 @@
                     </button>
                 </div>
 
-                <!-- البطاقة الخضراء الغامقة للمعلومات الحالية -->
                 <div class="cool-green-bg text-white rounded-3xl p-6 shadow-xl relative overflow-hidden border border-emerald-900/50">
                     <div class="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full -translate-x-10 -translate-y-10 blur-xl pointer-events-none"></div>
                     
@@ -480,7 +481,6 @@
                     </div>
                 </div>
 
-                <!-- قسم التسجيلات السابقة والجدول -->
                 <div class="bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-sm">
                     <div class="flex items-center space-x-2.5 space-x-reverse mb-4">
                         <div class="w-8 h-8 rounded-lg bg-stone-200 text-stone-700 flex items-center justify-center text-sm shadow-sm">
@@ -517,6 +517,29 @@
         <footer class="py-4 text-center text-stone-700 font-sans-plain text-xs border-t border-stone-300/60 mt-auto font-bold">
             جامعة التكوين المتواصل 2026-2027
         </footer>
+    </div>
+
+    <!-- 6. واجهة/نافذة تأكيد تسجيل الخروج المنبثقة (Modal) -->
+    <div id="logout-modal-backdrop" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
+        <div id="logout-modal-card" class="bg-white border-2 border-black rounded-2xl p-6 max-w-sm w-full shadow-2xl text-center space-y-6 slide-up-enter font-sans-plain">
+            
+            <div class="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto text-xl border border-red-100">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </div>
+
+            <h3 class="text-black font-extrabold text-base sm:text-lg leading-snug">
+                هل تريد فعلاً تسجيل الخروج؟
+            </h3>
+
+            <div class="flex items-center justify-center space-x-3 space-x-reverse pt-2">
+                <button onclick="confirmLogout()" class="w-full py-2.5 px-4 bg-red-700 hover:bg-red-800 text-white font-bold rounded-xl text-xs sm:text-sm transition-all shadow active:scale-95">
+                    نعم
+                </button>
+                <button onclick="closeLogoutModal()" class="w-full py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-black font-bold rounded-xl border border-gray-300 text-xs sm:text-sm transition-all active:scale-95">
+                    لا
+                </button>
+            </div>
+        </div>
     </div>
 
     <footer id="main-footer" class="py-3 text-center text-white/80 font-sans-plain text-xs my-auto">
@@ -890,7 +913,6 @@
             }, 350);
         }
 
-        /* إغلاق المعلومات الشخصية بخروج تدريجي عادي */
         function closePersonalInfo() {
             const pCard = document.getElementById('personal-info-card');
             
@@ -982,7 +1004,6 @@
             }, 350);
         }
 
-        /* إغلاق المعلومات الدراسية بخروج تدريجي عادي */
         function closeAcademicInfo() {
             const acadCard = document.getElementById('academic-info-card');
             
@@ -996,6 +1017,38 @@
                 beigeCard.classList.remove('hidden');
                 setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
             }, 350);
+        }
+
+        /* --- وظائف نافذة تسجيل الخروج (Modal Functions) --- */
+        
+        function openLogoutModal() {
+            const backdrop = document.getElementById('logout-modal-backdrop');
+            const card = document.getElementById('logout-modal-card');
+
+            backdrop.classList.remove('hidden');
+            setTimeout(() => {
+                backdrop.classList.remove('opacity-0');
+                card.classList.add('slide-up-active');
+            }, 50);
+        }
+
+        function closeLogoutModal() {
+            const backdrop = document.getElementById('logout-modal-backdrop');
+            const card = document.getElementById('logout-modal-card');
+
+            backdrop.classList.add('opacity-0');
+            card.classList.remove('slide-up-active');
+
+            setTimeout(() => {
+                backdrop.classList.add('hidden');
+            }, 300);
+        }
+
+        function confirmLogout() {
+            closeLogoutModal();
+            setTimeout(() => {
+                showLoginView();
+            }, 300);
         }
 
         function showLoginView() {
