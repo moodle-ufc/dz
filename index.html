@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جامعة التكوين المتواصل | بوابة الطالب</title>
+    <title>بوابة التكوين المتواصل | قسنطينة</title>
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -20,7 +20,7 @@
 
         @font-face {
             font-family: 'TheSansPlain';
-            src: url('./TheSans-Plain.otf.ttf') format('truetype');
+            src: url('./TheSans-Plain.otf') format('opentype');
             font-weight: normal;
             font-style: normal;
         }
@@ -34,7 +34,7 @@
         }
 
         .cool-green-bg {
-            background-color: #1b3b36;
+            background-color: #1b365d;
         }
 
         .deep-dark-beige-bg {
@@ -70,10 +70,12 @@
             overflow: hidden;
             white-space: nowrap;
         }
+
         .marquee-content {
             display: inline-block;
             animation: marquee 18s linear infinite;
         }
+
         @keyframes marquee {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
@@ -100,7 +102,7 @@
 
         .slide-up-enter {
             opacity: 0;
-            transform: translateY(24px) scale(0.96);
+            transform: translateY(24px) scale(0.98);
             transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -111,20 +113,18 @@
 
         .fade-out-exit {
             opacity: 0;
-            transition: opacity 0.3s ease-out;
+            transition: opacity 0.35s ease-out;
         }
 
-        /* أنيميشن الوميض للنص بالكامل */
         @keyframes alertBlink {
             0%, 100% { opacity: 1; }
-            50% { opacity: 0.15; }
+            50% { opacity: 0.75; }
         }
 
         .alert-blinking {
             animation: alertBlink 1.4s infinite ease-in-out;
         }
 
-        /* الإطار الأحمر المتحرك الذي يدور حول بطاقة التنبيه */
         .animated-border-box {
             position: relative;
             border-radius: 1rem;
@@ -145,7 +145,7 @@
 
         .animated-border-inner {
             position: relative;
-            background-color: #fef2f2;
+            background-color: #faf2f2;
             border-radius: calc(1rem - 2px);
             z-index: 1;
         }
@@ -155,17 +155,56 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* تصميم الدمج بين لون المحاضرات ولون الأعمال الموجهة (نصف برتقالي ونصف بنفسجي) */
         .merged-lec-td {
-            background: linear-gradient(135deg, #f97316 0%, #f97316 48%, #c084fc 52%, #c084fc 100%);
+            background: linear-gradient(135deg, #f97316 0%, #f97316 48%, #0d9488 52%, #0d9488 100%);
             color: #ffffff;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+            text-shadow: 0px 1px 2px rgba(0,0,0,0.6);
+        }
+
+        /* تصميم جدول المقررات الدراسية الجديد المتناسق RTL */
+        .courses-table-wrapper {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #d1d5db;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        .courses-table-wrapper table {
+            width: 100%;
+            border-collapse: collapse;
+            white-space: nowrap;
+            text-align: right;
+        }
+
+        .courses-table-wrapper th, .courses-table-wrapper td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+
+        .courses-table-wrapper th {
+            background-color: #e9ecef;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .courses-table-wrapper tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .unit-group-header {
+            background-color: #e2e8f0;
+            font-weight: bold;
+            color: #1a202c;
+            font-size: 15px;
         }
     </style>
 </head>
-<body id="main-body" class="cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between transition-colors duration-700">
+<body id="main-body" class="cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between transition-colors duration-500">
 
-    <!-- 1. واجهة التحميل الأولى -->
+    <!-- واجهة التحميل الأولى -->
     <div id="splash-screen" class="fixed inset-0 bg-white z-50 flex flex-col justify-center items-center loading-fade">
         <div class="spinner-container mb-6">
             <div class="spinner-dot"></div>
@@ -174,79 +213,79 @@
             <div class="spinner-dot"></div>
             <div class="spinner-dot"></div>
         </div>
-        <p class="font-sans-plain text-gray-600 text-lg tracking-wide animate-pulse">جار التحميل</p>
+        <p class="font-sans-plain text-gray-600 text-lg tracking-wide animate-pulse">جاري تحميل النظام الأساسي...</p>
     </div>
 
-    <!-- 2. واجهة الدخول والاستمارة -->
-    <div id="login-screen" class="opacity-0 fade-transition max-w-xl mx-auto px-4 pt-4 pb-8 w-full flex-1 flex flex-col items-center">
+    <!-- واجهة الدخول والأستاذ -->
+    <div id="login-screen" class="opacity-0 fade-transition max-w-4xl mx-auto px-4 py-8 w-full flex-1 flex flex-col justify-center items-center">
         
-        <div class="flex items-center justify-center space-x-4 space-x-reverse text-white mb-4 w-full">
-            <img src="./IMG_20260914_010117.jpg" alt="شعار الجامعة" class="w-16 h-16 rounded-full object-cover border-2 border-white/30 shadow-sm flex-shrink-0">
+        <div class="flex items-center justify-center space-x-4 space-x-reverse mb-4 w-full">
+            <img src="./IMG_20260914_010117.jpg" alt="شعار الجامعة" class="h-16 w-16 rounded-full object-cover border-2 border-white/40 shadow-md">
             <div class="text-right">
-                <p class="font-sans-plain text-xs sm:text-sm font-semibold leading-tight">الجمهورية الجزائرية الديمقراطية الشعبية</p>
-                <p class="font-sans-plain text-xs font-medium leading-tight text-emerald-100">وزارة التعليم العالي والبحث العلمي</p>
-                <p class="font-sans-plain text-xs sm:text-sm font-bold leading-tight mt-0.5">جامعة التكوين المتواصل</p>
+                <p class="font-sans-plain text-xs sm:text-sm font-semibold leading-tight text-white">الجمهورية الجزائرية الديمقراطية الشعبية</p>
+                <p class="font-sans-plain text-xs sm:text-sm font-bold text-emerald-100 leading-tight">وزارة التعليم العالي والبحث العلمي</p>
+                <p class="font-sans-plain text-xs sm:text-sm font-bold text-amber-300 leading-tight">جامعة التكوين المتواصل - قسنطينة</p>
             </div>
         </div>
 
         <div class="text-center mb-4">
-            <h1 class="font-hana text-xl sm:text-2xl font-bold text-white tracking-wide">مرحبا بك في بوابة الطالب الجامعي</h1>
+            <h1 class="font-hana text-xl sm:text-2xl font-bold text-white tracking-wide">مرحباً بك في بوابة الطالب الجامعي</h1>
         </div>
 
         <div class="w-full bg-[#fef3c7] border-2 border-red-600 rounded-xl p-2.5 mb-3 shadow-md marquee-container">
             <div class="marquee-content font-sans-plain font-bold text-black text-xs sm:text-sm">
-                ملاحظة: لن يتم تفعيل حسابات الطلبة الذين لم يدفعوا حقوق التسجيل للسنة الجامعية 2026-2027
+                ملاحظة: لم يتم تفعيل حسابات الطلبة الذين لم يدفعوا حقوق التسجيل للسنة الجامعية 2026-2027
             </div>
         </div>
 
-        <p class="font-sans-plain text-center text-white text-xs font-medium mb-4">
-            تتمنى إدارة جامعة التكوين المتواصل لطلابها كل التوفيق في دراستهم ومسارهم الجامعي
+        <p class="font-sans-plain text-center text-white text-xs sm:text-medium mb-4">
+            تتمنى إدارة جامعة التكوين المتواصل لطلبتها كل التوفيق في دراستهم ومسارهم الجامعي
         </p>
 
-        <div id="card-container" class="opacity-0 fade-transition bg-white rounded-2xl p-5 sm:p-6 shadow-2xl border border-gray-100 w-full">
+        <div id="card-container" class="opacity-0 fade-transition bg-white rounded-2xl p-5 sm:p-6 shadow-xl w-full max-w-md">
             
-            <div id="error-banner" class="hidden mb-4 p-2.5 bg-red-100 border-r-4 border-red-600 text-red-700 font-sans-plain font-bold text-center text-xs rounded">
-                يرجى التأكد من صحة معلوماتك
+            <div id="error-banner" class="hidden mb-4 p-2.5 bg-red-100 border-r-4 border-red-600 text-red-700 text-xs sm:text-sm rounded font-bold">
+                يرجى التأكد من صحة معلومات الدخول المدخلة.
             </div>
 
             <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4 font-sans-plain">
                 <div>
                     <label class="block text-gray-700 font-bold text-xs mb-1">سنة البكالوريا</label>
-                    <input type="text" id="bac-year" oninput="checkFormCompletion()" placeholder="أدخل سنة البكالوريا" class="w-full px-3.5 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-xs">
-                    <span id="err-year" class="hidden text-red-600 text-[11px] font-bold mt-1 block">حقل مطلوب</span>
+                    <input type="text" id="bac-year" oninput="checkFormCompletion()" placeholder="مثال: 2025" class="w-full p-2.5 border border-gray-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <span id="err-year" class="hidden text-red-600 text-[11px] font-bold mt-1 block">يرجى إدخال سنة البكالوريا بشكل صحيح.</span>
                 </div>
 
                 <div>
-                    <label class="block text-gray-700 font-bold text-xs mb-1">رقم التسجيل</label>
-                    <input type="text" id="reg-num" oninput="checkFormCompletion()" placeholder="أدخل رقم التسجيل" class="w-full px-3.5 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-xs">
-                    <span id="err-reg" class="hidden text-red-600 text-[11px] font-bold mt-1 block">حقل مطلوب</span>
+                    <label class="block text-gray-700 font-bold text-xs mb-1">رقم التسجيل (رقم البكالوريا)</label>
+                    <input type="text" id="reg-num" oninput="checkFormCompletion()" placeholder="مثال: 202536105411" class="w-full p-2.5 border border-gray-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <span id="err-reg" class="hidden text-red-600 text-[11px] font-bold mt-1 block">يرجى إدخال رقم التسجيل الجامعي بدقة.</span>
                 </div>
 
                 <div>
                     <label class="block text-gray-700 font-bold text-xs mb-1">الرقم السري</label>
-                    <input type="password" id="secret-pass" oninput="checkFormCompletion()" placeholder="أدخل الرقم السري" class="w-full px-3.5 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-emerald-500 text-xs">
-                    <span id="err-pass" class="hidden text-red-600 text-[11px] font-bold mt-1 block">حقل مطلوب</span>
+                    <input type="password" id="secret-pass" oninput="checkFormCompletion()" placeholder="أدخل الرقم السري الخاص بك" class="w-full p-2.5 border border-gray-300 rounded-xl text-xs sm:text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <span id="err-pass" class="hidden text-red-600 text-[11px] font-bold mt-1 block">يرجى إدخال الرقم السري.</span>
                 </div>
 
                 <div class="flex items-center space-x-2 space-x-reverse py-1">
-                    <input type="checkbox" id="remember-me" class="w-4 h-4 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500 cursor-pointer">
-                    <label for="remember-me" class="text-xs text-gray-600 font-bold cursor-pointer">حفظ معلومات تسجيل الدخول</label>
+                    <input type="checkbox" id="remember-me" class="w-4 h-4 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500">
+                    <label for="remember-me" class="text-xs text-gray-600 font-bold cursor-pointer">تذكر معلومات الدخول</label>
                 </div>
 
                 <div class="bg-gray-50 border border-gray-300 rounded-xl p-3 flex items-center justify-between">
                     <div class="flex items-center space-x-2.5 space-x-reverse">
-                        <input type="checkbox" id="captcha-check" onchange="checkFormCompletion()" class="w-4 h-4 text-emerald-600 rounded focus:ring-emerald-500 cursor-pointer">
-                        <label for="captcha-check" class="text-xs text-gray-700 font-bold cursor-pointer">أنا لست برنامج روبوت</label>
+                        <input type="checkbox" id="captcha-check" onchange="checkFormCompletion()" class="w-4 h-4 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500">
+                        <label for="captcha-check" class="text-xs text-gray-700 font-bold cursor-pointer">أنا لست روبوت (تحقق أمني)</label>
                     </div>
-                    <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="recaptcha" class="w-7 h-7 opacity-70">
+                    <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="recaptcha" class="h-8 w-8 object-contain">
                 </div>
 
-                <button type="submit" id="submit-btn" disabled class="w-full py-2.5 px-6 rounded-xl font-hana font-bold text-white bg-emerald-600 opacity-40 cursor-not-allowed transition-all duration-300 shadow">
+                <button type="submit" id="submit-btn" disabled class="w-full py-2.5 px-4 rounded-xl font-hana text-white bg-emerald-500 opacity-40 cursor-not-allowed transition duration-200 shadow-md">
                     تسجيل الدخول
                 </button>
             </form>
 
-            <div id="sub-loading" class="hidden flex-col items-center justify-center my-6 py-4 opacity-0 loading-fade">
+            <div id="sub-loading" class="hidden flex-col items-center justify-center my-6 opacity-0 transition-opacity duration-300">
                 <div class="spinner-container mb-3">
                     <div class="spinner-dot"></div>
                     <div class="spinner-dot"></div>
@@ -254,27 +293,28 @@
                     <div class="spinner-dot"></div>
                     <div class="spinner-dot"></div>
                 </div>
-                <p class="font-sans-plain text-gray-600 text-xs animate-pulse">جار التحميل</p>
+                <p class="font-sans-plain text-gray-600 text-xs animate-pulse">جاري التحقق من بيانات الدخول...</p>
             </div>
 
+            <!-- معلومات الطالب بعد التحقق المؤقت -->
             <div id="student-info-card" class="hidden font-sans-plain space-y-4 opacity-0 fade-transition">
                 <div class="space-y-2 text-xs sm:text-sm text-gray-700">
-                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">رقم التسجيل:</span><span id="info-reg" class="font-bold text-gray-900"></span></div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">الجامعة:</span><span id="info-univ" class="font-bold text-emerald-800 text-left"></span></div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">اللقب:</span><span id="info-lname" class="font-bold text-gray-900"></span></div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">الاسم:</span><span id="info-fname" class="font-bold text-gray-900"></span></div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">تاريخ الميلاد:</span><span id="info-dob" class="font-bold text-gray-900"></span></div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">مكان الميلاد:</span><span id="info-pob" class="font-bold text-gray-900"></span></div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">الميدان:</span><span id="info-field" class="font-bold text-gray-900"></span></div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">الفرع:</span><span id="info-branch" class="font-bold text-gray-900"></span></div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">التخصص:</span><span id="info-spec" class="font-bold text-gray-900"></span></div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">المستوى:</span><span id="info-level" class="font-bold text-gray-900"></span></div>
-                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">معدل الانتقال:</span><span id="info-grade" class="font-bold text-emerald-600"></span></div>
-                    <div class="flex justify-between items-center py-1"><span class="font-semibold text-gray-500">الملاحظة:</span><span id="info-note" class="font-bold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span>رقم التسجيل:</span><span id="info-reg" class="font-semibold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span>الجامعة:</span><span id="info-univ" class="font-semibold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span>اللقب:</span><span id="info-lname" class="font-semibold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span>الاسم:</span><span id="info-fname" class="font-semibold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span>تاريخ الازدياد:</span><span id="info-dob" class="font-semibold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span>مكان الازدياد:</span><span id="info-pob" class="font-semibold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span>الميدان:</span><span id="info-field" class="font-semibold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span>الفرع:</span><span id="info-branch" class="font-semibold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span>التخصص:</span><span id="info-spec" class="font-semibold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span>المستوى:</span><span id="info-level" class="font-semibold text-gray-900"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span>المعدل:</span><span id="info-grade" class="font-semibold text-emerald-600"></span></div>
+                    <div class="flex justify-between items-center py-1 border-b border-gray-100"><span>التقدير:</span><span id="info-note" class="font-semibold text-amber-600"></span></div>
                 </div>
 
                 <div class="pt-2">
-                    <button onclick="goToPortal()" class="w-full py-2.5 px-6 rounded-xl font-hana font-bold text-gray-900 bg-amber-400 hover:bg-amber-500 transition-all shadow-md text-sm">
+                    <button onclick="goToPortal()" class="w-full py-2.5 px-6 rounded-xl font-hana text-white bg-emerald-600 hover:bg-emerald-700 shadow-md transition">
                         التالي
                     </button>
                 </div>
@@ -283,42 +323,38 @@
         </div>
     </div>
 
-    <!-- 3. الواجهة الرئيسية للبوابة -->
+    <!-- الواجهة الرئيسية للبوابة (تظهر بعد الدخول) -->
     <div id="app-content" class="hidden flex-1 flex-col deep-dark-beige-bg min-h-screen text-gray-800 opacity-0 fade-transition">
         
-        <header class="cool-green-bg text-white border-b border-emerald-900/40 sticky top-0 z-30 shadow-md py-2.5 px-4 sm:px-8">
-            <div class="max-w-7xl mx-auto flex items-center justify-between">
-                
+        <header class="cool-green-bg text-white border-b border-emerald-900/40 sticky top-0 z-30 shadow-md">
+            <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
                 <div class="flex items-center space-x-3 space-x-reverse">
                     <div class="text-right">
-                        <p id="portal-user-name" class="font-sans-plain font-bold text-sm sm:text-base text-white leading-tight"></p>
-                        <p id="portal-user-level" class="font-sans-plain text-xs text-emerald-200 leading-tight mt-0.5"></p>
+                        <p id="portal-user-name" class="font-sans-plain font-bold text-sm sm:text-base"></p>
+                        <p id="portal-user-level" class="font-sans-plain text-xs text-emerald-200 leading-tight"></p>
                         <p id="portal-user-spec" class="font-sans-plain text-xs text-amber-300 font-bold leading-tight"></p>
                     </div>
-                    
-                    <div class="w-11 h-11 rounded-full border-2 border-white/40 shadow-sm overflow-hidden flex-shrink-0 bg-emerald-800">
+                    <div class="w-11 h-11 rounded-full border-2 border-white/40 shadow-sm overflow-hidden bg-white/10">
                         <img id="portal-user-img" src="" alt="صورة الطالب" class="w-full h-full object-cover">
                     </div>
-
-                    <button onclick="openLogoutModal()" class="inline-block bg-red-700 hover:bg-red-800 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm transition-all duration-200 cursor-pointer active:scale-95 flex-shrink-0 mr-1">
-                        تسجيل الخروج
-                    </button>
                 </div>
 
                 <div class="flex items-center space-x-3 space-x-reverse">
+                    <button onclick="openLogoutModal()" class="inline-block bg-red-700 hover:bg-red-800 text-white px-3 py-1.5 rounded-lg text-xs font-bold transition shadow-sm">
+                        <i class="fa-solid fa-right-from-bracket ml-1"></i> تسجيل الخروج
+                    </button>
                     <div class="text-left sm:text-right hidden sm:block">
                         <h1 class="font-hana text-base sm:text-lg text-white font-bold leading-tight">جامعة التكوين المتواصل</h1>
-                        <p class="font-sans-plain text-[11px] sm:text-xs text-emerald-100 font-medium">بوابة الطالب</p>
+                        <p class="font-sans-plain text-[11px] text-xs text-emerald-100 font-medium">بوابة الطالب الجامعية</p>
                     </div>
-                    <img src="./IMG_20260914_010117.jpg" alt="شعار الجامعة" class="h-11 w-11 rounded-full object-cover border border-white/30 shadow-sm flex-shrink-0">
+                    <img src="./IMG_20260914_010117.jpg" alt="شعار الجامعة" class="h-11 w-11 rounded-full border border-white/30 object-cover shadow-sm">
                 </div>
-
             </div>
         </header>
 
         <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-1 w-full flex flex-col justify-start">
             
-            <div id="card-loading" class="hidden flex-col items-center justify-center py-16 opacity-0 loading-fade">
+            <div id="card-loading" class="hidden flex-col items-center justify-center py-16 opacity-0 transition-opacity duration-300">
                 <div class="spinner-container mb-4">
                     <div class="spinner-dot"></div>
                     <div class="spinner-dot"></div>
@@ -326,187 +362,176 @@
                     <div class="spinner-dot"></div>
                     <div class="spinner-dot"></div>
                 </div>
-                <p class="font-sans-plain text-gray-700 font-bold text-sm animate-pulse">جار التحميل</p>
+                <p class="font-sans-plain text-gray-700 font-bold text-sm animate-pulse">جار التحميل...</p>
             </div>
 
-            <!-- شبكة البطاقات التسع -->
-            <div id="main-beige-card" class="opacity-0 fade-transition bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-7 shadow-sm mt-2">
+            <!-- شبكة البطاقات السبع -->
+            <div id="main-beige-card" class="opacity-0 transition-all duration-300 bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-xl">
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     
-                    <div onclick="openPersonalInfo()" class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                    <div onclick="openPersonalInfo()" class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between w-full mb-2">
-                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المعلومات الشخصية</span>
-                            <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-user"></i></div>
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">بطاقة المعلومات الشخصية</span>
+                            <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-id-card"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">الاطلاع على معلوماتي الشخصية، العنوان، الحالة العائلية...</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">الاطلاع على البيانات المدنية، العناوين، معلومات الأبوين، ورقم الهاتف.</p>
                     </div>
 
-                    <div onclick="openAcademicInfo()" class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                    <div onclick="openAcademicInfo()" class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between w-full mb-2">
-                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المعلومات الدراسية</span>
-                            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-graduation-cap"></i></div>
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">بطاقة المعلومات الدراسية</span>
+                            <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center"><i class="fa-solid fa-graduation-cap"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">مراجعة تسجيلاتي الدراسي في المسار الجامعي</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">متابعة التخصص، الشعبة، المسار الأكاديمي، والسجلات الدراسية السابقة.</p>
                     </div>
 
-                    <div onclick="openScheduleInfo()" class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                    <div onclick="openScheduleInfo()" class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">التوقيت الأسبوعي</span>
-                            <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-calendar-days"></i></div>
+                            <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center"><i class="fa-solid fa-calendar-days"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تنظيم حصص الدراسة كل أسبوع: محاضرات، أعمال تطبيقية، أعمال موجهة...</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">عرض جدول المحاضرات الأسبوعي، ومواعيد الحصص والدروس المبرمجة.</p>
                     </div>
 
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between w-full mb-2">
-                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المقررات الدراسية</span>
-                            <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-book-open"></i></div>
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">كشف النقاط السداسي</span>
+                            <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center"><i class="fa-solid fa-file-lines"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">مراقبة المقاييس الدراسية المعنية في كل سداسي، الدروس، النسب...</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">استعراض كشوف النقاط، العلامات المحصل عليها، والأرصدة لكل مقياس.</p>
                     </div>
 
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between w-full mb-2">
-                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الأعمال الموجهة</span>
-                            <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-pen-ruler"></i></div>
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الديون البيداغوجية</span>
+                            <div class="w-8 h-8 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center"><i class="fa-solid fa-triangle-exclamation"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">فحص عملية إنجاز الأعمال الموجهة في كل مقياس، النقاط...</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">الاطلاع على الديون والمقاييس المستدركة في المسار الجامعي.</p>
                     </div>
 
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between w-full mb-2">
-                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">كشوف النقاط</span>
-                            <div class="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-square-poll-vertical"></i></div>
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">طلبات الوثائق الإدارية</span>
+                            <div class="w-8 h-8 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center"><i class="fa-solid fa-folder-open"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">الإطلاع على كشوف نقاطي في المسار الجامعي</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">طلب شهادات التسجيل، كشوف الحضور، والوثائق الإدارية الرقمية.</p>
                     </div>
 
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between w-full mb-2">
-                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الغيابات والإقصاءات</span>
-                            <div class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-user-xmark"></i></div>
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الطعون والاستفسارات</span>
+                            <div class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center"><i class="fa-solid fa-headset"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تسجيل الاقصاءات، الغيابات في النظام المركزي للجامعة</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">إرسال انشغالات بيداغوجية أو طعون في النقاط لإدارة المركز الجامعي.</p>
                     </div>
 
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between w-full mb-2">
-                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الخدمات الجامعية</span>
-                            <div class="w-8 h-8 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-hand-holding-hand"></i></div>
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الخدمات الرقمية الجامعية</span>
+                            <div class="w-8 h-8 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center"><i class="fa-solid fa-laptop-code"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تقديم ومراجعة طلبات التحويل، الإقامة، النقل، المنحة...</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">الوصول إلى منصات الدروس، البريد المهني، والمكتبة الافتراضية.</p>
                     </div>
 
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md cursor-pointer transition">
                         <div class="flex items-center justify-between w-full mb-2">
-                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">طرح إشكالية</span>
-                            <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-circle-question"></i></div>
+                            <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">دليل الطالب واللوائح</span>
+                            <div class="w-8 h-8 rounded-lg bg-orange-50 text-orange-600 flex items-center justify-center"><i class="fa-solid fa-book-open"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تقديم استفسار حول مشكلة معينة تخص الإطار الأكاديمي</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">الاطلاع على القوانين الداخلية، توجيهات الامتحانات، والرزنامة البيداغوجية.</p>
                     </div>
 
                 </div>
             </div>
 
-            <!-- 4. بطاقة المعلومات الشخصية -->
+            <!-- بطاقة المعلومات الشخصية (نافذة منبثقة تفصيلية) -->
             <div id="personal-info-card" class="hidden slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
-                <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
+                <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 rounded-2xl shadow-sm">
                     <div class="flex items-center space-x-2.5 space-x-reverse">
-                        <div class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-sm">
-                            <i class="fa-solid fa-id-card"></i>
-                        </div>
-                        <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800">المعلومات الشخصية</h2>
+                        <div class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center"><i class="fa-solid fa-id-card"></i></div>
+                        <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800">بطاقة المعلومات الشخصية</h2>
                     </div>
-                    <button onclick="closePersonalInfo()" class="text-xs bg-stone-100 hover:bg-stone-200 text-gray-800 font-bold py-1.5 px-3.5 rounded-xl border border-stone-300 transition flex items-center space-x-1.5 space-x-reverse shadow-sm">
-                        <i class="fa-solid fa-arrow-right"></i>
-                        <span>العودة</span>
+                    <button onclick="closePersonalInfo()" class="text-xs bg-stone-100 hover:bg-stone-200 px-3 py-1.5 rounded-lg text-stone-700 transition flex items-center space-x-1 space-x-reverse">
+                        <i class="fa-solid fa-arrow-right"></i><span>العودة</span>
                     </button>
                 </div>
 
-                <div class="bg-white border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-sm font-sans-plain divide-y divide-gray-100 text-xs sm:text-sm">
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">الرقم :</span><span id="p-reg" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">اللقب بالحروف اللاتينية :</span><span id="p-lname-en" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">اللقب بالحروف العربية :</span><span id="p-lname-ar" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">الإسم بالحروف اللاتينية :</span><span id="p-fname-en" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">الإسم بالحروف العربية :</span><span id="p-fname-ar" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">رقم بطاقة التعريف الوطنية :</span><span id="p-cin" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">رقم التعريف الوطني :</span><span id="p-nin" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">الجنس :</span><span id="p-gender" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">تاريخ الميلاد :</span><span id="p-dob" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">مكان الإزدياد :</span><span id="p-pob" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">ولاية الميلاد :</span><span id="p-wilaya-birth" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">اسم الأب بالأحرف اللاتينية :</span><span id="p-father-en" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">لقب الأم بالأحرف اللاتينية :</span><span id="p-mother-lname-en" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">إسم الأم بالأحرف اللاتينية :</span><span id="p-mother-fname-en" class="font-bold text-gray-900"></span></div>
-                    
-                    <div class="py-2 flex justify-between items-center gap-2">
-                        <span class="text-blue-700 font-semibold flex-shrink-0">العنوان باللاتينية :</span>
-                        <input type="text" id="p-address-en" class="font-bold text-gray-900 text-left w-full max-w-[65%] bg-transparent border border-transparent hover:border-gray-300 focus:border-blue-500 focus:bg-white rounded px-1.5 py-0.5 outline-none transition" />
+                <div class="bg-white border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-xl space-y-3">
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">رقم التسجيل:</span><span id="p-reg" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">اللقب (بالعربية):</span><span id="p-lname-ar" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">الاسم (بالعربية):</span><span id="p-fname-ar" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">اللقب (باللاتينية):</span><span id="p-lname-en" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">الاسم (باللاتينية):</span><span id="p-fname-en" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">رقم بطاقة التعريف الوطنية:</span><span id="p-cin" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">الرقم الوطني للتعريف (NIN):</span><span id="p-nin" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">الجنس:</span><span id="p-gender" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">تاريخ الميلاد:</span><span id="p-dob" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">مكان الميلاد:</span><span id="p-pob" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">ولاية الميلاد:</span><span id="p-wilaya-birth" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">اسم الأب:</span><span id="p-father-en" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">لقب و اسم الأم:</span><span id="p-mother-name-en" class="font-bold text-gray-900"></span></div>
+
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100 gap-2">
+                        <span class="text-blue-700 font-semibold shrink-0">العنوان البريدي:</span>
+                        <input type="text" id="p-address-en" class="font-bold text-gray-900 text-left bg-transparent border border-gray-200 rounded p-1 w-full max-w-md">
+                    </div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100 gap-2">
+                        <span class="text-blue-700 font-semibold shrink-0">رقم الهاتف:</span>
+                        <input type="text" id="p-phone" class="font-bold text-gray-900 text-left bg-transparent border border-gray-200 rounded p-1 w-full max-w-xs">
+                    </div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100 gap-2">
+                        <span class="text-blue-700 font-semibold shrink-0">البريد الإلكتروني:</span>
+                        <input type="email" id="p-email" class="font-bold text-gray-900 text-left bg-transparent border border-gray-200 rounded p-1 w-full max-w-xs">
                     </div>
 
-                    <div class="py-2 flex justify-between items-center gap-2">
-                        <span class="text-blue-700 font-semibold flex-shrink-0">رقم الهاتف :</span>
-                        <input type="text" id="p-phone" class="font-bold text-gray-900 text-left w-full max-w-[50%] bg-transparent border border-transparent hover:border-gray-300 focus:border-blue-500 focus:bg-white rounded px-1.5 py-0.5 outline-none transition" />
-                    </div>
-
-                    <div class="py-2 flex justify-between items-center gap-2">
-                        <span class="text-blue-700 font-semibold flex-shrink-0">البريد الإلكتروني :</span>
-                        <input type="email" id="p-email" class="font-bold text-gray-900 text-left w-full max-w-[60%] bg-transparent border border-transparent hover:border-gray-300 focus:border-blue-500 focus:bg-white rounded px-1.5 py-0.5 outline-none transition" />
-                    </div>
-
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">شعبة البكالوريا :</span><span id="p-bac-branch" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">معدل البكالوريا :</span><span id="p-bac-grade" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">ولاية البكالوريا :</span><span id="p-bac-wilaya" class="font-bold text-gray-900"></span></div>
-                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">التقدير :</span><span id="p-bac-appreciation" class="font-bold text-emerald-700"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">شعبة البكالوريا:</span><span id="p-bac-branch" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">معدل البكالوريا:</span><span id="p-bac-grade" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm border-b border-gray-100"><span class="text-blue-700 font-semibold">ولاية البكالوريا:</span><span id="p-bac-wilaya" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center text-xs sm:text-sm"><span class="text-blue-700 font-semibold">تقدير البكالوريا:</span><span id="p-bac-appreciation" class="font-bold text-gray-900"></span></div>
                 </div>
             </div>
 
-            <!-- 5. بطاقة المعلومات الدراسية -->
+            <!-- بطاقة المعلومات الدراسية (نافذة منبثقة تفصيلية) -->
             <div id="academic-info-card" class="hidden slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
-                <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
+                <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 rounded-2xl shadow-sm">
                     <div class="flex items-center space-x-2.5 space-x-reverse">
-                        <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm">
-                            <i class="fa-solid fa-graduation-cap"></i>
-                        </div>
-                        <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800">المعلومات الدراسية</h2>
+                        <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800">معلومات الدراسية</h2>
                     </div>
-                    <button onclick="closeAcademicInfo()" class="text-xs bg-stone-100 hover:bg-stone-200 text-gray-800 font-bold py-1.5 px-3.5 rounded-xl border border-stone-300 transition flex items-center space-x-1.5 space-x-reverse shadow-sm">
-                        <i class="fa-solid fa-arrow-right"></i>
-                        <span>العودة</span>
+                    <button onclick="closeAcademicInfo()" class="text-xs bg-stone-100 hover:bg-stone-200 px-3 py-1.5 rounded-lg text-stone-700 transition flex items-center space-x-1 space-x-reverse">
+                        <i class="fa-solid fa-arrow-right"></i><span>العودة</span>
                     </button>
                 </div>
 
-                <div class="cool-green-bg text-white rounded-3xl p-6 shadow-xl relative overflow-hidden border border-emerald-900/50">
-                    <div class="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full -translate-x-10 -translate-y-10 blur-xl pointer-events-none"></div>
+                <div class="cool-green-bg text-white rounded-3xl p-6 shadow-xl relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-32 h-32 bg-white/5 rounded-full -translate-x-10 -translate-y-10 pointer-events-none"></div>
                     
                     <div class="flex justify-between items-start mb-6">
                         <div>
-                            <span class="inline-block bg-white/15 text-emerald-100 text-xs font-bold px-3 py-1 rounded-full mb-2 backdrop-blur-md">
-                                التسجيل الحالي
-                            </span>
-                            <h3 id="acad-level-title" class="font-hana font-bold text-xl sm:text-2xl text-white"></h3>
+                            <span class="inline-block bg-white/15 text-emerald-100 text-xs font-bold px-3 py-1 rounded-lg">التسجيل الحالي</span>
+                            <h3 id="acad-level-title" class="font-hana font-bold text-xl sm:text-2xl mt-2 text-white"></h3>
                         </div>
-                        <div class="bg-emerald-800/80 border border-emerald-400/30 px-3.5 py-1.5 rounded-xl text-amber-300 font-bold text-xs sm:text-sm flex items-center space-x-2 space-x-reverse shadow-inner">
-                            <i class="fa-regular fa-calendar-check"></i>
-                            <span>2026/2027</span>
+                        <div class="bg-emerald-800/80 border border-emerald-400/30 px-3.5 py-1.5 rounded-xl flex items-center space-x-2 space-x-reverse">
+                            <i class="fa-regular fa-calendar-check text-emerald-200"></i>
+                            <span class="text-sm font-bold text-white">2026/2027</span>
                         </div>
                     </div>
 
                     <div class="space-y-3 font-sans-plain border-t border-white/10 pt-4">
-                        <div class="flex items-center space-x-2.5 space-x-reverse text-sm sm:text-base font-bold text-emerald-50">
+                        <div class="flex items-center space-x-2.5 space-x-reverse text-sm">
                             <i class="fa-solid fa-university text-amber-400 text-base"></i>
-                            <span id="acad-univ-name"></span>
+                            <span id="acad-univ-name" class="font-medium text-white"></span>
                         </div>
-                        
+
                         <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-2 text-xs">
                             <div class="bg-white/10 p-2.5 rounded-xl border border-white/10">
                                 <span class="text-emerald-200 block text-[11px] mb-0.5">الميدان:</span>
@@ -522,28 +547,27 @@
                             </div>
                             <div class="bg-white/10 p-2.5 rounded-xl border border-white/10">
                                 <span class="text-emerald-200 block text-[11px] mb-0.5">المجموعة:</span>
-                                <span id="acad-group-name" class="font-bold text-white">--</span>
+                                <span id="acad-group-name" class="font-bold text-white"></span>
                             </div>
-                            <div class="bg-white/10 p-2.5 rounded-xl border border-white/10">
+                            <div class="bg-white/10 p-2.5 rounded-xl border border-white/10 sm:col-span-2">
                                 <span class="text-emerald-200 block text-[11px] mb-0.5">الفوج:</span>
-                                <span id="acad-squad-name" class="font-bold text-white">--</span>
+                                <span id="acad-squad-name" class="font-bold text-white"></span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-sm">
+                <!-- جدول التسجيلات السابقة -->
+                <div class="bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-xl">
                     <div class="flex items-center space-x-2.5 space-x-reverse mb-4">
-                        <div class="w-8 h-8 rounded-lg bg-stone-200 text-stone-700 flex items-center justify-center text-sm shadow-sm">
-                            <i class="fa-solid fa-clock-rotate-left"></i>
-                        </div>
+                        <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center"><i class="fa-solid fa-clock-rotate-left"></i></div>
                         <h3 class="font-hana font-bold text-base sm:text-lg text-gray-800">التسجيلات السابقة</h3>
                     </div>
 
                     <div class="overflow-x-auto rounded-2xl border border-stone-300/80 shadow-sm bg-white">
                         <table class="w-full text-right border-collapse text-xs sm:text-sm">
                             <thead>
-                                <tr class="bg-[#e8e2d8] text-stone-800 border-b border-stone-300/80 font-bold">
+                                <tr class="bg-[#e8e2d8] text-stone-800 font-bold">
                                     <th class="p-3 whitespace-nowrap">رقم التعريف الجامعي</th>
                                     <th class="p-3 whitespace-nowrap">السنة الجامعية</th>
                                     <th class="p-3 whitespace-nowrap">الطور</th>
@@ -552,30 +576,26 @@
                                     <th class="p-3 whitespace-nowrap">الميدان</th>
                                     <th class="p-3 whitespace-nowrap">الفرع</th>
                                     <th class="p-3 whitespace-nowrap">التخصص</th>
-                                    <th class="p-3 whitespace-nowrap text-center">الحالة</th>
+                                    <th class="p-3 text-center whitespace-nowrap">الحالة</th>
                                 </tr>
                             </thead>
-                            <tbody id="previous-records-body" class="divide-y divide-stone-200 text-stone-700 bg-[#f7f4ed]">
+                            <tbody id="previous-records-body" class="divide-y divide-stone-200 text-stone-700">
+                                <!-- سيتم ملؤها ديناميكياً -->
                             </tbody>
                         </table>
                     </div>
                 </div>
-
             </div>
 
-            <!-- 6. بطاقة التوقيت الأسبوعي مع دليل المقاييس المحدث والدمج النصف نصف -->
+            <!-- بطاقة التوقيت الأسبوعي -->
             <div id="schedule-info-card" class="hidden slide-up-enter max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
-                
-                <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
+                <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 rounded-2xl shadow-sm">
                     <div class="flex items-center space-x-2.5 space-x-reverse">
-                        <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm">
-                            <i class="fa-solid fa-calendar-days"></i>
-                        </div>
+                        <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center"><i class="fa-solid fa-calendar-days"></i></div>
                         <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800">التوقيت الأسبوعي</h2>
                     </div>
-                    <button onclick="closeScheduleInfo()" class="text-xs bg-stone-100 hover:bg-stone-200 text-gray-800 font-bold py-1.5 px-3.5 rounded-xl border border-stone-300 transition flex items-center space-x-1.5 space-x-reverse shadow-sm">
-                        <i class="fa-solid fa-arrow-right"></i>
-                        <span>العودة</span>
+                    <button onclick="closeScheduleInfo()" class="text-xs bg-stone-100 hover:bg-stone-200 px-3 py-1.5 rounded-lg text-stone-700 transition flex items-center space-x-1 space-x-reverse">
+                        <i class="fa-solid fa-arrow-right"></i><span>العودة</span>
                     </button>
                 </div>
 
@@ -583,106 +603,273 @@
                 <div class="animated-border-box shadow-md">
                     <div class="animated-border-inner p-4 text-center">
                         <div class="alert-blinking">
-                            <span class="inline-block bg-red-700 text-white text-xs font-black px-3 py-1 rounded-lg mb-2 shadow-sm">
-                                تنبيه هام:
-                            </span>
-                            <div class="text-black font-extrabold text-xs sm:text-sm leading-relaxed space-y-1.5">
-                                <p class="text-red-800 font-black text-sm sm:text-base border-b border-red-200 pb-1">التعديلات الوزارية للموسم الجامعي الجديد (جامعة التكوين المتواصل)</p>
-                                <p>• المادتين 68 و 71 : اجبارية حضور محاضرات مقاييس الوحدة التعليمية الأساسية والوحدة التعليمية المنهجية</p>
-                                <p>• المادة 84 : الحرمان من اجتياز الامتحان الاستدراكي في حالة عدم تقديم مبرر غياب عن الامتحان العادي</p>
-                                <p>• المادة 85 : كل طالب يتجاوز الحد الأقصى للغيابات المسموحة (5 غيابات للمقياس) خلال السداسي هو معرض للإقصاء من السنة الجامعية مما يؤكد إعادة السنة الحالية</p>
-                            </div>
+                            <span class="inline-block bg-red-700 text-white text-xs font-black px-3 py-1 rounded-full shadow-sm mb-2">تنبيه هام</span>
+                        </div>
+                        <div class="text-black font-extrabold text-xs sm:text-sm leading-relaxed space-y-1">
+                            <p><strong>تنبيه :</strong> إجبارية حضور محاضرات وو الأعمال الموجهة للوحدة التعليمية الأساسية والوحدة المنهجية</p>
+                            <p class="text-red-800 text-xs font-black border-b border-red-300 pb-1 mt-1">
+                                ( الحرمان من اجتياز الامتحان الاستدراكي في حالة عدم تقديم مبرر غياب عن الامتحان العادي )
+                            </p>
+                            <p class="text-[11px] text-gray-700 font-semibold pt-1">
+                                ملاحظة : الحضور طيلة السداسي هو معرض للاقصاء من السنة الجامعية مما يؤكد إقامة السنة الحالية
+                            </p>
                         </div>
                     </div>
                 </div>
 
-                <!-- دليل المقاييس (المعدل من دليل المواد) -->
-                <div class="bg-[#faf6eb] border border-stone-300/80 rounded-2xl p-4 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-start gap-3">
-                    <button onclick="filterSchedule('all')" title="إعادة استخراج البرنامج كاملاً" class="flex items-center space-x-2 space-x-reverse bg-teal-600 hover:bg-teal-700 active:scale-95 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-sm transition cursor-pointer flex-shrink-0">
+                <!-- دليل المقاييس (فلتر المواد) -->
+                <div class="bg-[#faf6eb] border border-stone-300/80 rounded-2xl p-4 shadow-sm flex flex-col md:flex-row items-center justify-between gap-3 text-xs">
+                    <button onclick="filterSchedule('all')" class="flex items-center space-x-2 space-x-reverse font-bold text-gray-800 bg-white px-3 py-1.5 rounded-xl border border-stone-300 shadow-sm hover:bg-stone-50 transition">
                         <span>دليل المقاييس</span>
                         <i class="fa-solid fa-rotate-right text-xs"></i>
                     </button>
 
-                    <i class="fa-solid fa-arrow-left text-black text-xs hidden md:block"></i>
-
-                    <div class="flex flex-wrap items-center gap-2.5 text-xs font-bold text-gray-800 w-full">
-                        <button onclick="filterSchedule('lec')" class="filter-btn flex items-center space-x-1.5 space-x-reverse bg-white hover:bg-orange-50 active:scale-95 px-3 py-1.5 rounded-xl border border-stone-200 shadow-sm transition cursor-pointer">
+                    <div class="flex flex-wrap items-center gap-2 text-xs font-bold text-gray-800">
+                        <button onclick="filterSchedule('lec')" class="flex items-center space-x-1.5 space-x-reverse bg-white px-3 py-1.5 rounded-xl border border-stone-300 shadow-sm hover:bg-stone-50 transition">
                             <span class="w-3.5 h-3.5 rounded-md bg-orange-500 inline-block shadow-sm"></span>
                             <span>محاضرات</span>
                         </button>
-
-                        <button onclick="filterSchedule('td')" class="filter-btn flex items-center space-x-1.5 space-x-reverse bg-white hover:bg-purple-50 active:scale-95 px-3 py-1.5 rounded-xl border border-stone-200 shadow-sm transition cursor-pointer">
+                        <button onclick="filterSchedule('td')" class="flex items-center space-x-1.5 space-x-reverse bg-white px-3 py-1.5 rounded-xl border border-stone-300 shadow-sm hover:bg-stone-50 transition">
                             <span class="w-3.5 h-3.5 rounded-md bg-purple-400 inline-block shadow-sm"></span>
                             <span>أعمال موجهة</span>
                         </button>
-
-                        <button onclick="filterSchedule('tp')" class="filter-btn flex items-center space-x-1.5 space-x-reverse bg-white hover:bg-blue-50 active:scale-95 px-3 py-1.5 rounded-xl border border-stone-200 shadow-sm transition cursor-pointer">
+                        <button onclick="filterSchedule('tp')" class="flex items-center space-x-1.5 space-x-reverse bg-white px-3 py-1.5 rounded-xl border border-stone-300 shadow-sm hover:bg-stone-50 transition">
                             <span class="w-3.5 h-3.5 rounded-md bg-blue-400 inline-block shadow-sm"></span>
                             <span>أعمال تطبيقية</span>
                         </button>
-
-                        <button onclick="filterSchedule('meet')" class="filter-btn flex items-center space-x-1.5 space-x-reverse bg-white hover:bg-red-50 active:scale-95 px-3 py-1.5 rounded-xl border border-stone-200 shadow-sm transition cursor-pointer">
+                        <button onclick="filterSchedule('meet')" class="flex items-center space-x-1.5 space-x-reverse bg-white px-3 py-1.5 rounded-xl border border-stone-300 shadow-sm hover:bg-stone-50 transition">
                             <span class="w-3.5 h-3.5 rounded-md bg-red-500 inline-block shadow-sm"></span>
-                            <span>إجتماعات طلابية هامة</span>
+                            <span>اجتماعات طلابية هامة</span>
                         </button>
-
-                        <button onclick="filterSchedule('conf')" class="filter-btn flex items-center space-x-1.5 space-x-reverse bg-white hover:bg-amber-50 active:scale-95 px-3 py-1.5 rounded-xl border border-stone-200 shadow-sm transition cursor-pointer">
+                        <button onclick="filterSchedule('conf')" class="flex items-center space-x-1.5 space-x-reverse bg-white px-3 py-1.5 rounded-xl border border-stone-300 shadow-sm hover:bg-stone-50 transition">
                             <span class="w-3.5 h-3.5 rounded-md bg-amber-400 inline-block shadow-sm"></span>
-                            <span>ملتقيات ومناقشات مذكرات التخرج</span>
+                            <span>الملتقيات ومناقشات مذكرات التخرج</span>
                         </button>
                     </div>
                 </div>
 
                 <!-- جدول التوقيت الأسبوعي للمواد المدمجة -->
-                <div class="bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-4 sm:p-6 shadow-sm overflow-x-auto">
-                    <table class="w-full border-separate border-spacing-1.5 text-center text-xs font-sans-plain">
-                        <thead>
-                            <tr class="bg-[#e8e2d8] text-stone-800 font-bold">
-                                <th class="p-2.5 rounded-xl border border-stone-300/60 min-w-[90px]">اليوم / الوقت</th>
-                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">08:00 - 09:30</th>
-                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">09:30 - 11:00</th>
-                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">11:00 - 12:30</th>
-                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">12:30 - 14:00</th>
-                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">14:00 - 15:30</th>
-                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">15:30 - 17:00</th>
-                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">17:00 - 18:30</th>
-                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">18:30 - 20:00</th>
-                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">20:00 - 21:30</th>
-                            </tr>
-                        </thead>
-                        <tbody id="schedule-tbody" class="text-stone-800 font-bold">
-                        </tbody>
-                    </table>
+                <div class="bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-xl">
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-separate border-spacing-1.5 text-center text-xs sm:text-sm font-sans-plain">
+                            <thead>
+                                <tr class="bg-[#e8e2d8] text-stone-800 font-bold">
+                                    <th class="p-2.5 rounded-xl border border-stone-300/60 min-w-[90px]">التوقيت / الأيام</th>
+                                    <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap">08:00 - 09:30</th>
+                                    <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap">09:30 - 11:00</th>
+                                    <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap">11:00 - 12:30</th>
+                                    <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap">12:30 - 14:00</th>
+                                    <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap">14:00 - 15:30</th>
+                                    <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap">15:30 - 17:00</th>
+                                    <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap">17:00 - 18:30</th>
+                                </tr>
+                            </thead>
+                            <tbody id="schedule-tbody" class="text-stone-800 font-bold">
+                                <!-- سيتم تعبئته برمجياً -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- 🌟 الجدول الجديد للمقررات الدراسية (مرتب ومنسق بالكامل من اليمين لليسار RTL) -->
+                <div class="bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-xl mt-6">
+                    <div class="flex items-center space-x-2.5 space-x-reverse mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-700 flex items-center justify-center"><i class="fa-solid fa-book"></i></div>
+                        <h3 class="font-hana font-bold text-base sm:text-lg text-gray-800">المقررات الدراسية للسداسي الأول</h3>
+                    </div>
+
+                    <div class="courses-table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>السداسي</th>
+                                    <th>الوحدة التعليمية</th>
+                                    <th>المقياس</th>
+                                    <th>الأستاذ(ة)</th>
+                                    <th>المعامل</th>
+                                    <th>الرصيد</th>
+                                    <th>نسبة Exam</th>
+                                    <th>نسبة TD</th>
+                                    <th>نسبة TP</th>
+                                    <th>نسبة Ren F.É</th>
+                                    <th>الدروس</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- الوحدة الأساسية -->
+                                <tr class="unit-group-header">
+                                    <td colspan="11">الوحدة التعليمية: الأساسية</td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الأساسية</td>
+                                    <td>المحاسبة المالية 1</td>
+                                    <td>لعكيزة ياسين</td>
+                                    <td>3</td>
+                                    <td>6</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الأساسية</td>
+                                    <td>اقتصاد جزئي 1</td>
+                                    <td>بليلة لمين</td>
+                                    <td>3</td>
+                                    <td>6</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الأساسية</td>
+                                    <td>مدخل للاقتصاد</td>
+                                    <td>سويلم ليلى</td>
+                                    <td>5</td>
+                                    <td>2</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+
+                                <!-- الوحدة المنهجية -->
+                                <tr class="unit-group-header">
+                                    <td colspan="11">الوحدة التعليمية: المنهجية</td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>المنهجية</td>
+                                    <td>رياضيات 1</td>
+                                    <td>د/ فزازم محمد</td>
+                                    <td>2</td>
+                                    <td>4</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>المنهجية</td>
+                                    <td>إحصاء 1</td>
+                                    <td>أمزيان أنيسة</td>
+                                    <td>2</td>
+                                    <td>4</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>المنهجية</td>
+                                    <td>أساسيات البرمجة بالبايتون 1</td>
+                                    <td>حجاسي إبراهيم</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+
+                                <!-- الوحدة الاستكشافية -->
+                                <tr class="unit-group-header">
+                                    <td colspan="11">الوحدة التعليمية: الاستكشافية</td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الاستكشافية</td>
+                                    <td>مدخل لعلم اجتماع المنظمات</td>
+                                    <td>حبيب الود</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الاستكشافية</td>
+                                    <td>مدخل للقانون</td>
+                                    <td>سبع أمَال</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+
+                                <!-- الوحدة الأفقية -->
+                                <tr class="unit-group-header">
+                                    <td colspan="11">الوحدة التعليمية: الأفقية</td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الأفقية</td>
+                                    <td>تاريخ الجزائر</td>
+                                    <td>بودرومة عبد المالك</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الأفقية</td>
+                                    <td>لغة إنجليزية 01</td>
+                                    <td>ENNEMRI Nasreddine</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
             </div>
 
         </main>
 
-        <footer class="py-4 text-center text-stone-700 font-sans-plain text-xs border-t border-stone-300/60 mt-auto font-bold">
+        <footer class="py-4 text-center text-stone-700 font-sans-plain text-xs border-t border-stone-300/60 mt-auto">
             جامعة التكوين المتواصل 2026-2027
         </footer>
+
     </div>
 
-    <!-- 7. نافذة تأكيد تسجيل الخروج المنبثقة -->
-    <div id="logout-modal-backdrop" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
-        <div id="logout-modal-card" class="bg-white border-2 border-black rounded-2xl p-6 max-w-sm w-full shadow-2xl text-center space-y-6 slide-up-enter font-sans-plain">
-            
-            <div class="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto text-xl border border-red-100">
+    <!-- نافذة تأكيد تسجيل الخروج المنبثقة -->
+    <div id="logout-modal-backdrop" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div id="logout-modal-card" class="bg-white border-2 border-black rounded-2xl p-6 max-w-sm w-full text-center shadow-2xl">
+            <div class="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">
                 <i class="fa-solid fa-right-from-bracket"></i>
             </div>
-
-            <h3 class="text-black font-extrabold text-base sm:text-lg leading-snug">
-                هل تريد فعلاً تسجيل الخروج؟
-            </h3>
-
-            <div class="flex items-center justify-center space-x-3 space-x-reverse pt-2">
-                <button onclick="confirmLogout()" class="w-full py-2.5 px-4 bg-red-700 hover:bg-red-800 text-white font-bold rounded-xl text-xs sm:text-sm transition-all shadow active:scale-95">
-                    نعم
-                </button>
-                <button onclick="closeLogoutModal()" class="w-full py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-black font-bold rounded-xl border border-gray-300 text-xs sm:text-sm transition-all active:scale-95">
-                    لا
-                </button>
+            <h3 class="text-black font-extrabold text-base sm:text-lg leading-snug">هل تريد فعلاً تسجيل الخروج؟</h3>
+            <div class="flex items-center justify-center space-x-3 space-x-reverse pt-4">
+                <button onclick="confirmLogout()" class="w-full py-2.5 px-4 bg-red-700 hover:bg-red-800 text-white font-bold rounded-xl text-xs transition">نعم</button>
+                <button onclick="closeLogoutModal()" class="w-full py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold rounded-xl text-xs transition">لا</button>
             </div>
         </div>
     </div>
@@ -691,6 +878,7 @@
         جامعة التكوين المتواصل 2026-2027
     </footer>
 
+    <!-- قواعد البيانات والسكربتات البرمجية الشاملة -->
     <script>
         const studentsDatabase = {
             "2025_36105411_26012007": {
@@ -700,14 +888,14 @@
                 fname: "عبد الحكيم",
                 dob: "22-05-2007",
                 pob: "سكيكدة",
-                field: "علوم اقتصادية وتجارية وعلوم التسيير",
-                branch: "علوم مالية ومحاسبة",
+                field: "علوم اقتصادية و تجارية و علوم التسيير",
+                branch: "علوم مالية ومحاسبية",
                 spec: "محاسبة",
                 group: "الأولى",
                 squad: "03",
                 level: "ليسانس سنة اولى",
                 grade: "12.39",
-                note: "بتقدير قريب من الجيد",
+                note: "تقدير قريب من الجيد",
                 photo: "./IMG_20260914_211327.jpg",
                 lname_en: "ELACHI",
                 fname_en: "ABDEL HAKIM",
@@ -717,7 +905,7 @@
                 wilaya_birth: "21",
                 father_en: "RACHID",
                 mother_lname_en: "MECIBAH",
-                mother_fname_en: "LEÏLA",
+                mother_fname_en: "LEILA",
                 address_en: "Cité 1700 Logts AADL Bâtiment B13 N05 el Harrouche Skikda",
                 phone: "0563896102",
                 email: "ha466888@gmail.com",
@@ -738,12 +926,11 @@
                         status: "تسجيل مؤكد"
                     }
                 ],
-                /* برنامج التوقيت الأسبوعي الجديد بعد الدمج الحاص */
                 schedule: {
                     sat: {
                         "08:00 - 09:30": { name: "المحاسبة المالية 01", type: "merged" },
                         "09:30 - 11:00": { name: "اقتصاد جزئي 01", type: "merged" },
-                        "12:30 - 14:00": { name: "مدخل للإقتصاد", type: "merged" }
+                        "12:30 - 14:00": { name: "مدخل للاقتصاد", type: "merged" }
                     },
                     tue: {
                         "09:30 - 11:00": { name: "مدخل لعلم اجتماع المنظمات", type: "merged" },
@@ -752,7 +939,7 @@
                     },
                     thu: {
                         "09:30 - 11:00": { name: "مدخل للقانون", type: "merged" },
-                        "12:30 - 14:00": { name: "أساسيات البرمجة بالبايثون 01", type: "merged" },
+                        "12:30 - 14:00": { name: "أساسيات البرمجة بالبايتون 01", type: "merged" },
                         "14:00 - 15:30": { name: "لغة إنجليزية 01", type: "merged" }
                     }
                 }
@@ -764,14 +951,14 @@
                 fname: "عبد المالك",
                 dob: "26-01-2007",
                 pob: "سكيكدة",
-                field: "علوم اقتصادية وتجارية وعلوم التسيير",
-                branch: "علوم مالية ومحاسبة",
+                field: "علوم اقتصادية و تجارية و علوم التسيير",
+                branch: "علوم مالية ومحاسبية",
                 spec: "محاسبة",
                 group: "--",
                 squad: "--",
                 level: "ليسانس سنة اولى",
                 grade: "10.89",
-                note: "بتقدير مقبول",
+                note: "تقدير مقبول",
                 photo: "./IMG_20260914_211339.jpg",
                 lname_en: "BOUDROUMA",
                 fname_en: "ABDEL MALEK",
@@ -781,7 +968,7 @@
                 wilaya_birth: "21",
                 father_en: "MOUHAMED",
                 mother_lname_en: "BOUFENNICHE",
-                mother_fname_en: "SIHEM",
+                mother_fname_en: "SIHEW",
                 address_en: "Cite 176 Logts Bat 04 N09 Hammadi Krouma Skikda",
                 phone: "0557537699",
                 email: "malekboudrouma21@gmail.com",
@@ -829,7 +1016,6 @@
         window.onpopstate = function(event) {
             if (!event.state) return;
             const targetStep = event.state.step;
-
             if (targetStep === 'login') {
                 showLoginView();
             } else if (targetStep === 'info') {
@@ -849,7 +1035,7 @@
 
             const btn = document.getElementById('submit-btn');
 
-            if (yearVal !== '' && regVal !== '' && passVal !== '' && isCaptchaChecked) {
+            if (yearVal !== "" && regVal !== "" && passVal !== "" && isCaptchaChecked) {
                 btn.disabled = false;
                 btn.classList.remove('opacity-40', 'cursor-not-allowed');
                 btn.classList.add('hover:bg-emerald-500', 'ring-4', 'ring-emerald-300', 'shadow-lg');
@@ -860,8 +1046,8 @@
             }
         }
 
-        function handleLogin(e) {
-            e.preventDefault();
+        function handleLogin(event) {
+            event.preventDefault();
 
             const yearInput = document.getElementById('bac-year');
             const regInput = document.getElementById('reg-num');
@@ -918,7 +1104,7 @@
 
             const loginForm = document.getElementById('login-form');
             loginForm.classList.add('opacity-0');
-            
+
             setTimeout(() => {
                 loginForm.classList.add('hidden');
                 const subLoading = document.getElementById('sub-loading');
@@ -933,7 +1119,7 @@
                     setTimeout(() => {
                         subLoading.classList.add('hidden');
                         subLoading.classList.remove('flex');
-                        
+
                         history.pushState({ step: 'info' }, '', '');
                         showStudentInfoCard(student);
                     }, 350);
@@ -973,61 +1159,52 @@
 
                 setTimeout(() => {
                     subLoading.classList.add('opacity-0');
-
                     setTimeout(() => {
-                        history.pushState({ step: 'portal' }, '', '');
-
                         subLoading.classList.add('hidden');
                         subLoading.classList.remove('flex');
 
+                        history.pushState({ step: 'portal' }, '', '');
+
                         const loginScreen = document.getElementById('login-screen');
-                        loginScreen.classList.add('opacity-0');
-                        
+                        loginScreen.classList.add('hidden');
+                        document.getElementById('main-footer').classList.add('hidden');
+                        document.getElementById('main-body').classList.remove('cool-green-bg');
+                        document.getElementById('main-body').className = "deep-dark-beige-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between transition-colors duration-500";
+
+                        const appContent = document.getElementById('app-content');
+                        appContent.classList.remove('hidden');
+
+                        document.getElementById('portal-user-name').textContent = `${currentActiveStudent.lname} ${currentActiveStudent.fname}`;
+                        document.getElementById('portal-user-level').textContent = currentActiveStudent.level;
+                        document.getElementById('portal-user-spec').textContent = currentActiveStudent.spec;
+                        document.getElementById('portal-user-img').src = currentActiveStudent.photo;
+
                         setTimeout(() => {
-                            loginScreen.classList.add('hidden');
-                            document.getElementById('main-footer').classList.add('hidden');
-                            
-                            document.getElementById('main-body').className = "deep-dark-beige-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between";
-
-                            const appContent = document.getElementById('app-content');
-                            appContent.classList.remove('hidden');
-                            appContent.classList.add('flex');
-
-                            const lnameFname = `${currentActiveStudent.lname} ${currentActiveStudent.fname}`;
-                            document.getElementById('portal-user-name').textContent = lnameFname;
-                            document.getElementById('portal-user-level').textContent = currentActiveStudent.level;
-                            document.getElementById('portal-user-spec').textContent = currentActiveStudent.spec;
-                            document.getElementById('portal-user-img').src = currentActiveStudent.photo;
-
+                            appContent.classList.remove('opacity-0');
                             setTimeout(() => {
-                                appContent.classList.remove('opacity-0');
+                                const beigeCard = document.getElementById('main-beige-card');
+                                beigeCard.classList.add('show');
 
-                                setTimeout(() => {
-                                    const beigeCard = document.getElementById('main-beige-card');
-                                    beigeCard.classList.remove('opacity-0');
-
-                                    const cards = document.querySelectorAll('.fade-card');
-                                    cards.forEach((card, index) => {
-                                        setTimeout(() => {
-                                            card.classList.add('show');
-                                        }, 100 + (index * 80));
-                                    });
-                                }, 200);
-
+                                const cards = document.querySelectorAll('.fade-card');
+                                cards.forEach((card, index) => {
+                                    setTimeout(() => {
+                                        card.classList.add('show');
+                                    }, 100 * (index + 0.5));
+                                });
                             }, 50);
-                        }, 350);
-                    }, 350);
+                        }, 50);
 
-                }, 2000);
+                    }, 350);
+                }, 1000);
             }, 350);
         }
 
         function openPersonalInfo() {
             const beigeCard = document.getElementById('main-beige-card');
             const cardLoading = document.getElementById('card-loading');
-            
+
             beigeCard.classList.add('opacity-0');
-            
+
             setTimeout(() => {
                 beigeCard.classList.add('hidden');
                 cardLoading.classList.remove('hidden');
@@ -1038,17 +1215,17 @@
 
                 setTimeout(() => {
                     cardLoading.classList.add('opacity-0');
-                    
+
                     setTimeout(() => {
                         cardLoading.classList.add('hidden');
                         cardLoading.classList.remove('flex');
-                        
+
                         const s = currentActiveStudent;
                         document.getElementById('p-reg').textContent = s.reg;
-                        document.getElementById('p-lname-en').textContent = s.lname_en;
                         document.getElementById('p-lname-ar').textContent = s.lname;
-                        document.getElementById('p-fname-en').textContent = s.fname_en;
                         document.getElementById('p-fname-ar').textContent = s.fname;
+                        document.getElementById('p-lname-en').textContent = s.lname_en;
+                        document.getElementById('p-fname-en').textContent = s.fname_en;
                         document.getElementById('p-cin').textContent = s.cin;
                         document.getElementById('p-nin').textContent = s.nin;
                         document.getElementById('p-gender').textContent = s.gender;
@@ -1056,9 +1233,8 @@
                         document.getElementById('p-pob').textContent = s.pob;
                         document.getElementById('p-wilaya-birth').textContent = s.wilaya_birth;
                         document.getElementById('p-father-en').textContent = s.father_en;
-                        document.getElementById('p-mother-lname-en').textContent = s.mother_lname_en;
-                        document.getElementById('p-mother-fname-en').textContent = s.mother_fname_en;
-                        
+                        document.getElementById('p-mother-name-en').textContent = `${s.mother_lname_en} ${s.mother_fname_en}`;
+
                         document.getElementById('p-address-en').value = s.address_en;
                         document.getElementById('p-phone').value = s.phone;
                         document.getElementById('p-email').value = s.email;
@@ -1072,7 +1248,7 @@
 
                         const pCard = document.getElementById('personal-info-card');
                         pCard.className = "slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
-                        
+
                         setTimeout(() => {
                             pCard.classList.add('slide-up-active');
                         }, 50);
@@ -1084,13 +1260,12 @@
 
         function closePersonalInfo() {
             const pCard = document.getElementById('personal-info-card');
-            
             pCard.className = "fade-out-exit max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
 
             setTimeout(() => {
                 pCard.classList.add('hidden');
                 pCard.classList.remove('block');
-                
+
                 const beigeCard = document.getElementById('main-beige-card');
                 beigeCard.classList.remove('hidden');
                 setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
@@ -1100,9 +1275,9 @@
         function openAcademicInfo() {
             const beigeCard = document.getElementById('main-beige-card');
             const cardLoading = document.getElementById('card-loading');
-            
+
             beigeCard.classList.add('opacity-0');
-            
+
             setTimeout(() => {
                 beigeCard.classList.add('hidden');
                 cardLoading.classList.remove('hidden');
@@ -1113,13 +1288,12 @@
 
                 setTimeout(() => {
                     cardLoading.classList.add('opacity-0');
-                    
+
                     setTimeout(() => {
                         cardLoading.classList.add('hidden');
                         cardLoading.classList.remove('flex');
-                        
+
                         const s = currentActiveStudent;
-                        
                         document.getElementById('acad-level-title').textContent = s.level;
                         document.getElementById('acad-univ-name').textContent = s.univ;
                         document.getElementById('acad-field-name').textContent = s.field;
@@ -1132,29 +1306,21 @@
                         tableBody.innerHTML = '';
 
                         if (!s.previousRecords || s.previousRecords.length === 0) {
-                            tableBody.innerHTML = `
-                                <tr>
-                                    <td colspan="9" class="p-4 text-center text-stone-500 font-bold bg-[#f3efe6]">
-                                        لا توجد أي تسجيلات سابقة
-                                    </td>
-                                </tr>
-                            `;
+                            tableBody.innerHTML = `<tr><td colspan="9" class="p-4 text-center text-stone-500 font-bold bg-[#f3efe6]">لا توجد تسجيلات سابقة</td></tr>`;
                         } else {
-                            s.previousRecords.forEach(rec => {
+                            s.previousRecords.forEach(res => {
                                 tableBody.innerHTML += `
-                                    <tr class="hover:bg-stone-100/80 transition-colors">
-                                        <td class="p-3 font-semibold text-stone-800 whitespace-nowrap">${rec.univId}</td>
-                                        <td class="p-3 whitespace-nowrap">${rec.academicYear}</td>
-                                        <td class="p-3 whitespace-nowrap">${rec.degree}</td>
-                                        <td class="p-3 whitespace-nowrap">${rec.level}</td>
-                                        <td class="p-3 font-medium text-stone-800">${rec.university}</td>
-                                        <td class="p-3 font-medium text-stone-800">${rec.field}</td>
-                                        <td class="p-3 whitespace-nowrap">${rec.branch}</td>
-                                        <td class="p-3 font-bold text-emerald-800 whitespace-nowrap">${rec.specialty}</td>
+                                    <tr class="hover:bg-stone-100 transition-colors">
+                                        <td class="p-3 font-semibold text-stone-900">${res.univId}</td>
+                                        <td class="p-3 whitespace-nowrap">${res.academicYear}</td>
+                                        <td class="p-3 whitespace-nowrap">${res.degree}</td>
+                                        <td class="p-3 whitespace-nowrap">${res.level}</td>
+                                        <td class="p-3 font-medium text-stone-800">${res.university}</td>
+                                        <td class="p-3 font-medium text-stone-800">${res.field}</td>
+                                        <td class="p-3 whitespace-nowrap">${res.branch}</td>
+                                        <td class="p-3 font-bold text-emerald-800 whitespace-nowrap">${res.specialty}</td>
                                         <td class="p-3 text-center whitespace-nowrap">
-                                            <span class="inline-block bg-teal-500 text-white text-xs font-bold px-3 py-1 rounded-lg shadow-sm">
-                                                ${rec.status}
-                                            </span>
+                                            <span class="inline-block bg-teal-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-sm">${res.status}</span>
                                         </td>
                                     </tr>
                                 `;
@@ -1165,7 +1331,7 @@
 
                         const acadCard = document.getElementById('academic-info-card');
                         acadCard.className = "slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
-                        
+
                         setTimeout(() => {
                             acadCard.classList.add('slide-up-active');
                         }, 50);
@@ -1177,20 +1343,18 @@
 
         function closeAcademicInfo() {
             const acadCard = document.getElementById('academic-info-card');
-            
             acadCard.className = "fade-out-exit max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
 
             setTimeout(() => {
                 acadCard.classList.add('hidden');
                 acadCard.classList.remove('block');
-                
+
                 const beigeCard = document.getElementById('main-beige-card');
                 beigeCard.classList.remove('hidden');
                 setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
             }, 350);
         }
 
-        /* توليد الجدول وإتاحة إظهار الدروس والدمج عند الاختيار */
         function renderSchedule(filterType = 'all') {
             const tbody = document.getElementById('schedule-tbody');
             tbody.innerHTML = '';
@@ -1198,9 +1362,9 @@
             const daysMap = [
                 { key: 'sat', name: 'السبت' },
                 { key: 'sun', name: 'الأحد' },
-                { key: 'mon', name: 'الإثنين' },
+                { key: 'non', name: 'الاثنين' },
                 { key: 'tue', name: 'الثلاثاء' },
-                { key: 'wed', name: 'الأربعاء' },
+                { key: 'med', name: 'الأربعاء' },
                 { key: 'thu', name: 'الخميس' }
             ];
 
@@ -1223,17 +1387,16 @@
 
             daysMap.forEach(dayObj => {
                 const tr = document.createElement('tr');
-                let rowHtml = `<td class="p-3 bg-[#e8e2d8] rounded-xl border border-stone-300/60 text-stone-900 font-black">${dayObj.name}</td>`;
+                let rowHtml = `<td class="p-2 bg-[#e8e2d8] rounded-xl border border-stone-300/60 text-stone-900 font-bold">${dayObj.name}</td>`;
 
                 const dayData = studentSched[dayObj.key] || {};
 
                 times.forEach(t => {
                     const session = dayData[t];
 
-                    /* قبول الحصة إن كانت متطابقة أو مدمجة بين المحاضرة والـ TD عند خيار الكل أو أحدهما */
                     const isVisible = session && (
-                        filterType === 'all' || 
-                        session.type === filterType || 
+                        filterType === 'all' ||
+                        session.type === filterType ||
                         (session.type === 'merged' && (filterType === 'lec' || filterType === 'td'))
                     );
 
@@ -1245,7 +1408,7 @@
                             </td>
                         `;
                     } else {
-                        rowHtml += `<td class="p-3 bg-white rounded-xl border border-stone-200/80 h-12"></td>`;
+                        rowHtml += `<td class="p-3 bg-white rounded-xl border border-stone-200/60 h-12"></td>`;
                     }
                 });
 
@@ -1261,9 +1424,9 @@
         function openScheduleInfo() {
             const beigeCard = document.getElementById('main-beige-card');
             const cardLoading = document.getElementById('card-loading');
-            
+
             beigeCard.classList.add('opacity-0');
-            
+
             setTimeout(() => {
                 beigeCard.classList.add('hidden');
                 cardLoading.classList.remove('hidden');
@@ -1274,7 +1437,7 @@
 
                 setTimeout(() => {
                     cardLoading.classList.add('opacity-0');
-                    
+
                     setTimeout(() => {
                         cardLoading.classList.add('hidden');
                         cardLoading.classList.remove('flex');
@@ -1285,7 +1448,7 @@
 
                         const schedCard = document.getElementById('schedule-info-card');
                         schedCard.className = "slide-up-enter max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
-                        
+
                         setTimeout(() => {
                             schedCard.classList.add('slide-up-active');
                         }, 50);
@@ -1297,13 +1460,12 @@
 
         function closeScheduleInfo() {
             const schedCard = document.getElementById('schedule-info-card');
-            
             schedCard.className = "fade-out-exit max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
 
             setTimeout(() => {
                 schedCard.classList.add('hidden');
                 schedCard.classList.remove('block');
-                
+
                 const beigeCard = document.getElementById('main-beige-card');
                 beigeCard.classList.remove('hidden');
                 setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
@@ -1323,14 +1485,7 @@
 
         function closeLogoutModal() {
             const backdrop = document.getElementById('logout-modal-backdrop');
-            const card = document.getElementById('logout-modal-card');
-
-            backdrop.classList.add('opacity-0');
-            card.classList.remove('slide-up-active');
-
-            setTimeout(() => {
-                backdrop.classList.add('hidden');
-            }, 300);
+            backdrop.classList.add('hidden');
         }
 
         function confirmLogout() {
@@ -1348,50 +1503,19 @@
                 appContent.classList.add('hidden');
                 appContent.classList.remove('flex');
 
-                document.getElementById('login-screen').classList.remove('hidden');
                 document.getElementById('main-footer').classList.remove('hidden');
-                document.getElementById('main-body').className = "cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between";
+                document.getElementById('main-body').classList.remove('deep-dark-beige-bg');
+                document.getElementById('main-body').className = "cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between transition-colors duration-500";
 
                 document.getElementById('student-info-card').classList.add('hidden');
                 document.getElementById('sub-loading').classList.add('hidden');
                 document.getElementById('sub-loading').classList.remove('flex');
-                
+
                 const loginForm = document.getElementById('login-form');
                 loginForm.classList.remove('hidden');
                 loginForm.classList.remove('opacity-0');
 
                 document.getElementById('login-screen').classList.remove('opacity-0');
-
-                document.getElementById('main-beige-card').classList.add('opacity-0');
-                document.getElementById('personal-info-card').classList.add('hidden');
-                document.getElementById('academic-info-card').classList.add('hidden');
-                document.getElementById('schedule-info-card').classList.add('hidden');
-                document.querySelectorAll('.fade-card').forEach(c => c.classList.remove('show'));
-            }, 350);
-        }
-
-        function showStudentInfoView() {
-            const appContent = document.getElementById('app-content');
-            appContent.classList.add('opacity-0');
-
-            setTimeout(() => {
-                appContent.classList.add('hidden');
-                appContent.classList.remove('flex');
-
-                document.getElementById('login-screen').classList.remove('hidden');
-                document.getElementById('main-footer').classList.remove('hidden');
-                document.getElementById('main-body').className = "cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between";
-
-                document.getElementById('login-form').classList.add('hidden');
-                document.getElementById('sub-loading').classList.add('hidden');
-                document.getElementById('sub-loading').classList.remove('flex');
-                
-                const infoCard = document.getElementById('student-info-card');
-                infoCard.classList.remove('hidden');
-                infoCard.classList.remove('opacity-0');
-
-                document.getElementById('login-screen').classList.remove('opacity-0');
-
                 document.getElementById('main-beige-card').classList.add('opacity-0');
                 document.getElementById('personal-info-card').classList.add('hidden');
                 document.getElementById('academic-info-card').classList.add('hidden');
@@ -1400,5 +1524,6 @@
             }, 350);
         }
     </script>
+
 </body>
 </html>
