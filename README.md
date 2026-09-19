@@ -1,2 +1,2 @@
-# Moodle-UFC-de-Constantine
-بوابة الطالب - جامعة التكوين المتواصل قسنطينة 
+# Moodle-Université-de-formation-continue
+بوابة الطالب - جامعة التكوين المتواصل
