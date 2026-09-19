@@ -154,6 +154,13 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* تصميم الدمج بين لون المحاضرات ولون الأعمال الموجهة (نصف برتقالي ونصف بنفسجي) */
+        .merged-lec-td {
+            background: linear-gradient(135deg, #f97316 0%, #f97316 48%, #c084fc 52%, #c084fc 100%);
+            color: #ffffff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+        }
     </style>
 </head>
 <body id="main-body" class="cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between transition-colors duration-700">
@@ -463,7 +470,7 @@
                 </div>
             </div>
 
-            <!-- 5. بطاقة المعلومات الدراسية (ديناميكية مع حساب الطالب) -->
+            <!-- 5. بطاقة المعلومات الدراسية -->
             <div id="academic-info-card" class="hidden slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
                 <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
                     <div class="flex items-center space-x-2.5 space-x-reverse">
@@ -556,10 +563,9 @@
 
             </div>
 
-            <!-- 6. بطاقة التوقيت الأسبوعي المحسنة بالتأثيرات والتفاعلية الكاملة -->
+            <!-- 6. بطاقة التوقيت الأسبوعي مع دليل المقاييس المحدث والدمج النصف نصف -->
             <div id="schedule-info-card" class="hidden slide-up-enter max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
                 
-                <!-- الشريط العلوي للتوقيت الأسبوعي -->
                 <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
                     <div class="flex items-center space-x-2.5 space-x-reverse">
                         <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm">
@@ -573,7 +579,7 @@
                     </button>
                 </div>
 
-                <!-- 1. بطاقة التنبيه الهام مع إطار أحمر متحرك دائر ونص يومض بالكامل -->
+                <!-- بطاقة التنبيه الهام -->
                 <div class="animated-border-box shadow-md">
                     <div class="animated-border-inner p-4 text-center">
                         <div class="alert-blinking">
@@ -590,10 +596,10 @@
                     </div>
                 </div>
 
-                <!-- 2. دليل المواد مع إمكانية الضغط والفلترة والتصفية بالحالة -->
+                <!-- دليل المقاييس (المعدل من دليل المواد) -->
                 <div class="bg-[#faf6eb] border border-stone-300/80 rounded-2xl p-4 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-start gap-3">
-                    <button onclick="filterSchedule('all')" title="تطبيقه يعيد استخراج البرنامج كاملاً" class="flex items-center space-x-2 space-x-reverse bg-teal-600 hover:bg-teal-700 active:scale-95 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-sm transition cursor-pointer flex-shrink-0">
-                        <span>دليل المواد</span>
+                    <button onclick="filterSchedule('all')" title="إعادة استخراج البرنامج كاملاً" class="flex items-center space-x-2 space-x-reverse bg-teal-600 hover:bg-teal-700 active:scale-95 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-sm transition cursor-pointer flex-shrink-0">
+                        <span>دليل المقاييس</span>
                         <i class="fa-solid fa-rotate-right text-xs"></i>
                     </button>
 
@@ -627,7 +633,7 @@
                     </div>
                 </div>
 
-                <!-- 3. جدول التوقيت الأسبوعي الذي يحتوى على مواد الطالب العشي عبد الحكيم المحددة -->
+                <!-- جدول التوقيت الأسبوعي للمواد المدمجة -->
                 <div class="bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-4 sm:p-6 shadow-sm overflow-x-auto">
                     <table class="w-full border-separate border-spacing-1.5 text-center text-xs font-sans-plain">
                         <thead>
@@ -645,7 +651,6 @@
                             </tr>
                         </thead>
                         <tbody id="schedule-tbody" class="text-stone-800 font-bold">
-                            <!-- يتم ملؤها ديناميكياً بواسطة الجافاسكربت -->
                         </tbody>
                     </table>
                 </div>
@@ -700,7 +705,7 @@
                 spec: "محاسبة",
                 group: "الأولى",
                 squad: "03",
-                level: "سنة أولى ليسانس",
+                level: "ليسانس سنة اولى",
                 grade: "12.39",
                 note: "بتقدير قريب من الجيد",
                 photo: "./IMG_20260914_211327.jpg",
@@ -733,26 +738,22 @@
                         status: "تسجيل مؤكد"
                     }
                 ],
-                /* برنامج محاضرا الطالب العشي عبد الحكيم إسقاط متكامل */
+                /* برنامج التوقيت الأسبوعي الجديد بعد الدمج الحاص */
                 schedule: {
                     sat: {
-                        "08:00 - 09:30": { name: "المحاسبة المالية 01", type: "lec" },
-                        "09:30 - 11:00": { name: "المحاسبة المالية 01", type: "lec" },
-                        "11:00 - 12:30": { name: "اقتصاد جزئي 01", type: "lec" }
+                        "08:00 - 09:30": { name: "المحاسبة المالية 01", type: "merged" },
+                        "09:30 - 11:00": { name: "اقتصاد جزئي 01", type: "merged" },
+                        "12:30 - 14:00": { name: "مدخل للإقتصاد", type: "merged" }
                     },
                     tue: {
-                        "08:00 - 09:30": { name: "إحصاء 01", type: "lec" },
-                        "09:30 - 11:00": { name: "إحصاء 01", type: "lec" },
-                        "11:00 - 12:30": { name: "مدخل لِعلم اجتماع المنظمات", type: "lec" },
-                        "14:00 - 15:30": { name: "رياضيات 01", type: "lec" },
-                        "15:30 - 17:00": { name: "رياضيات 01", type: "lec" }
+                        "09:30 - 11:00": { name: "مدخل لعلم اجتماع المنظمات", type: "merged" },
+                        "12:30 - 14:00": { name: "رياضيات 01", type: "merged" },
+                        "14:00 - 15:30": { name: "إحصاء 01", type: "merged" }
                     },
                     thu: {
-                        "08:00 - 09:30": { name: "لغة إنجليزية 01", type: "lec" },
-                        "09:30 - 11:00": { name: "لغة إنجليزية 01", type: "lec" },
-                        "11:00 - 12:30": { name: "مدخل للقانون", type: "lec" },
-                        "14:00 - 15:30": { name: "أساسيات البرمجة بالبايثون 01", type: "lec" },
-                        "15:30 - 17:00": { name: "أساسيات البرمجة بالبايثون 01", type: "lec" }
+                        "09:30 - 11:00": { name: "مدخل للقانون", type: "merged" },
+                        "12:30 - 14:00": { name: "أساسيات البرمجة بالبايثون 01", type: "merged" },
+                        "14:00 - 15:30": { name: "لغة إنجليزية 01", type: "merged" }
                     }
                 }
             },
@@ -768,7 +769,7 @@
                 spec: "محاسبة",
                 group: "--",
                 squad: "--",
-                level: "سنة أولى ليسانس",
+                level: "ليسانس سنة اولى",
                 grade: "10.89",
                 note: "بتقدير مقبول",
                 photo: "./IMG_20260914_211339.jpg",
@@ -1189,7 +1190,7 @@
             }, 350);
         }
 
-        /* توليد وبناء جدول التوقيت الأسبوعي وفق الفلتر ونوع الحصة */
+        /* توليد الجدول وإتاحة إظهار الدروس والدمج عند الاختيار */
         function renderSchedule(filterType = 'all') {
             const tbody = document.getElementById('schedule-tbody');
             tbody.innerHTML = '';
@@ -1210,6 +1211,7 @@
             ];
 
             const typeStyles = {
+                merged: "merged-lec-td shadow-sm border border-purple-400",
                 lec: "bg-orange-500 text-white shadow-sm border border-orange-600",
                 td: "bg-purple-400 text-white shadow-sm border border-purple-500",
                 tp: "bg-blue-400 text-white shadow-sm border border-blue-500",
@@ -1228,7 +1230,14 @@
                 times.forEach(t => {
                     const session = dayData[t];
 
-                    if (session && (filterType === 'all' || session.type === filterType)) {
+                    /* قبول الحصة إن كانت متطابقة أو مدمجة بين المحاضرة والـ TD عند خيار الكل أو أحدهما */
+                    const isVisible = session && (
+                        filterType === 'all' || 
+                        session.type === filterType || 
+                        (session.type === 'merged' && (filterType === 'lec' || filterType === 'td'))
+                    );
+
+                    if (isVisible) {
                         const styleClass = typeStyles[session.type] || "bg-gray-200 text-gray-800";
                         rowHtml += `
                             <td class="p-2.5 rounded-xl ${styleClass} transition-all duration-300 transform hover:scale-[1.02]">
