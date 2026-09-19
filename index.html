@@ -155,11 +155,51 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* تصميم الدمج بين لون المحاضرات ولون الأعمال الموجهة (نصف برتقالي ونصف بنفسجي) */
+        /* تصميم الدمج بين لون المحاضرات ولون الأعمال الموجهة */
         .merged-lec-td {
             background: linear-gradient(135deg, #f97316 0%, #f97316 48%, #c084fc 52%, #c084fc 100%);
             color: #ffffff;
             text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+        }
+
+        /* تنسيق جدول المقررات الدراسية الجديد المتناسق RTL */
+        .courses-table-wrapper {
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #d1d5db;
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        .courses-table-wrapper table {
+            width: 100%;
+            border-collapse: collapse;
+            white-space: nowrap;
+            text-align: right;
+        }
+
+        .courses-table-wrapper th, .courses-table-wrapper td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb;
+            font-size: 14px;
+        }
+
+        .courses-table-wrapper th {
+            background-color: #e9ecef;
+            color: #2c3e50;
+            font-weight: bold;
+        }
+
+        .courses-table-wrapper tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .unit-group-header {
+            background-color: #e2e8f0;
+            font-weight: bold;
+            color: #1a202c;
+            font-size: 15px;
         }
     </style>
 </head>
@@ -360,7 +400,7 @@
                         <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تنظيم حصص الدراسة كل أسبوع: محاضرات، أعمال تطبيقية، أعمال موجهة...</p>
                     </div>
 
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                    <div onclick="openCoursesInfo()" class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المقررات الدراسية</span>
                             <div class="w-8 h-8 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-book-open"></i></div>
@@ -563,7 +603,7 @@
 
             </div>
 
-            <!-- 6. بطاقة التوقيت الأسبوعي مع دليل المقاييس المحدث والدمج النصف نصف -->
+            <!-- 6. بطاقة التوقيت الأسبوعي -->
             <div id="schedule-info-card" class="hidden slide-up-enter max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
                 
                 <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
@@ -657,6 +697,197 @@
 
             </div>
 
+            <!-- 🌟 8. بطاقة المقررات الدراسية الجديدة (مضافة بدقة داخل نفس التصميم والألوان الأصليين) -->
+            <div id="courses-info-card" class="hidden slide-up-enter max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
+                
+                <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
+                    <div class="flex items-center space-x-2.5 space-x-reverse">
+                        <div class="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800">المقررات الدراسية للسداسي الأول</h2>
+                    </div>
+                    <button onclick="closeCoursesInfo()" class="text-xs bg-stone-100 hover:bg-stone-200 text-gray-800 font-bold py-1.5 px-3.5 rounded-xl border border-stone-300 transition flex items-center space-x-1.5 space-x-reverse shadow-sm cursor-pointer">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <span>العودة</span>
+                    </button>
+                </div>
+
+                <div class="bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-sm">
+                    <div class="courses-table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>السداسي</th>
+                                    <th>الوحدة التعليمية</th>
+                                    <th>المقياس</th>
+                                    <th>الأستاذ(ة)</th>
+                                    <th>المعامل</th>
+                                    <th>الرصيد</th>
+                                    <th>نسبة Exam</th>
+                                    <th>نسبة TD</th>
+                                    <th>نسبة TP</th>
+                                    <th>نسبة Ren F.É</th>
+                                    <th>الدروس</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- الوحدة الأساسية -->
+                                <tr class="unit-group-header">
+                                    <td colspan="11">الوحدة التعليمية: الأساسية</td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الأساسية</td>
+                                    <td>المحاسبة المالية 1</td>
+                                    <td>لعكيزة ياسين</td>
+                                    <td>3</td>
+                                    <td>6</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الأساسية</td>
+                                    <td>اقتصاد جزئي 1</td>
+                                    <td>بليلة لمين</td>
+                                    <td>3</td>
+                                    <td>6</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الأساسية</td>
+                                    <td>مدخل للاقتصاد</td>
+                                    <td>سويلم ليلى</td>
+                                    <td>5</td>
+                                    <td>2</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+
+                                <!-- الوحدة المنهجية -->
+                                <tr class="unit-group-header">
+                                    <td colspan="11">الوحدة التعليمية: المنهجية</td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>المنهجية</td>
+                                    <td>رياضيات 1</td>
+                                    <td>د/ فزازم محمد</td>
+                                    <td>2</td>
+                                    <td>4</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>المنهجية</td>
+                                    <td>إحصاء 1</td>
+                                    <td>أمزيان أنيسة</td>
+                                    <td>2</td>
+                                    <td>4</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>المنهجية</td>
+                                    <td>أساسيات البرمجة بالبايتون 1</td>
+                                    <td>حجاسي إبراهيم</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+
+                                <!-- الوحدة الاستكشافية -->
+                                <tr class="unit-group-header">
+                                    <td colspan="11">الوحدة التعليمية: الاستكشافية</td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الاستكشافية</td>
+                                    <td>مدخل لعلم اجتماع المنظمات</td>
+                                    <td>حبيب الود</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الاستكشافية</td>
+                                    <td>مدخل للقانون</td>
+                                    <td>سبع أمَال</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+
+                                <!-- الوحدة الأفقية -->
+                                <tr class="unit-group-header">
+                                    <td colspan="11">الوحدة التعليمية: الأفقية</td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الأفقية</td>
+                                    <td>تاريخ الجزائر</td>
+                                    <td>بودرومة عبد المالك</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>الأفقية</td>
+                                    <td>لغة إنجليزية 01</td>
+                                    <td>ENNEMRI Nasreddine</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+
         </main>
 
         <footer class="py-4 text-center text-stone-700 font-sans-plain text-xs border-t border-stone-300/60 mt-auto font-bold">
@@ -677,10 +908,10 @@
             </h3>
 
             <div class="flex items-center justify-center space-x-3 space-x-reverse pt-2">
-                <button onclick="confirmLogout()" class="w-full py-2.5 px-4 bg-red-700 hover:bg-red-800 text-white font-bold rounded-xl text-xs sm:text-sm transition-all shadow active:scale-95">
+                <button onclick="confirmLogout()" class="w-full py-2.5 px-4 bg-red-700 hover:bg-red-800 text-white font-bold rounded-xl text-xs sm:text-sm transition-all shadow active:scale-95 cursor-pointer">
                     نعم
                 </button>
-                <button onclick="closeLogoutModal()" class="w-full py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-black font-bold rounded-xl border border-gray-300 text-xs sm:text-sm transition-all active:scale-95">
+                <button onclick="closeLogoutModal()" class="w-full py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-black font-bold rounded-xl border border-gray-300 text-xs sm:text-sm transition-all active:scale-95 cursor-pointer">
                     لا
                 </button>
             </div>
@@ -738,7 +969,6 @@
                         status: "تسجيل مؤكد"
                     }
                 ],
-                /* برنامج التوقيت الأسبوعي الجديد بعد الدمج الحاص */
                 schedule: {
                     sat: {
                         "08:00 - 09:30": { name: "المحاسبة المالية 01", type: "merged" },
@@ -752,7 +982,7 @@
                     },
                     thu: {
                         "09:30 - 11:00": { name: "مدخل للقانون", type: "merged" },
-                        "12:30 - 14:00": { name: "أساسيات البرمجة بالبايثون 01", type: "merged" },
+                        "12:30 - 14:00": { name: "أساسيات البرمجة بالبايكون 01", type: "merged" },
                         "14:00 - 15:30": { name: "لغة إنجليزية 01", type: "merged" }
                     }
                 }
@@ -838,6 +1068,7 @@
                 closePersonalInfo();
                 closeAcademicInfo();
                 closeScheduleInfo();
+                closeCoursesInfo();
             }
         };
 
@@ -1230,7 +1461,6 @@
                 times.forEach(t => {
                     const session = dayData[t];
 
-                    /* قبول الحصة إن كانت متطابقة أو مدمجة بين المحاضرة والـ TD عند خيار الكل أو أحدهما */
                     const isVisible = session && (
                         filterType === 'all' || 
                         session.type === filterType || 
@@ -1310,6 +1540,57 @@
             }, 350);
         }
 
+        /* دوال التحكم في بطاقة المقررات الدراسية الجديدة */
+        function openCoursesInfo() {
+            const beigeCard = document.getElementById('main-beige-card');
+            const cardLoading = document.getElementById('card-loading');
+            
+            beigeCard.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                beigeCard.classList.add('hidden');
+                cardLoading.classList.remove('hidden');
+                cardLoading.classList.add('flex');
+                setTimeout(() => cardLoading.classList.remove('opacity-0'), 50);
+
+                const randomDelay = Math.floor(Math.random() * (2000 - 1000 + 1)) + 1000;
+
+                setTimeout(() => {
+                    cardLoading.classList.add('opacity-0');
+                    
+                    setTimeout(() => {
+                        cardLoading.classList.add('hidden');
+                        cardLoading.classList.remove('flex');
+
+                        history.pushState({ step: 'courses_details' }, '', '');
+
+                        const coursesCard = document.getElementById('courses-info-card');
+                        coursesCard.className = "slide-up-enter max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
+                        
+                        setTimeout(() => {
+                            coursesCard.classList.add('slide-up-active');
+                        }, 50);
+
+                    }, 350);
+                }, randomDelay);
+            }, 350);
+        }
+
+        function closeCoursesInfo() {
+            const coursesCard = document.getElementById('courses-info-card');
+            
+            coursesCard.className = "fade-out-exit max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
+
+            setTimeout(() => {
+                coursesCard.classList.add('hidden');
+                coursesCard.classList.remove('block');
+                
+                const beigeCard = document.getElementById('main-beige-card');
+                beigeCard.classList.remove('hidden');
+                setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
+            }, 350);
+        }
+
         function openLogoutModal() {
             const backdrop = document.getElementById('logout-modal-backdrop');
             const card = document.getElementById('logout-modal-card');
@@ -1366,6 +1647,7 @@
                 document.getElementById('personal-info-card').classList.add('hidden');
                 document.getElementById('academic-info-card').classList.add('hidden');
                 document.getElementById('schedule-info-card').classList.add('hidden');
+                document.getElementById('courses-info-card').classList.add('hidden');
                 document.querySelectorAll('.fade-card').forEach(c => c.classList.remove('show'));
             }, 350);
         }
@@ -1396,6 +1678,7 @@
                 document.getElementById('personal-info-card').classList.add('hidden');
                 document.getElementById('academic-info-card').classList.add('hidden');
                 document.getElementById('schedule-info-card').classList.add('hidden');
+                document.getElementById('courses-info-card').classList.add('hidden');
                 document.querySelectorAll('.fade-card').forEach(c => c.classList.remove('show'));
             }, 350);
         }
