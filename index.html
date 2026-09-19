@@ -187,7 +187,6 @@
             font-weight: bold;
         }
 
-        /* تلوين الصفوف المتناوب (سطر بلون وسطر بلون مختلف) */
         .courses-table-wrapper tr:nth-child(odd) {
             background-color: #ffffff;
         }
@@ -711,7 +710,7 @@
                     </button>
                 </div>
 
-                <div class="bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-sm">
+                <div class="bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-sm space-y-6">
                     <div class="courses-table-wrapper">
                         <table>
                             <thead>
@@ -730,9 +729,117 @@
                                 </tr>
                             </thead>
                             <tbody id="courses-table-body">
-                                <!-- سيتم توليد الصفوف هنا مع تلوين متناوب وبدون عناوين وحدات كبرى -->
                             </tbody>
                         </table>
+                    </div>
+
+                    <!-- حاوية عرض محاور ودرس المحاسبة المالية 1 عند الضغط على "إضغط هنا" -->
+                    <div id="accounting-lessons-section" class="hidden slide-up-enter mt-6 bg-white border border-stone-300/80 rounded-2xl p-4 sm:p-6 shadow-sm">
+                        <div class="flex items-center justify-between border-b border-stone-200 pb-3 mb-4">
+                            <div class="flex items-center space-x-2 space-x-reverse">
+                                <div class="w-7 h-7 rounded-lg bg-red-100 text-red-700 flex items-center justify-center text-xs font-bold">
+                                    <i class="fa-solid fa-book"></i>
+                                </div>
+                                <h3 class="font-hana font-bold text-sm sm:text-base text-gray-900">المحاسبة المالية 1 - قائمة المحاور والدروس</h3>
+                            </div>
+                            <button onclick="hideAccountingLessons()" class="text-xs text-gray-500 hover:text-red-700 font-bold">
+                                <i class="fa-solid fa-xmark text-sm"></i> إغلاق
+                            </button>
+                        </div>
+
+                        <div class="courses-table-wrapper mt-0">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th class="w-28">المحور</th>
+                                        <th>عنوان المحور / الدرس</th>
+                                        <th class="text-center w-36">تحميل الدرس</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="font-bold text-gray-800">المحور الأول</td>
+                                        <td>مدخل عام لعلم المحاسبة</td>
+                                        <td class="text-center">
+                                            <a href="./المحور الأول - محاسبة مالية 1.pdf" download class="inline-flex items-center space-x-1.5 space-x-reverse bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-md transition active:scale-95 animate-pulse">
+                                                <i class="fa-solid fa-download"></i>
+                                                <span>تحميل الدرس</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-gray-800">المحور الثاني</td>
+                                        <td>مفاهيم أساسية في المحاسبة المالية: التدفقات، الحساب، المستندات، الدورة المحاسبية، الفروض والمبادئ المحاسبية</td>
+                                        <td class="text-center">
+                                            <a href="./المحور الثاني - محاسبة مالية 1.pdf" download class="inline-flex items-center space-x-1.5 space-x-reverse bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-md transition active:scale-95 animate-pulse">
+                                                <i class="fa-solid fa-download"></i>
+                                                <span>تحميل الدرس</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-gray-800">المحور الثالث</td>
+                                        <td>الدفاتر المحاسبية والكشوف المالية</td>
+                                        <td class="text-center">
+                                            <a href="./المحور الثالث - محاسبة مالية 1.pdf" download class="inline-flex items-center space-x-1.5 space-x-reverse bg-red-600 hover:bg-red-700 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-md transition active:scale-95 animate-pulse">
+                                                <i class="fa-solid fa-download"></i>
+                                                <span>تحميل الدرس</span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-gray-800">المحور الرابع</td>
+                                        <td>محاسبة عملية تأسيس المؤسسة</td>
+                                        <td class="text-center">
+                                            <button disabled class="inline-flex items-center space-x-1.5 space-x-reverse bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm opacity-40 cursor-not-allowed">
+                                                <i class="fa-solid fa-download"></i>
+                                                <span>تحميل الدرس</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-gray-800">المحور الخامس</td>
+                                        <td>دراسة حسابات الصنف الأول: نتيجة السنة، الترحيل من جديد، الاحتياطات</td>
+                                        <td class="text-center">
+                                            <button disabled class="inline-flex items-center space-x-1.5 space-x-reverse bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm opacity-40 cursor-not-allowed">
+                                                <i class="fa-solid fa-download"></i>
+                                                <span>تحميل الدرس</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-gray-800">المحور السادس</td>
+                                        <td>محاسبة الرسم على القيمة المضافة</td>
+                                        <td class="text-center">
+                                            <button disabled class="inline-flex items-center space-x-1.5 space-x-reverse bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm opacity-40 cursor-not-allowed">
+                                                <i class="fa-solid fa-download"></i>
+                                                <span>تحميل الدرس</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-gray-800">المحور السابع</td>
+                                        <td>محاسبة التثبيتات المعنوية والعينية: الاقتناء، الاهتلاك، التنازل والتخريب</td>
+                                        <td class="text-center">
+                                            <button disabled class="inline-flex items-center space-x-1.5 space-x-reverse bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm opacity-40 cursor-not-allowed">
+                                                <i class="fa-solid fa-download"></i>
+                                                <span>تحميل الدرس</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="font-bold text-gray-800">المحور الثامن</td>
+                                        <td>محاسبة المخزونات: الشراء، الإنتاج، والبيع.</td>
+                                        <td class="text-center">
+                                            <button disabled class="inline-flex items-center space-x-1.5 space-x-reverse bg-red-600 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm opacity-40 cursor-not-allowed">
+                                                <i class="fa-solid fa-download"></i>
+                                                <span>تحميل الدرس</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -820,7 +927,7 @@
                     }
                 ],
                 courses: [
-                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "", coeff: 3, credit: 6 },
+                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "", coeff: 3, credit: 6, hasLessons: true },
                     { unit: "الأساسية", name: "اقتصاد جزئي 1", prof: "", coeff: 3, credit: 6 },
                     { unit: "الأساسية", name: "مدخل للاقتصاد", prof: "", coeff: 2, credit: 5 },
                     { unit: "المنهجية", name: "رياضيات 1", prof: "", coeff: 2, credit: 4 },
@@ -883,7 +990,7 @@
                 appreciation: "مقبول",
                 previousRecords: [],
                 courses: [
-                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "لعكيزة ياسين", coeff: 3, credit: 6 },
+                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "لعكيزة ياسين", coeff: 3, credit: 6, hasLessons: true },
                     { unit: "الأساسية", name: "اقتصاد جزئي 1", prof: "بليلة لمين", coeff: 3, credit: 6 },
                     { unit: "الأساسية", name: "مدخل للاقتصاد", prof: "سويلم ليلى", coeff: 2, credit: 5 },
                     { unit: "المنهجية", name: "رياضيات 1", prof: "د/ فزازم محمد", coeff: 2, credit: 4 },
@@ -1409,11 +1516,11 @@
                 
                 const beigeCard = document.getElementById('main-beige-card');
                 beigeCard.classList.remove('hidden');
-                setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
+                setTimeout(() => beigeCard.classList.0 = '', 50);
             }, 350);
         }
 
-        /* توليد الجدول بدون أسطر عناوين الوحدات الكبرى، بل المقاييس تحت بعض مع صفوف متناوبة الألوان */
+        /* توليد الجدول مع زر "إضغط هنا" الأحمر الداكن أمام المحاسبة المالية 1 */
         function openCoursesInfo() {
             const beigeCard = document.getElementById('main-beige-card');
             const cardLoading = document.getElementById('card-loading');
@@ -1438,10 +1545,18 @@
                         const tbody = document.getElementById('courses-table-body');
                         tbody.innerHTML = '';
 
-                        // تصفية المواد التي لا ينبغي إظهارها للطالب الحالي
                         const activeCourses = currentActiveStudent.courses.filter(c => !c.hiddenForElAchi);
 
                         activeCourses.forEach(course => {
+                            let lessonCell = '';
+                            if (course.hasLessons) {
+                                lessonCell = `
+                                    <button onclick="toggleAccountingLessons()" class="bg-[#990000] hover:bg-red-800 text-white font-bold text-xs px-3 py-1.5 rounded-lg shadow-sm transition active:scale-95 cursor-pointer">
+                                        إضغط هنا
+                                    </button>
+                                `;
+                            }
+
                             tbody.innerHTML += `
                                 <tr>
                                     <td>الأول</td>
@@ -1454,7 +1569,7 @@
                                     <td>50%</td>
                                     <td>-</td>
                                     <td>-</td>
-                                    <td></td>
+                                    <td class="text-center">${lessonCell}</td>
                                 </tr>
                             `;
                         });
@@ -1486,6 +1601,23 @@
                 beigeCard.classList.remove('hidden');
                 setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
             }, 350);
+        }
+
+        /* إظهار وإخفاء جدول المحاور والدروس للمحاسبة المالية 1 */
+        function toggleAccountingLessons() {
+            const section = document.getElementById('accounting-lessons-section');
+            if (section.classList.contains('hidden')) {
+                section.classList.remove('hidden');
+                section.classList.add('slide-up-active');
+                section.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                section.classList.add('hidden');
+            }
+        }
+
+        function hideAccountingLessons() {
+            const section = document.getElementById('accounting-lessons-section');
+            section.classList.add('hidden');
         }
 
         function openLogoutModal() {
