@@ -83,9 +83,9 @@
             100% { transform: translateX(100%); }
         }
 
-        /* تأثير الانتقال التدريجي لجميع الواجهات والعناصر */
+        /* تأثير الانتقال التدريجي */
         .fade-transition {
-            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
         }
 
         .fade-card {
@@ -114,7 +114,7 @@
         <p class="font-sans-plain text-gray-600 text-lg tracking-wide animate-pulse">جار التحميل</p>
     </div>
 
-    <!-- 2. واجهة الدخول والاستمارة (الواجهتان 1 و 2) -->
+    <!-- 2. واجهة الدخول والاستمارة -->
     <div id="login-screen" class="opacity-0 fade-transition max-w-xl mx-auto px-4 pt-4 pb-8 w-full flex-1 flex flex-col items-center">
         
         <!-- الترويسة والشعار -->
@@ -147,12 +147,10 @@
         <!-- البطاقة البيضاء الأساسية -->
         <div id="card-container" class="opacity-0 fade-transition bg-white rounded-2xl p-5 sm:p-6 shadow-2xl border border-gray-100 w-full">
             
-            <!-- رسالة الخطأ العليا -->
             <div id="error-banner" class="hidden mb-4 p-2.5 bg-red-100 border-r-4 border-red-600 text-red-700 font-sans-plain font-bold text-center text-xs rounded">
                 يرجى التأكد من صحة معلوماتك
             </div>
 
-            <!-- نموذج الدخول -->
             <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4 font-sans-plain">
                 <div>
                     <label class="block text-gray-700 font-bold text-xs mb-1">سنة البكالوريا</label>
@@ -172,13 +170,11 @@
                     <span id="err-pass" class="hidden text-red-600 text-[11px] font-bold mt-1 block">حقل مطلوب</span>
                 </div>
 
-                <!-- خيار حفظ معلومات تسجيل الدخول -->
                 <div class="flex items-center space-x-2 space-x-reverse py-1">
                     <input type="checkbox" id="remember-me" class="w-4 h-4 text-emerald-600 rounded border-gray-300 focus:ring-emerald-500 cursor-pointer">
                     <label for="remember-me" class="text-xs text-gray-600 font-bold cursor-pointer">حفظ معلومات تسجيل الدخول</label>
                 </div>
 
-                <!-- اختبار الكابتشا -->
                 <div class="bg-gray-50 border border-gray-300 rounded-xl p-3 flex items-center justify-between">
                     <div class="flex items-center space-x-2.5 space-x-reverse">
                         <input type="checkbox" id="captcha-check" onchange="checkFormCompletion()" class="w-4 h-4 text-emerald-600 rounded focus:ring-emerald-500 cursor-pointer">
@@ -187,13 +183,11 @@
                     <img src="https://www.gstatic.com/recaptcha/api2/logo_48.png" alt="recaptcha" class="w-7 h-7 opacity-70">
                 </div>
 
-                <!-- زر تسجيل الدخول الأخضر -->
                 <button type="submit" id="submit-btn" disabled class="w-full py-2.5 px-6 rounded-xl font-hana font-bold text-white bg-emerald-600 opacity-40 cursor-not-allowed transition-all duration-300 shadow">
                     تسجيل الدخول
                 </button>
             </form>
 
-            <!-- مؤشر التحميل الفرعي -->
             <div id="sub-loading" class="hidden flex-col items-center justify-center my-6 py-4 opacity-0 fade-transition">
                 <div class="spinner-container mb-3">
                     <div class="spinner-dot"></div>
@@ -235,24 +229,20 @@
     <!-- 3. الواجهة الثالثة الرئيسية -->
     <div id="app-content" class="hidden flex-1 flex-col deep-dark-beige-bg min-h-screen text-gray-800 opacity-0 fade-transition">
         
-        <!-- الهيدر بالأخضر الداكن البارد -->
         <header class="cool-green-bg text-white border-b border-emerald-900/40 sticky top-0 z-30 shadow-md py-2.5 px-4 sm:px-8">
             <div class="max-w-7xl mx-auto flex items-center justify-between">
                 
-                <!-- جهة بيانات الطالب والصورة -->
                 <div class="flex items-center space-x-3 space-x-reverse">
                     <div class="text-right">
                         <p id="portal-user-name" class="font-sans-plain font-bold text-sm sm:text-base text-white leading-tight"></p>
                         <p id="portal-user-level" class="font-sans-plain text-xs text-emerald-200 leading-tight mt-0.5"></p>
                         <p id="portal-user-spec" class="font-sans-plain text-xs text-amber-300 font-bold leading-tight"></p>
                     </div>
-                    <!-- دائرة صورة الطالب الشخصية -->
                     <div class="w-11 h-11 rounded-full border-2 border-white/40 shadow-sm overflow-hidden flex-shrink-0 bg-emerald-800">
                         <img id="portal-user-img" src="" alt="صورة الطالب" class="w-full h-full object-cover">
                     </div>
                 </div>
 
-                <!-- جهة شعار الجامعة وعنوان المنصة -->
                 <div class="flex items-center space-x-3 space-x-reverse">
                     <div class="text-left sm:text-right hidden sm:block">
                         <h1 class="font-hana text-base sm:text-lg text-white font-bold leading-tight">جامعة التكوين المتواصل</h1>
@@ -265,15 +255,27 @@
         </header>
 
         <!-- محتوى الواجهة الثالثة -->
-        <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full">
+        <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-1 w-full flex flex-col justify-center">
             
+            <!-- شاشة التحميل للبطاقات داخل البيج الغامق -->
+            <div id="card-loading" class="hidden flex-col items-center justify-center py-16 opacity-0 fade-transition">
+                <div class="spinner-container mb-4">
+                    <div class="spinner-dot"></div>
+                    <div class="spinner-dot"></div>
+                    <div class="spinner-dot"></div>
+                    <div class="spinner-dot"></div>
+                    <div class="spinner-dot"></div>
+                </div>
+                <p class="font-sans-plain text-gray-700 font-bold text-sm animate-pulse">جار التحميل</p>
+            </div>
+
+            <!-- شبكة البطاقات التسع -->
             <div id="main-beige-card" class="opacity-0 fade-transition bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-7 shadow-sm">
                 
-                <!-- شبكة البطاقات التسع -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     
                     <!-- بطاقة 1: المعلومات الشخصية -->
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                    <div onclick="openPersonalInfo()" class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المعلومات الشخصية</span>
                             <div class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-user"></i></div>
@@ -366,6 +368,43 @@
 
             </div>
 
+            <!-- بطاقة عرض المعلومات الشخصية التفصيلية -->
+            <div id="personal-info-card" class="hidden opacity-0 fade-transition bg-white border border-black/20 rounded-2xl p-4 sm:p-6 shadow-lg max-w-2xl mx-auto w-full my-4 font-sans-plain">
+                <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
+                    <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800 flex items-center space-x-2 space-x-reverse">
+                        <i class="fa-solid fa-id-card text-emerald-700"></i>
+                        <span>المعلومات الشخصية</span>
+                    </h2>
+                    <button onclick="closePersonalInfo()" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-1 px-3 rounded-lg border border-gray-300 transition">
+                        <i class="fa-solid fa-arrow-right ml-1"></i> العودة
+                    </button>
+                </div>
+
+                <div class="divide-y divide-gray-100 text-xs sm:text-sm">
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">الرقم :</span><span id="p-reg" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">اللقب بالحروف اللاتينية :</span><span id="p-lname-en" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">اللقب بالحروف العربية :</span><span id="p-lname-ar" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">الإسم بالحروف اللاتينية :</span><span id="p-fname-en" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">الإسم بالحروف العربية :</span><span id="p-fname-ar" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">رقم بطاقة التعريف الوطنية :</span><span id="p-cin" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">رقم التعريف الوطني :</span><span id="p-nin" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">الجنس :</span><span id="p-gender" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">تاريخ الميلاد :</span><span id="p-dob" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">مكان الإزدياد :</span><span id="p-pob" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">ولاية الميلاد :</span><span id="p-wilaya-birth" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">اسم الأب بالأحرف اللاتينية :</span><span id="p-father-en" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">لقب الأم بالأحرف اللاتينية :</span><span id="p-mother-lname-en" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">إسم الأم بالأحرف اللاتينية :</span><span id="p-mother-fname-en" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">العنوان باللاتينية :</span><span id="p-address-en" class="font-bold text-gray-900 text-left max-w-[60%] leading-tight"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">رقم الهاتف :</span><span id="p-phone" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">البريد الإلكتروني :</span><span id="p-email" class="font-bold text-gray-900 text-left"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">شعبة البكالوريا :</span><span id="p-bac-branch" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">معدل البكالوريا :</span><span id="p-bac-grade" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">ولاية البكالوريا :</span><span id="p-bac-wilaya" class="font-bold text-gray-900"></span></div>
+                    <div class="py-1.5 flex justify-between"><span class="text-blue-700 font-semibold">التقدير :</span><span id="p-bac-appreciation" class="font-bold text-emerald-700"></span></div>
+                </div>
+            </div>
+
         </main>
 
         <footer class="py-4 text-center text-stone-700 font-sans-plain text-xs border-t border-stone-300/60 mt-auto font-bold">
@@ -393,7 +432,24 @@
                 level: "ليسانس سنة أولى",
                 grade: "12.39",
                 note: "بتقدير قريب من الجيد",
-                photo: "./IMG_20260914_211327.jpg"
+                photo: "./IMG_20260914_211327.jpg",
+                // التفاصيل الكامله
+                lname_en: "ELACHI",
+                fname_en: "ABDEL HAKIM",
+                cin: "401151817",
+                nin: "100070751022540000",
+                gender: "MASCULIN",
+                wilaya_birth: "21",
+                father_en: "RACHID",
+                mother_lname_en: "MECIBAH",
+                mother_fname_en: "LEÏLA",
+                address_en: "Cité 1700 Logts AADL Bâtiment B13 N05 el Harrouche Skikda",
+                phone: "0563896102",
+                email: "ha466888@gmail.com",
+                bac_branch: "لغات أجنبية",
+                bac_grade: "12.39",
+                bac_wilaya: "21",
+                appreciation: "قريب من الجيد"
             },
             "2026_36107606_22052007": {
                 reg: "36107606",
@@ -408,7 +464,24 @@
                 level: "ليسانس سنة أولى",
                 grade: "10.89",
                 note: "بتقدير مقبول",
-                photo: "./IMG_20260914_211339.jpg"
+                photo: "./IMG_20260914_211339.jpg",
+                // التفاصيل الكامله
+                lname_en: "BOUDROUMA",
+                fname_en: "ABDEL MALEK",
+                cin: "121484861",
+                nin: "100070751003960003",
+                gender: "MASCULIN",
+                wilaya_birth: "21",
+                father_en: "MOUHAMED",
+                mother_lname_en: "BOUFENNICHE",
+                mother_fname_en: "SIHEM",
+                address_en: "Cite 176 Logts Bat 04 N09 Hammadi Krouma Skikda",
+                phone: "0557537699",
+                email: "malekboudrouma21@gmail.com",
+                bac_branch: "لغات أجنبية",
+                bac_grade: "10.89",
+                bac_wilaya: "21",
+                appreciation: "مقبول"
             }
         };
 
@@ -452,6 +525,8 @@
                 showLoginView();
             } else if (targetStep === 'info') {
                 showStudentInfoView();
+            } else if (targetStep === 'portal') {
+                closePersonalInfo();
             }
         };
 
@@ -636,6 +711,77 @@
             }, 400);
         }
 
+        /* فتح شاشة التحميل والتحويل لبطاقة المعلومات الشخصية التفصيلية */
+        function openPersonalInfo() {
+            const beigeCard = document.getElementById('main-beige-card');
+            const cardLoading = document.getElementById('card-loading');
+            
+            beigeCard.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                beigeCard.classList.add('hidden');
+                cardLoading.classList.remove('hidden');
+                cardLoading.classList.add('flex');
+                setTimeout(() => cardLoading.classList.remove('opacity-0'), 50);
+
+                const randomDelay = Math.floor(Math.random() * (3500 - 2000 + 1)) + 2000;
+
+                setTimeout(() => {
+                    cardLoading.classList.add('opacity-0');
+                    
+                    setTimeout(() => {
+                        cardLoading.classList.add('hidden');
+                        cardLoading.classList.remove('flex');
+                        
+                        // ملء بيانات الطالب في الجدول
+                        const s = currentActiveStudent;
+                        document.getElementById('p-reg').textContent = s.reg;
+                        document.getElementById('p-lname-en').textContent = s.lname_en;
+                        document.getElementById('p-lname-ar').textContent = s.lname;
+                        document.getElementById('p-fname-en').textContent = s.fname_en;
+                        document.getElementById('p-fname-ar').textContent = s.fname;
+                        document.getElementById('p-cin').textContent = s.cin;
+                        document.getElementById('p-nin').textContent = s.nin;
+                        document.getElementById('p-gender').textContent = s.gender;
+                        document.getElementById('p-dob').textContent = s.dob;
+                        document.getElementById('p-pob').textContent = s.pob;
+                        document.getElementById('p-wilaya-birth').textContent = s.wilaya_birth;
+                        document.getElementById('p-father-en').textContent = s.father_en;
+                        document.getElementById('p-mother-lname-en').textContent = s.mother_lname_en;
+                        document.getElementById('p-mother-fname-en').textContent = s.mother_fname_en;
+                        document.getElementById('p-address-en').textContent = s.address_en;
+                        document.getElementById('p-phone').textContent = s.phone;
+                        document.getElementById('p-email').textContent = s.email;
+                        document.getElementById('p-bac-branch').textContent = s.bac_branch;
+                        document.getElementById('p-bac-grade').textContent = s.bac_grade;
+                        document.getElementById('p-bac-wilaya').textContent = s.bac_wilaya;
+                        document.getElementById('p-bac-appreciation').textContent = s.appreciation;
+
+                        history.pushState({ step: 'personal_details' }, '', '');
+
+                        const pCard = document.getElementById('personal-info-card');
+                        pCard.classList.remove('hidden');
+                        setTimeout(() => pCard.classList.remove('opacity-0'), 50);
+
+                    }, 400);
+                }, randomDelay);
+            }, 400);
+        }
+
+        /* العودة لشبكة البطاقات */
+        function closePersonalInfo() {
+            const pCard = document.getElementById('personal-info-card');
+            pCard.classList.add('opacity-0');
+
+            setTimeout(() => {
+                pCard.classList.add('hidden');
+                
+                const beigeCard = document.getElementById('main-beige-card');
+                beigeCard.classList.remove('hidden');
+                setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
+            }, 400);
+        }
+
         function showLoginView() {
             const appContent = document.getElementById('app-content');
             appContent.classList.add('opacity-0');
@@ -659,6 +805,8 @@
                 document.getElementById('login-screen').classList.remove('opacity-0');
 
                 document.getElementById('main-beige-card').classList.add('opacity-0');
+                document.getElementById('personal-info-card').classList.add('hidden');
+                document.getElementById('personal-info-card').classList.add('opacity-0');
                 document.querySelectorAll('.fade-card').forEach(c => c.classList.remove('show'));
             }, 400);
         }
@@ -686,6 +834,8 @@
                 document.getElementById('login-screen').classList.remove('opacity-0');
 
                 document.getElementById('main-beige-card').classList.add('opacity-0');
+                document.getElementById('personal-info-card').classList.add('hidden');
+                document.getElementById('personal-info-card').classList.add('opacity-0');
                 document.querySelectorAll('.fade-card').forEach(c => c.classList.remove('show'));
             }, 400);
         }
