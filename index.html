@@ -33,17 +33,14 @@
             font-family: 'TheSansPlain', system-ui, -apple-system, sans-serif !important;
         }
 
-        /* خلفية باللون الأخضر البارد للواجهات الأولى والهيدر */
         .cool-green-bg {
             background-color: #1b3b36;
         }
 
-        /* لون الخلفية للواجهة الثالثة (بيج غامق جداً) */
         .deep-dark-beige-bg {
             background-color: #d1c7bd;
         }
 
-        /* أنيميشن دوران الدوائر الخمس */
         .spinner-container {
             position: relative;
             width: 60px;
@@ -69,7 +66,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* شريط الملاحظة المتحرك */
         .marquee-container {
             overflow: hidden;
             white-space: nowrap;
@@ -83,12 +79,10 @@
             100% { transform: translateX(100%); }
         }
 
-        /* تأثير الانتقال التدريجي العام */
         .fade-transition {
             transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
         }
 
-        /* تأثير تحسين ظهور شاشة التحميل وسلاسة اختفائها */
         .loading-fade {
             transition: opacity 0.35s ease-in-out, transform 0.35s ease-in-out;
         }
@@ -116,7 +110,7 @@
             transform: translateY(0);
         }
 
-        /* التأثير الخاص بالخروج التدريجي (عادي بدون حركة) */
+        /* خروج تدريجي عادي بدون حركة عند الإغلاق */
         .fade-out-exit {
             opacity: 0;
             transition: opacity 0.35s ease-out;
@@ -125,7 +119,7 @@
 </head>
 <body id="main-body" class="cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between transition-colors duration-700">
 
-    <!-- 1. واجهة التحميل الأولى (Splash Screen) -->
+    <!-- 1. واجهة التحميل الأولى -->
     <div id="splash-screen" class="fixed inset-0 bg-white z-50 flex flex-col justify-center items-center loading-fade">
         <div class="spinner-container mb-6">
             <div class="spinner-dot"></div>
@@ -140,7 +134,6 @@
     <!-- 2. واجهة الدخول والاستمارة -->
     <div id="login-screen" class="opacity-0 fade-transition max-w-xl mx-auto px-4 pt-4 pb-8 w-full flex-1 flex flex-col items-center">
         
-        <!-- الترويسة والشعار -->
         <div class="flex items-center justify-center space-x-4 space-x-reverse text-white mb-4 w-full">
             <img src="./IMG_20260914_010117.jpg" alt="شعار الجامعة" class="w-16 h-16 rounded-full object-cover border-2 border-white/30 shadow-sm flex-shrink-0">
             <div class="text-right">
@@ -150,24 +143,20 @@
             </div>
         </div>
 
-        <!-- العنوان الرئيسي -->
         <div class="text-center mb-4">
             <h1 class="font-hana text-xl sm:text-2xl font-bold text-white tracking-wide">مرحبا بك في بوابة الطالب الجامعي</h1>
         </div>
 
-        <!-- الشريط المتحرك -->
         <div class="w-full bg-[#fef3c7] border-2 border-red-600 rounded-xl p-2.5 mb-3 shadow-md marquee-container">
             <div class="marquee-content font-sans-plain font-bold text-black text-xs sm:text-sm">
                 ملاحظة: لن يتم تفعيل حسابات الطلبة الذين لم يدفعوا حقوق التسجيل للسنة الجامعية 2026-2027
             </div>
         </div>
 
-        <!-- عبارة التوفيق -->
         <p class="font-sans-plain text-center text-white text-xs font-medium mb-4">
             تتمنى إدارة جامعة التكوين المتواصل لطلابها كل التوفيق في دراستهم ومسارهم الجامعي
         </p>
 
-        <!-- البطاقة البيضاء الأساسية -->
         <div id="card-container" class="opacity-0 fade-transition bg-white rounded-2xl p-5 sm:p-6 shadow-2xl border border-gray-100 w-full">
             
             <div id="error-banner" class="hidden mb-4 p-2.5 bg-red-100 border-r-4 border-red-600 text-red-700 font-sans-plain font-bold text-center text-xs rounded">
@@ -222,7 +211,7 @@
                 <p class="font-sans-plain text-gray-600 text-xs animate-pulse">جار التحميل</p>
             </div>
 
-            <!-- بطاقة معلومات الطالب (الواجهة 2) -->
+            <!-- بطاقة معلومات الطالب الواردة -->
             <div id="student-info-card" class="hidden font-sans-plain space-y-4 opacity-0 fade-transition">
                 <div class="space-y-2 text-xs sm:text-sm text-gray-700">
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">رقم التسجيل:</span><span id="info-reg" class="font-bold text-gray-900"></span></div>
@@ -249,7 +238,7 @@
         </div>
     </div>
 
-    <!-- 3. الواجهة الثالثة الرئيسية -->
+    <!-- 3. الواجهة الرئيسية للبوابة -->
     <div id="app-content" class="hidden flex-1 flex-col deep-dark-beige-bg min-h-screen text-gray-800 opacity-0 fade-transition">
         
         <header class="cool-green-bg text-white border-b border-emerald-900/40 sticky top-0 z-30 shadow-md py-2.5 px-4 sm:px-8">
@@ -277,10 +266,8 @@
             </div>
         </header>
 
-        <!-- محتوى الواجهة الثالثة -->
         <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-1 w-full flex flex-col justify-start">
             
-            <!-- شاشة التحميل للبطاقات مع تحسين الظهور والخروج التدريجي -->
             <div id="card-loading" class="hidden flex-col items-center justify-center py-16 opacity-0 loading-fade">
                 <div class="spinner-container mb-4">
                     <div class="spinner-dot"></div>
@@ -294,10 +281,8 @@
 
             <!-- شبكة البطاقات التسع -->
             <div id="main-beige-card" class="opacity-0 fade-transition bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-5 sm:p-7 shadow-sm mt-2">
-                
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                     
-                    <!-- بطاقة 1: المعلومات الشخصية -->
                     <div onclick="openPersonalInfo()" class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المعلومات الشخصية</span>
@@ -307,7 +292,6 @@
                         <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">الاطلاع على معلوماتي الشخصية، العنوان، الحالة العائلية...</p>
                     </div>
 
-                    <!-- بطاقة 2: المعلومات الدراسية -->
                     <div onclick="openAcademicInfo()" class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المعلومات الدراسية</span>
@@ -317,17 +301,15 @@
                         <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">مراجعة تسجيلاتي الدراسي في المسار الجامعي</p>
                     </div>
 
-                    <!-- بطاقة 3: التوقيت الأسبوعي -->
                     <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">التوقيت الأسبوعي</span>
                             <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-calendar-days"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تنظيم حصص الدراسة كل أسبوع: محاضرات، أعمال تطبيقية، أعمال موجهة، ملتقيات...</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تنظيم حصص الدراسة كل أسبوع: محاضرات، أعمال تطبيقية، أعمال موجهة...</p>
                     </div>
 
-                    <!-- بطاقة 4: المقررات الدراسية -->
                     <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">المقررات الدراسية</span>
@@ -337,7 +319,6 @@
                         <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">مراقبة المقاييس الدراسية المعنية في كل سداسي، الدروس، النسب...</p>
                     </div>
 
-                    <!-- بطاقة 5: الأعمال الموجهة -->
                     <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الأعمال الموجهة</span>
@@ -347,7 +328,6 @@
                         <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">فحص عملية إنجاز الأعمال الموجهة في كل مقياس، النقاط...</p>
                     </div>
 
-                    <!-- بطاقة 6: كشوف النقاط -->
                     <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">كشوف النقاط</span>
@@ -357,7 +337,6 @@
                         <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">الإطلاع على كشوف نقاطي في المسار الجامعي</p>
                     </div>
 
-                    <!-- بطاقة 7: الغيابات والإقصاءات -->
                     <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الغيابات والإقصاءات</span>
@@ -367,17 +346,15 @@
                         <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تسجيل الاقصاءات، الغيابات في النظام المركزي للجامعة</p>
                     </div>
 
-                    <!-- بطاقة 8: الخدمات الجامعية -->
                     <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">الخدمات الجامعية</span>
                             <div class="w-8 h-8 rounded-lg bg-cyan-50 text-cyan-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-hand-holding-hand"></i></div>
                         </div>
                         <div class="w-full h-[1px] bg-stone-800/20 my-1"></div>
-                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تقديم ومراجعة طلبات التحويل، الإقامة، النقل، المنحة، العطلة الأكاديمية...</p>
+                        <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">تقديم ومراجعة طلبات التحويل، الإقامة، النقل، المنحة...</p>
                     </div>
 
-                    <!-- بطاقة 9: طرح إشكالية -->
                     <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">طرح إشكالية</span>
@@ -388,70 +365,76 @@
                     </div>
 
                 </div>
-
             </div>
 
-            <!-- بطاقة عرض المعلومات الشخصية التفصيلية -->
-            <div id="personal-info-card" class="hidden slide-up-enter bg-white border border-black/20 rounded-2xl p-4 sm:p-6 shadow-lg max-w-2xl mx-auto w-full mt-2 mb-6 font-sans-plain">
-                <div class="flex justify-between items-center mb-4 pb-2 border-b border-gray-200">
-                    <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800 flex items-center space-x-2 space-x-reverse">
-                        <i class="fa-solid fa-id-card text-emerald-700"></i>
-                        <span>المعلومات الشخصية</span>
-                    </h2>
-                    <button onclick="closePersonalInfo()" class="text-xs bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold py-1.5 px-3 rounded-lg border border-gray-300 transition flex items-center space-x-1 space-x-reverse">
+            <!-- 4. بطاقة المعلومات الشخصية (بشريط مستقل مطابِق) -->
+            <div id="personal-info-card" class="hidden slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
+                
+                <!-- الشريط المنفصل للعنوان والعودة -->
+                <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
+                    <div class="flex items-center space-x-2.5 space-x-reverse">
+                        <div class="w-8 h-8 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-id-card"></i>
+                        </div>
+                        <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800">المعلومات الشخصية</h2>
+                    </div>
+                    <button onclick="closePersonalInfo()" class="text-xs bg-stone-100 hover:bg-stone-200 text-gray-800 font-bold py-1.5 px-3.5 rounded-xl border border-stone-300 transition flex items-center space-x-1.5 space-x-reverse shadow-sm">
                         <i class="fa-solid fa-arrow-right"></i>
                         <span>العودة</span>
                     </button>
                 </div>
 
-                <div class="divide-y divide-gray-100 text-xs sm:text-sm">
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">الرقم :</span><span id="p-reg" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">اللقب بالحروف اللاتينية :</span><span id="p-lname-en" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">اللقب بالحروف العربية :</span><span id="p-lname-ar" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">الإسم بالحروف اللاتينية :</span><span id="p-fname-en" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">الإسم بالحروف العربية :</span><span id="p-fname-ar" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">رقم بطاقة التعريف الوطنية :</span><span id="p-cin" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">رقم التعريف الوطني :</span><span id="p-nin" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">الجنس :</span><span id="p-gender" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">تاريخ الميلاد :</span><span id="p-dob" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">مكان الإزدياد :</span><span id="p-pob" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">ولاية الميلاد :</span><span id="p-wilaya-birth" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">اسم الأب بالأحرف اللاتينية :</span><span id="p-father-en" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">لقب الأم بالأحرف اللاتينية :</span><span id="p-mother-lname-en" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">إسم الأم بالأحرف اللاتينية :</span><span id="p-mother-fname-en" class="font-bold text-gray-900"></span></div>
+                <!-- محتوى المعلومات الشخصية -->
+                <div class="bg-white border border-stone-300/80 rounded-3xl p-5 sm:p-6 shadow-sm font-sans-plain divide-y divide-gray-100 text-xs sm:text-sm">
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">الرقم :</span><span id="p-reg" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">اللقب بالحروف اللاتينية :</span><span id="p-lname-en" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">اللقب بالحروف العربية :</span><span id="p-lname-ar" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">الإسم بالحروف اللاتينية :</span><span id="p-fname-en" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">الإسم بالحروف العربية :</span><span id="p-fname-ar" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">رقم بطاقة التعريف الوطنية :</span><span id="p-cin" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">رقم التعريف الوطني :</span><span id="p-nin" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">الجنس :</span><span id="p-gender" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">تاريخ الميلاد :</span><span id="p-dob" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">مكان الإزدياد :</span><span id="p-pob" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">ولاية الميلاد :</span><span id="p-wilaya-birth" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">اسم الأب بالأحرف اللاتينية :</span><span id="p-father-en" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">لقب الأم بالأحرف اللاتينية :</span><span id="p-mother-lname-en" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">إسم الأم بالأحرف اللاتينية :</span><span id="p-mother-fname-en" class="font-bold text-gray-900"></span></div>
                     
-                    <div class="py-1.5 flex justify-between items-center gap-2">
+                    <div class="py-2 flex justify-between items-center gap-2">
                         <span class="text-blue-700 font-semibold flex-shrink-0">العنوان باللاتينية :</span>
                         <input type="text" id="p-address-en" class="font-bold text-gray-900 text-left w-full max-w-[65%] bg-transparent border border-transparent hover:border-gray-300 focus:border-blue-500 focus:bg-white rounded px-1.5 py-0.5 outline-none transition" />
                     </div>
 
-                    <div class="py-1.5 flex justify-between items-center gap-2">
+                    <div class="py-2 flex justify-between items-center gap-2">
                         <span class="text-blue-700 font-semibold flex-shrink-0">رقم الهاتف :</span>
                         <input type="text" id="p-phone" class="font-bold text-gray-900 text-left w-full max-w-[50%] bg-transparent border border-transparent hover:border-gray-300 focus:border-blue-500 focus:bg-white rounded px-1.5 py-0.5 outline-none transition" />
                     </div>
 
-                    <div class="py-1.5 flex justify-between items-center gap-2">
+                    <div class="py-2 flex justify-between items-center gap-2">
                         <span class="text-blue-700 font-semibold flex-shrink-0">البريد الإلكتروني :</span>
                         <input type="email" id="p-email" class="font-bold text-gray-900 text-left w-full max-w-[60%] bg-transparent border border-transparent hover:border-gray-300 focus:border-blue-500 focus:bg-white rounded px-1.5 py-0.5 outline-none transition" />
                     </div>
 
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">شعبة البكالوريا :</span><span id="p-bac-branch" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">معدل البكالوريا :</span><span id="p-bac-grade" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">ولاية البكالوريا :</span><span id="p-bac-wilaya" class="font-bold text-gray-900"></span></div>
-                    <div class="py-1.5 flex justify-between items-center"><span class="text-blue-700 font-semibold">التقدير :</span><span id="p-bac-appreciation" class="font-bold text-emerald-700"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">شعبة البكالوريا :</span><span id="p-bac-branch" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">معدل البكالوريا :</span><span id="p-bac-grade" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">ولاية البكالوريا :</span><span id="p-bac-wilaya" class="font-bold text-gray-900"></span></div>
+                    <div class="py-2 flex justify-between items-center"><span class="text-blue-700 font-semibold">التقدير :</span><span id="p-bac-appreciation" class="font-bold text-emerald-700"></span></div>
                 </div>
             </div>
 
-            <!-- 4. بطاقة المعلومات الدراسية مع التسجيلات السابقة (تظهر بصعود تدريجي) -->
-            <div id="academic-info-card" class="hidden slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-6">
+            <!-- 5. بطاقة المعلومات الدراسية (تأتي بالشريط المنفصل المستقل كما في طلبك) -->
+            <div id="academic-info-card" class="hidden slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
                 
-                <!-- زر العودة العلوية -->
-                <div class="flex justify-between items-center bg-white/70 backdrop-blur-sm p-3 rounded-2xl border border-stone-300/60 shadow-sm">
-                    <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800 flex items-center space-x-2 space-x-reverse">
-                        <i class="fa-solid fa-graduation-cap text-emerald-800"></i>
-                        <span>المعلومات الدراسية والتسجيلات</span>
-                    </h2>
-                    <button onclick="closeAcademicInfo()" class="text-xs bg-white hover:bg-gray-100 text-gray-800 font-bold py-1.5 px-3.5 rounded-xl border border-gray-300 transition flex items-center space-x-1.5 space-x-reverse shadow-sm">
+                <!-- الشريط المنفصل للعنوان والعودة (تم تعديل النص إلى "المعلومات الدراسية" فقط) -->
+                <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
+                    <div class="flex items-center space-x-2.5 space-x-reverse">
+                        <div class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800">المعلومات الدراسية</h2>
+                    </div>
+                    <button onclick="closeAcademicInfo()" class="text-xs bg-stone-100 hover:bg-stone-200 text-gray-800 font-bold py-1.5 px-3.5 rounded-xl border border-stone-300 transition flex items-center space-x-1.5 space-x-reverse shadow-sm">
                         <i class="fa-solid fa-arrow-right"></i>
                         <span>العودة</span>
                     </button>
@@ -506,7 +489,6 @@
                         <h3 class="font-hana font-bold text-base sm:text-lg text-gray-800">التسجيلات السابقة</h3>
                     </div>
 
-                    <!-- جدول التسجيلات السابقة بتصميم الرمادي والبيج البارد -->
                     <div class="overflow-x-auto rounded-2xl border border-stone-300/80 shadow-sm bg-white">
                         <table class="w-full text-right border-collapse text-xs sm:text-sm">
                             <thead>
@@ -523,7 +505,6 @@
                                 </tr>
                             </thead>
                             <tbody id="previous-records-body" class="divide-y divide-stone-200 text-stone-700 bg-[#f7f4ed]">
-                                <!-- يتم استبداله ديناميكياً حسب الطالب -->
                             </tbody>
                         </table>
                     </div>
@@ -538,7 +519,6 @@
         </footer>
     </div>
 
-    <!-- تذييل الواجهات الأولى -->
     <footer id="main-footer" class="py-3 text-center text-white/80 font-sans-plain text-xs my-auto">
         جامعة التكوين المتواصل 2026-2027
     </footer>
@@ -899,7 +879,7 @@
                         history.pushState({ step: 'personal_details' }, '', '');
 
                         const pCard = document.getElementById('personal-info-card');
-                        pCard.className = "slide-up-enter bg-white border border-black/20 rounded-2xl p-4 sm:p-6 shadow-lg max-w-2xl mx-auto w-full mt-2 mb-6 font-sans-plain block";
+                        pCard.className = "slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
                         
                         setTimeout(() => {
                             pCard.classList.add('slide-up-active');
@@ -910,10 +890,11 @@
             }, 350);
         }
 
+        /* إغلاق المعلومات الشخصية بخروج تدريجي عادي */
         function closePersonalInfo() {
             const pCard = document.getElementById('personal-info-card');
             
-            pCard.className = "fade-out-exit bg-white border border-black/20 rounded-2xl p-4 sm:p-6 shadow-lg max-w-2xl mx-auto w-full mt-2 mb-6 font-sans-plain block";
+            pCard.className = "fade-out-exit max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
 
             setTimeout(() => {
                 pCard.classList.add('hidden');
@@ -925,7 +906,6 @@
             }, 350);
         }
 
-        /* فتح شاشة المعلومات الدراسية بصعود تدريجي */
         function openAcademicInfo() {
             const beigeCard = document.getElementById('main-beige-card');
             const cardLoading = document.getElementById('card-loading');
@@ -991,7 +971,7 @@
                         history.pushState({ step: 'academic_details' }, '', '');
 
                         const acadCard = document.getElementById('academic-info-card');
-                        acadCard.className = "slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-6 block";
+                        acadCard.className = "slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
                         
                         setTimeout(() => {
                             acadCard.classList.add('slide-up-active');
@@ -1002,10 +982,11 @@
             }, 350);
         }
 
+        /* إغلاق المعلومات الدراسية بخروج تدريجي عادي */
         function closeAcademicInfo() {
             const acadCard = document.getElementById('academic-info-card');
             
-            acadCard.className = "fade-out-exit max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-6 block";
+            acadCard.className = "fade-out-exit max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
 
             setTimeout(() => {
                 acadCard.classList.add('hidden');
