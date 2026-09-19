@@ -98,7 +98,6 @@
             transform: translateY(0);
         }
 
-        /* التأثير الخاص بظهور البطاقات والنافذة المنبثقة (صعود تدريجي) */
         .slide-up-enter {
             opacity: 0;
             transform: translateY(24px) scale(0.96);
@@ -110,10 +109,19 @@
             transform: translateY(0) scale(1);
         }
 
-        /* خروج تدريجي عادي بدون حركة عند الإغلاق */
         .fade-out-exit {
             opacity: 0;
             transition: opacity 0.3s ease-out;
+        }
+
+        /* أنيميشن التوهج والتألق للتنبيه الهام */
+        @keyframes alertBlink {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.2; transform: scale(0.96); }
+        }
+
+        .alert-blinking {
+            animation: alertBlink 1.4s infinite ease-in-out;
         }
     </style>
 </head>
@@ -211,7 +219,6 @@
                 <p class="font-sans-plain text-gray-600 text-xs animate-pulse">جار التحميل</p>
             </div>
 
-            <!-- بطاقة معلومات الطالب الواردة -->
             <div id="student-info-card" class="hidden font-sans-plain space-y-4 opacity-0 fade-transition">
                 <div class="space-y-2 text-xs sm:text-sm text-gray-700">
                     <div class="flex justify-between items-center py-1 border-b border-gray-100"><span class="font-semibold text-gray-500">رقم التسجيل:</span><span id="info-reg" class="font-bold text-gray-900"></span></div>
@@ -244,7 +251,6 @@
         <header class="cool-green-bg text-white border-b border-emerald-900/40 sticky top-0 z-30 shadow-md py-2.5 px-4 sm:px-8">
             <div class="max-w-7xl mx-auto flex items-center justify-between">
                 
-                <!-- جهة اليمين: معلومات الطالب + الصورة + زر تسجيل الخروج جنبها على اليسار -->
                 <div class="flex items-center space-x-3 space-x-reverse">
                     <div class="text-right">
                         <p id="portal-user-name" class="font-sans-plain font-bold text-sm sm:text-base text-white leading-tight"></p>
@@ -256,7 +262,6 @@
                         <img id="portal-user-img" src="" alt="صورة الطالب" class="w-full h-full object-cover">
                     </div>
 
-                    <!-- زر تسجيل الخروج بنفس ديزاين "تسجيل مؤكد" وبأحمر غامق على يسار الصورة -->
                     <button onclick="openLogoutModal()" class="inline-block bg-red-700 hover:bg-red-800 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm transition-all duration-200 cursor-pointer active:scale-95 flex-shrink-0 mr-1">
                         تسجيل الخروج
                     </button>
@@ -308,7 +313,7 @@
                         <p class="font-sans-plain text-[11px] text-gray-600 leading-relaxed mt-1">مراجعة تسجيلاتي الدراسي في المسار الجامعي</p>
                     </div>
 
-                    <div class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
+                    <div onclick="openScheduleInfo()" class="fade-card bg-white border border-stone-200/80 rounded-2xl p-4 shadow-sm hover:shadow-md transition-all cursor-pointer flex flex-col justify-between">
                         <div class="flex items-center justify-between w-full mb-2">
                             <span class="font-hana font-bold text-gray-800 text-xs sm:text-sm">التوقيت الأسبوعي</span>
                             <div class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-sm flex-shrink-0"><i class="fa-solid fa-calendar-days"></i></div>
@@ -427,7 +432,7 @@
                 </div>
             </div>
 
-            <!-- 5. بطاقة المعلومات الدراسية -->
+            <!-- 5. بطاقة المعلومات الدراسية (مع الخانات المحدثة: المجموعة والفوج) -->
             <div id="academic-info-card" class="hidden slide-up-enter max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
                 <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
                     <div class="flex items-center space-x-2.5 space-x-reverse">
@@ -477,6 +482,15 @@
                                 <span class="text-emerald-200 block text-[11px] mb-0.5">التخصص:</span>
                                 <span id="acad-spec-name" class="font-bold text-amber-300"></span>
                             </div>
+                            <!-- خانتا المجموعة والفوج المضافتان -->
+                            <div class="bg-white/10 p-2.5 rounded-xl border border-white/10">
+                                <span class="text-emerald-200 block text-[11px] mb-0.5">المجموعة:</span>
+                                <span class="font-bold text-white">--</span>
+                            </div>
+                            <div class="bg-white/10 p-2.5 rounded-xl border border-white/10">
+                                <span class="text-emerald-200 block text-[11px] mb-0.5">الفوج:</span>
+                                <span class="font-bold text-white">--</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -512,6 +526,165 @@
 
             </div>
 
+            <!-- 6. بطاقة التوقيت الأسبوعي الكاملة المضافة -->
+            <div id="schedule-info-card" class="hidden slide-up-enter max-w-5xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
+                
+                <!-- الشريط العلوى للتوقيت الأسبوعي -->
+                <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
+                    <div class="flex items-center space-x-2.5 space-x-reverse">
+                        <div class="w-8 h-8 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center text-sm">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800">التوقيت الأسبوعي</h2>
+                    </div>
+                    <button onclick="closeScheduleInfo()" class="text-xs bg-stone-100 hover:bg-stone-200 text-gray-800 font-bold py-1.5 px-3.5 rounded-xl border border-stone-300 transition flex items-center space-x-1.5 space-x-reverse shadow-sm">
+                        <i class="fa-solid fa-arrow-right"></i>
+                        <span>العودة</span>
+                    </button>
+                </div>
+
+                <!-- 1. بطاقة التنبيه الهام المتوهجة -->
+                <div class="bg-red-50/90 border border-red-300/80 rounded-2xl p-4 shadow-sm relative overflow-hidden">
+                    <div class="flex items-center space-x-2 space-x-reverse mb-2">
+                        <span class="inline-block bg-red-700 text-white text-xs font-black px-2.5 py-1 rounded-lg alert-blinking shadow-sm">
+                            تنبيه هام:
+                        </span>
+                    </div>
+                    <div class="text-gray-900 font-extrabold text-xs sm:text-sm leading-relaxed space-y-1 pr-1">
+                        <p>1 اجبارية حضور محاضرات المواد الاساسية (المادتين 68/71)</p>
+                        <p>2 الحرمان من الامتحان الاستدراكي في حالة عدم تقديم مبرر غياب عن الامتحان العادي (المادة 84)</p>
+                    </div>
+                </div>
+
+                <!-- 2. دليل الألوان التوضيحي -->
+                <div class="bg-[#faf6eb] border border-stone-300/80 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-start gap-3">
+                    <div class="flex items-center space-x-2 space-x-reverse flex-shrink-0">
+                        <span class="inline-block bg-teal-500 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-sm">
+                            دليل المواد
+                        </span>
+                        <i class="fa-solid fa-arrow-left text-black text-xs"></i>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-3 text-xs font-bold text-gray-800">
+                        <div class="flex items-center space-x-1.5 space-x-reverse bg-white px-2.5 py-1 rounded-lg border border-stone-200">
+                            <span class="w-3.5 h-3.5 rounded-md bg-orange-500 inline-block shadow-sm"></span>
+                            <span>محاضرات</span>
+                        </div>
+                        <div class="flex items-center space-x-1.5 space-x-reverse bg-white px-2.5 py-1 rounded-lg border border-stone-200">
+                            <span class="w-3.5 h-3.5 rounded-md bg-purple-400 inline-block shadow-sm"></span>
+                            <span>أعمال موجهة</span>
+                        </div>
+                        <div class="flex items-center space-x-1.5 space-x-reverse bg-white px-2.5 py-1 rounded-lg border border-stone-200">
+                            <span class="w-3.5 h-3.5 rounded-md bg-blue-400 inline-block shadow-sm"></span>
+                            <span>أعمال تطبيقية</span>
+                        </div>
+                        <div class="flex items-center space-x-1.5 space-x-reverse bg-white px-2.5 py-1 rounded-lg border border-stone-200">
+                            <span class="w-3.5 h-3.5 rounded-md bg-red-500 inline-block shadow-sm"></span>
+                            <span>إجتماعات طلابية هامة</span>
+                        </div>
+                        <div class="flex items-center space-x-1.5 space-x-reverse bg-white px-2.5 py-1 rounded-lg border border-stone-200">
+                            <span class="w-3.5 h-3.5 rounded-md bg-amber-400 inline-block shadow-sm"></span>
+                            <span>ملتقيات ومناقشات مذكرات التخرج</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. جدول التوقيت الأسبوعي الشفاف الفارغ -->
+                <div class="bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-4 sm:p-6 shadow-sm overflow-x-auto">
+                    <table class="w-full border-separate border-spacing-1.5 text-center text-xs sm:text-sm font-sans-plain">
+                        <thead>
+                            <tr class="bg-[#e8e2d8] text-stone-800 font-bold">
+                                <th class="p-2.5 rounded-xl border border-stone-300/60 min-w-[100px]">اليوم / الوقت</th>
+                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">08:00 - 09:30</th>
+                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">09:30 - 11:00</th>
+                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">11:00 - 12:30</th>
+                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">12:30 - 14:00</th>
+                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">14:00 - 15:30</th>
+                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">15:30 - 17:00</th>
+                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">17:00 - 18:30</th>
+                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">18:30 - 20:00</th>
+                                <th class="p-2.5 rounded-xl border border-stone-300/60 whitespace-nowrap min-w-[110px]">20:00 - 21:30</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-stone-700 font-bold">
+                            <tr>
+                                <td class="p-3 bg-[#e8e2d8] rounded-xl border border-stone-300/60 text-stone-900 font-black">السبت</td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200 h-12"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 bg-[#e8e2d8] rounded-xl border border-stone-300/60 text-stone-900 font-black">الأحد</td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200 h-12"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 bg-[#e8e2d8] rounded-xl border border-stone-300/60 text-stone-900 font-black">الإثنين</td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200 h-12"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 bg-[#e8e2d8] rounded-xl border border-stone-300/60 text-stone-900 font-black">الثلاثاء</td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200 h-12"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 bg-[#e8e2d8] rounded-xl border border-stone-300/60 text-stone-900 font-black">الأربعاء</td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200 h-12"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                            </tr>
+                            <tr>
+                                <td class="p-3 bg-[#e8e2d8] rounded-xl border border-stone-300/60 text-stone-900 font-black">الخميس</td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200 h-12"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                                <td class="p-3 bg-white rounded-xl border border-stone-200"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
         </main>
 
         <footer class="py-4 text-center text-stone-700 font-sans-plain text-xs border-t border-stone-300/60 mt-auto font-bold">
@@ -519,7 +692,7 @@
         </footer>
     </div>
 
-    <!-- 6. واجهة/نافذة تأكيد تسجيل الخروج المنبثقة (Modal) -->
+    <!-- 7. نافذة تأكيد تسجيل الخروج المنبثقة -->
     <div id="logout-modal-backdrop" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm transition-opacity duration-300 opacity-0">
         <div id="logout-modal-card" class="bg-white border-2 border-black rounded-2xl p-6 max-w-sm w-full shadow-2xl text-center space-y-6 slide-up-enter font-sans-plain">
             
@@ -669,6 +842,7 @@
             } else if (targetStep === 'portal') {
                 closePersonalInfo();
                 closeAcademicInfo();
+                closeScheduleInfo();
             }
         };
 
@@ -1019,8 +1193,57 @@
             }, 350);
         }
 
-        /* --- وظائف نافذة تسجيل الخروج (Modal Functions) --- */
-        
+        /* فتح وإغلاق التوقيت الأسبوعي */
+        function openScheduleInfo() {
+            const beigeCard = document.getElementById('main-beige-card');
+            const cardLoading = document.getElementById('card-loading');
+            
+            beigeCard.classList.add('opacity-0');
+            
+            setTimeout(() => {
+                beigeCard.classList.add('hidden');
+                cardLoading.classList.remove('hidden');
+                cardLoading.classList.add('flex');
+                setTimeout(() => cardLoading.classList.remove('opacity-0'), 50);
+
+                const randomDelay = Math.floor(Math.random() * (2500 - 1500 + 1)) + 1500;
+
+                setTimeout(() => {
+                    cardLoading.classList.add('opacity-0');
+                    
+                    setTimeout(() => {
+                        cardLoading.classList.add('hidden');
+                        cardLoading.classList.remove('flex');
+
+                        history.pushState({ step: 'schedule_details' }, '', '');
+
+                        const schedCard = document.getElementById('schedule-info-card');
+                        schedCard.className = "slide-up-enter max-w-5xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
+                        
+                        setTimeout(() => {
+                            schedCard.classList.add('slide-up-active');
+                        }, 50);
+
+                    }, 350);
+                }, randomDelay);
+            }, 350);
+        }
+
+        function closeScheduleInfo() {
+            const schedCard = document.getElementById('schedule-info-card');
+            
+            schedCard.className = "fade-out-exit max-w-5xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
+
+            setTimeout(() => {
+                schedCard.classList.add('hidden');
+                schedCard.classList.remove('block');
+                
+                const beigeCard = document.getElementById('main-beige-card');
+                beigeCard.classList.remove('hidden');
+                setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
+            }, 350);
+        }
+
         function openLogoutModal() {
             const backdrop = document.getElementById('logout-modal-backdrop');
             const card = document.getElementById('logout-modal-card');
@@ -1076,6 +1299,7 @@
                 document.getElementById('main-beige-card').classList.add('opacity-0');
                 document.getElementById('personal-info-card').classList.add('hidden');
                 document.getElementById('academic-info-card').classList.add('hidden');
+                document.getElementById('schedule-info-card').classList.add('hidden');
                 document.querySelectorAll('.fade-card').forEach(c => c.classList.remove('show'));
             }, 350);
         }
@@ -1105,6 +1329,7 @@
                 document.getElementById('main-beige-card').classList.add('opacity-0');
                 document.getElementById('personal-info-card').classList.add('hidden');
                 document.getElementById('academic-info-card').classList.add('hidden');
+                document.getElementById('schedule-info-card').classList.add('hidden');
                 document.querySelectorAll('.fade-card').forEach(c => c.classList.remove('show'));
             }, 350);
         }
