@@ -187,15 +187,17 @@
             font-weight: bold;
         }
 
-        .courses-table-wrapper tr:hover {
+        /* تلوين الصفوف المتناوب (سطر بلون وسطر بلون مختلف) */
+        .courses-table-wrapper tr:nth-child(odd) {
+            background-color: #ffffff;
+        }
+
+        .courses-table-wrapper tr:nth-child(even) {
             background-color: #f8f9fa;
         }
 
-        .unit-group-header {
-            background-color: #e2e8f0;
-            font-weight: bold;
-            color: #1a202c;
-            font-size: 15px;
+        .courses-table-wrapper tr:hover {
+            background-color: #f1f3f5;
         }
     </style>
 </head>
@@ -693,7 +695,7 @@
 
             </div>
 
-            <!-- 🌟 8. بطاقة المقررات الدراسية الجديدة بالمواصفات المطلوبة تماماً -->
+            <!-- 🌟 8. بطاقة المقررات الدراسية النهائية -->
             <div id="courses-info-card" class="hidden slide-up-enter max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
                 
                 <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
@@ -728,7 +730,7 @@
                                 </tr>
                             </thead>
                             <tbody id="courses-table-body">
-                                <!-- سيتم توليد الجدول ديناميكياً بناءً على بيانات الطالب المسجل حالياً -->
+                                <!-- سيتم توليد الصفوف هنا مع تلوين متناوب وبدون عناوين وحدات كبرى -->
                             </tbody>
                         </table>
                     </div>
@@ -817,7 +819,6 @@
                         status: "تسجيل مؤكد"
                     }
                 ],
-                /* المقررات الخاصة بعبد الحكيم العشي (أساتذة فارغين، بدون تاريخ الجزائر، تعديل المعاملات والأرصدة والوحدات) */
                 courses: [
                     { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "", coeff: 3, credit: 6 },
                     { unit: "الأساسية", name: "اقتصاد جزئي 1", prof: "", coeff: 3, credit: 6 },
@@ -881,7 +882,6 @@
                 bac_wilaya: "21",
                 appreciation: "مقبول",
                 previousRecords: [],
-                /* المقررات الخاصة بـ بودرومة عبد المالك مع أساتذته وتاريخ الجزائر ضمن الاستكشافية */
                 courses: [
                     { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "لعكيزة ياسين", coeff: 3, credit: 6 },
                     { unit: "الأساسية", name: "اقتصاد جزئي 1", prof: "بليلة لمين", coeff: 3, credit: 6 },
@@ -890,7 +890,7 @@
                     { unit: "المنهجية", name: "إحصاء 1", prof: "أمزيان أنيسة", coeff: 2, credit: 4 },
                     { unit: "الاستكشافية", name: "مدخل لعلم اجتماع المنظمات", prof: "حبيب الود", coeff: 1, credit: 1 },
                     { unit: "الاستكشافية", name: "مدخل للقانون", prof: "سبع أمَال", coeff: 1, credit: 1 },
-                    { unit: "الاستكشافية", name: "تاريخ الجزائر", prof: "بودرومة عبد المالك", coeff: 1, credit: 1 },
+                    { unit: "الاستكشافية", name: "تاريخ الجزائر", prof: "", coeff: 1, credit: 1 },
                     { unit: "الأفقية", name: "أساسيات البرمجة بالبايتون 1", prof: "حجاسي إبراهيم", coeff: 1, credit: 1 },
                     { unit: "الأفقية", name: "لغة إنجليزية 01", prof: "النمري نصر الدين", coeff: 1, credit: 1 }
                 ],
@@ -1413,7 +1413,7 @@
             }, 350);
         }
 
-        /* دالة تعبئة وعرض جدول المقررات الدراسية ديناميكياً حسب الطالب النشط */
+        /* توليد الجدول بدون أسطر عناوين الوحدات الكبرى، بل المقاييس تحت بعض مع صفوف متناوبة الألوان */
         function openCoursesInfo() {
             const beigeCard = document.getElementById('main-beige-card');
             const cardLoading = document.getElementById('card-loading');
@@ -1435,40 +1435,28 @@
                         cardLoading.classList.add('hidden');
                         cardLoading.classList.remove('flex');
 
-                        // بناء صفوف الجدول حسب قائمة المقررات للطالب الحالي
                         const tbody = document.getElementById('courses-table-body');
                         tbody.innerHTML = '';
 
-                        const units = ["الأساسية", "المنهجية", "الاستكشافية", "الأفقية"];
-                        
-                        units.forEach(unitName => {
-                            const unitCourses = currentActiveStudent.courses.filter(c => c.unit === unitName && !c.hiddenForElAchi);
-                            if (unitCourses.length > 0) {
-                                // صف عنوان الوحدة
-                                tbody.innerHTML += `
-                                    <tr class="unit-group-header">
-                                        <td colspan="11">الوحدة التعليمية: ${unitName}</td>
-                                    </tr>
-                                `;
-                                // صفوف المقاييس الخاصة بالوحدة
-                                unitCourses.forEach(course => {
-                                    tbody.innerHTML += `
-                                        <tr>
-                                            <td>الأول</td>
-                                            <td>${course.unit}</td>
-                                            <td>${course.name}</td>
-                                            <td>${course.prof || ''}</td>
-                                            <td>${course.coeff}</td>
-                                            <td>${course.credit}</td>
-                                            <td>50%</td>
-                                            <td>50%</td>
-                                            <td>-</td>
-                                            <td>-</td>
-                                            <td></td>
-                                        </tr>
-                                    `;
-                                });
-                            }
+                        // تصفية المواد التي لا ينبغي إظهارها للطالب الحالي
+                        const activeCourses = currentActiveStudent.courses.filter(c => !c.hiddenForElAchi);
+
+                        activeCourses.forEach(course => {
+                            tbody.innerHTML += `
+                                <tr>
+                                    <td>الأول</td>
+                                    <td>${course.unit}</td>
+                                    <td>${course.name}</td>
+                                    <td>${course.prof || ''}</td>
+                                    <td>${course.coeff}</td>
+                                    <td>${course.credit}</td>
+                                    <td>50%</td>
+                                    <td>50%</td>
+                                    <td>-</td>
+                                    <td>-</td>
+                                    <td></td>
+                                </tr>
+                            `;
                         });
 
                         history.pushState({ step: 'courses_details' }, '', '');
