@@ -114,7 +114,6 @@
             transition: opacity 0.3s ease-out;
         }
 
-        /* أنيميشن الوميض للنص بالكامل */
         @keyframes alertBlink {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.15; }
@@ -124,7 +123,6 @@
             animation: alertBlink 1.4s infinite ease-in-out;
         }
 
-        /* الإطار الأحمر المتحرك الذي يدور حول بطاقة التنبيه */
         .animated-border-box {
             position: relative;
             border-radius: 1rem;
@@ -155,14 +153,12 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* تصميم الدمج بين لون المحاضرات ولون الأعمال الموجهة */
         .merged-lec-td {
             background: linear-gradient(135deg, #f97316 0%, #f97316 48%, #c084fc 52%, #c084fc 100%);
             color: #ffffff;
             text-shadow: 0 1px 2px rgba(0,0,0,0.6);
         }
 
-        /* تنسيق جدول المقررات الدراسية الجديد المتناسق RTL */
         .courses-table-wrapper {
             background: #ffffff;
             border-radius: 12px;
@@ -636,7 +632,7 @@
                     </div>
                 </div>
 
-                <!-- دليل المقاييس (المعدل من دليل المواد) -->
+                <!-- دليل المقاييس -->
                 <div class="bg-[#faf6eb] border border-stone-300/80 rounded-2xl p-4 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-start gap-3">
                     <button onclick="filterSchedule('all')" title="إعادة استخراج البرنامج كاملاً" class="flex items-center space-x-2 space-x-reverse bg-teal-600 hover:bg-teal-700 active:scale-95 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-sm transition cursor-pointer flex-shrink-0">
                         <span>دليل المقاييس</span>
@@ -697,7 +693,7 @@
 
             </div>
 
-            <!-- 🌟 8. بطاقة المقررات الدراسية الجديدة (مضافة بدقة داخل نفس التصميم والألوان الأصليين) -->
+            <!-- 🌟 8. بطاقة المقررات الدراسية الجديدة بالمواصفات المطلوبة تماماً -->
             <div id="courses-info-card" class="hidden slide-up-enter max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
                 
                 <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
@@ -705,7 +701,7 @@
                         <div class="w-8 h-8 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center text-sm">
                             <i class="fa-solid fa-book-open"></i>
                         </div>
-                        <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800">المقررات الدراسية للسداسي الأول</h2>
+                        <h2 class="font-hana font-bold text-base sm:text-lg text-gray-800">المقررات الدراسية</h2>
                     </div>
                     <button onclick="closeCoursesInfo()" class="text-xs bg-stone-100 hover:bg-stone-200 text-gray-800 font-bold py-1.5 px-3.5 rounded-xl border border-stone-300 transition flex items-center space-x-1.5 space-x-reverse shadow-sm cursor-pointer">
                         <i class="fa-solid fa-arrow-right"></i>
@@ -731,156 +727,8 @@
                                     <th>الدروس</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <!-- الوحدة الأساسية -->
-                                <tr class="unit-group-header">
-                                    <td colspan="11">الوحدة التعليمية: الأساسية</td>
-                                </tr>
-                                <tr>
-                                    <td>الأول</td>
-                                    <td>الأساسية</td>
-                                    <td>المحاسبة المالية 1</td>
-                                    <td>لعكيزة ياسين</td>
-                                    <td>3</td>
-                                    <td>6</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>الأول</td>
-                                    <td>الأساسية</td>
-                                    <td>اقتصاد جزئي 1</td>
-                                    <td>بليلة لمين</td>
-                                    <td>3</td>
-                                    <td>6</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>الأول</td>
-                                    <td>الأساسية</td>
-                                    <td>مدخل للاقتصاد</td>
-                                    <td>سويلم ليلى</td>
-                                    <td>5</td>
-                                    <td>2</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td></td>
-                                </tr>
-
-                                <!-- الوحدة المنهجية -->
-                                <tr class="unit-group-header">
-                                    <td colspan="11">الوحدة التعليمية: المنهجية</td>
-                                </tr>
-                                <tr>
-                                    <td>الأول</td>
-                                    <td>المنهجية</td>
-                                    <td>رياضيات 1</td>
-                                    <td>د/ فزازم محمد</td>
-                                    <td>2</td>
-                                    <td>4</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>الأول</td>
-                                    <td>المنهجية</td>
-                                    <td>إحصاء 1</td>
-                                    <td>أمزيان أنيسة</td>
-                                    <td>2</td>
-                                    <td>4</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>الأول</td>
-                                    <td>المنهجية</td>
-                                    <td>أساسيات البرمجة بالبايتون 1</td>
-                                    <td>حجاسي إبراهيم</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td></td>
-                                </tr>
-
-                                <!-- الوحدة الاستكشافية -->
-                                <tr class="unit-group-header">
-                                    <td colspan="11">الوحدة التعليمية: الاستكشافية</td>
-                                </tr>
-                                <tr>
-                                    <td>الأول</td>
-                                    <td>الاستكشافية</td>
-                                    <td>مدخل لعلم اجتماع المنظمات</td>
-                                    <td>حبيب الود</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>الأول</td>
-                                    <td>الاستكشافية</td>
-                                    <td>مدخل للقانون</td>
-                                    <td>سبع أمَال</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td></td>
-                                </tr>
-
-                                <!-- الوحدة الأفقية -->
-                                <tr class="unit-group-header">
-                                    <td colspan="11">الوحدة التعليمية: الأفقية</td>
-                                </tr>
-                                <tr>
-                                    <td>الأول</td>
-                                    <td>الأفقية</td>
-                                    <td>تاريخ الجزائر</td>
-                                    <td>بودرومة عبد المالك</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>الأول</td>
-                                    <td>الأفقية</td>
-                                    <td>لغة إنجليزية 01</td>
-                                    <td>ENNEMRI Nasreddine</td>
-                                    <td>1</td>
-                                    <td>1</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td>-</td>
-                                    <td></td>
-                                </tr>
+                            <tbody id="courses-table-body">
+                                <!-- سيتم توليد الجدول ديناميكياً بناءً على بيانات الطالب المسجل حالياً -->
                             </tbody>
                         </table>
                     </div>
@@ -969,6 +817,19 @@
                         status: "تسجيل مؤكد"
                     }
                 ],
+                /* المقررات الخاصة بعبد الحكيم العشي (أساتذة فارغين، بدون تاريخ الجزائر، تعديل المعاملات والأرصدة والوحدات) */
+                courses: [
+                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "", coeff: 3, credit: 6 },
+                    { unit: "الأساسية", name: "اقتصاد جزئي 1", prof: "", coeff: 3, credit: 6 },
+                    { unit: "الأساسية", name: "مدخل للاقتصاد", prof: "", coeff: 2, credit: 5 },
+                    { unit: "المنهجية", name: "رياضيات 1", prof: "", coeff: 2, credit: 4 },
+                    { unit: "المنهجية", name: "إحصاء 1", prof: "", coeff: 2, credit: 4 },
+                    { unit: "الاستكشافية", name: "مدخل لعلم اجتماع المنظمات", prof: "", coeff: 1, credit: 1 },
+                    { unit: "الاستكشافية", name: "مدخل للقانون", prof: "", coeff: 1, credit: 1 },
+                    { unit: "الاستكشافية", name: "تاريخ الجزائر", prof: "", coeff: 1, credit: 1, hiddenForElAchi: true },
+                    { unit: "الأفقية", name: "أساسيات البرمجة بالبايتون 1", prof: "", coeff: 1, credit: 1 },
+                    { unit: "الأفقية", name: "لغة إنجليزية 01", prof: "", coeff: 1, credit: 1 }
+                ],
                 schedule: {
                     sat: {
                         "08:00 - 09:30": { name: "المحاسبة المالية 01", type: "merged" },
@@ -1020,6 +881,19 @@
                 bac_wilaya: "21",
                 appreciation: "مقبول",
                 previousRecords: [],
+                /* المقررات الخاصة بـ بودرومة عبد المالك مع أساتذته وتاريخ الجزائر ضمن الاستكشافية */
+                courses: [
+                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "لعكيزة ياسين", coeff: 3, credit: 6 },
+                    { unit: "الأساسية", name: "اقتصاد جزئي 1", prof: "بليلة لمين", coeff: 3, credit: 6 },
+                    { unit: "الأساسية", name: "مدخل للاقتصاد", prof: "سويلم ليلى", coeff: 2, credit: 5 },
+                    { unit: "المنهجية", name: "رياضيات 1", prof: "د/ فزازم محمد", coeff: 2, credit: 4 },
+                    { unit: "المنهجية", name: "إحصاء 1", prof: "أمزيان أنيسة", coeff: 2, credit: 4 },
+                    { unit: "الاستكشافية", name: "مدخل لعلم اجتماع المنظمات", prof: "حبيب الود", coeff: 1, credit: 1 },
+                    { unit: "الاستكشافية", name: "مدخل للقانون", prof: "سبع أمَال", coeff: 1, credit: 1 },
+                    { unit: "الاستكشافية", name: "تاريخ الجزائر", prof: "بودرومة عبد المالك", coeff: 1, credit: 1 },
+                    { unit: "الأفقية", name: "أساسيات البرمجة بالبايتون 1", prof: "حجاسي إبراهيم", coeff: 1, credit: 1 },
+                    { unit: "الأفقية", name: "لغة إنجليزية 01", prof: "النمري نصر الدين", coeff: 1, credit: 1 }
+                ],
                 schedule: {}
             }
         };
@@ -1421,7 +1295,6 @@
             }, 350);
         }
 
-        /* توليد الجدول وإتاحة إظهار الدروس والدمج عند الاختيار */
         function renderSchedule(filterType = 'all') {
             const tbody = document.getElementById('schedule-tbody');
             tbody.innerHTML = '';
@@ -1540,7 +1413,7 @@
             }, 350);
         }
 
-        /* دوال التحكم في بطاقة المقررات الدراسية الجديدة */
+        /* دالة تعبئة وعرض جدول المقررات الدراسية ديناميكياً حسب الطالب النشط */
         function openCoursesInfo() {
             const beigeCard = document.getElementById('main-beige-card');
             const cardLoading = document.getElementById('card-loading');
@@ -1561,6 +1434,42 @@
                     setTimeout(() => {
                         cardLoading.classList.add('hidden');
                         cardLoading.classList.remove('flex');
+
+                        // بناء صفوف الجدول حسب قائمة المقررات للطالب الحالي
+                        const tbody = document.getElementById('courses-table-body');
+                        tbody.innerHTML = '';
+
+                        const units = ["الأساسية", "المنهجية", "الاستكشافية", "الأفقية"];
+                        
+                        units.forEach(unitName => {
+                            const unitCourses = currentActiveStudent.courses.filter(c => c.unit === unitName && !c.hiddenForElAchi);
+                            if (unitCourses.length > 0) {
+                                // صف عنوان الوحدة
+                                tbody.innerHTML += `
+                                    <tr class="unit-group-header">
+                                        <td colspan="11">الوحدة التعليمية: ${unitName}</td>
+                                    </tr>
+                                `;
+                                // صفوف المقاييس الخاصة بالوحدة
+                                unitCourses.forEach(course => {
+                                    tbody.innerHTML += `
+                                        <tr>
+                                            <td>الأول</td>
+                                            <td>${course.unit}</td>
+                                            <td>${course.name}</td>
+                                            <td>${course.prof || ''}</td>
+                                            <td>${course.coeff}</td>
+                                            <td>${course.credit}</td>
+                                            <td>50%</td>
+                                            <td>50%</td>
+                                            <td>-</td>
+                                            <td>-</td>
+                                            <td></td>
+                                        </tr>
+                                    `;
+                                });
+                            }
+                        });
 
                         history.pushState({ step: 'courses_details' }, '', '');
 
