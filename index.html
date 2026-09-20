@@ -199,7 +199,6 @@
             background-color: #f1f3f5;
         }
 
-        /* تنسيق زر "إضغط هنا" الخاص بالدروس */
         .btn-lessons-trigger {
             background-color: #991b1b;
             color: #ffffff;
@@ -218,7 +217,6 @@
             transform: scale(1.05);
         }
 
-        /* تنسيق أزرار تحميل الدرس المتوهجة والباردة */
         .btn-download-pdf {
             background-color: #dc2626;
             color: #ffffff;
@@ -239,8 +237,8 @@
             box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
         }
 
-        /* المحور الرابع غير النشط بنسبة شفافية 40% */
-        .disabled-lesson {
+        /* جعل زر تحميل الدرس الخاص بالمحور الرابع شفافاً بنسبة 40% وغير مفعل */
+        .disabled-btn-download {
             opacity: 0.4;
             pointer-events: none;
         }
@@ -737,7 +735,7 @@
 
             </div>
 
-            <!-- 🌟 8. بطاقة المقررات الدراسية مع نظام الدروس التفاعلي الجديد -->
+            <!-- 🌟 8. بطاقة المقررات الدراسية مع نظام الدروس والمحاور -->
             <div id="courses-info-card" class="hidden slide-up-enter max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
                 
                 <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
@@ -776,7 +774,7 @@
                         </table>
                     </div>
 
-                    <!-- حاوية عرض جدول المحاور والدروس الخاصة بالمقياس عند الضغط -->
+                    <!-- جدول المحاور والعناوين الكاملة -->
                     <div id="lessons-container" class="hidden mt-6 transition-all duration-300">
                         <div class="courses-table-wrapper border-2 border-red-800">
                             <div class="bg-red-900 text-white p-3 font-bold text-sm text-center">
@@ -1529,7 +1527,7 @@
             }, 350);
         }
 
-        /* دالة إظهار جدول المحاور والدروس الخاصة بمحاسبة المالية 1 عند الضغط على إضغط هنا */
+        /* دالة إظهار جدول المحاور بأسماء واضحة 100% وزر تحميل شفاف 40% للمحور الرابع */
         function showAccountingLessons() {
             const container = document.getElementById('lessons-container');
             document.getElementById('active-lesson-title').textContent = "المحاسبة المالية 1";
@@ -1537,7 +1535,7 @@
             lBody.innerHTML = `
                 <tr>
                     <td class="font-bold">المحور الأول</td>
-                    <td>المحور الأول- محاسبة مالية 1</td>
+                    <td class="font-bold text-gray-900">مدخل عام لعلم المحاسبة</td>
                     <td class="text-center">
                         <a href="./المحور الأول- محاسبة مالية 1.pdf" download class="btn-download-pdf mx-auto">
                             <i class="fa-solid fa-download"></i> تحميل الدرس
@@ -1546,7 +1544,7 @@
                 </tr>
                 <tr>
                     <td class="font-bold">المحور الثاني</td>
-                    <td>المحور الثاني- محاسبة مالية 1</td>
+                    <td class="font-bold text-gray-900">مفاهيم أساسية في المحاسبة المالية: التدفقات، الحساب، المستندات، الدورة المحاسبية، الفروض والمبادئ المحاسبية</td>
                     <td class="text-center">
                         <a href="./المحور الثاني- محاسبة مالية 1.pdf" download class="btn-download-pdf mx-auto">
                             <i class="fa-solid fa-download"></i> تحميل الدرس
@@ -1555,18 +1553,54 @@
                 </tr>
                 <tr>
                     <td class="font-bold">المحور الثالث</td>
-                    <td>المحور الثالث- محاسبة مالية 1</td>
+                    <td class="font-bold text-gray-900">الدفاتر المحاسبية والكشوف المالية</td>
                     <td class="text-center">
                         <a href="./المحور الثالث- محاسبة مالية 1.pdf" download class="btn-download-pdf mx-auto">
                             <i class="fa-solid fa-download"></i> تحميل الدرس
                         </a>
                     </td>
                 </tr>
-                <tr class="disabled-lesson">
+                <tr>
                     <td class="font-bold">المحور الرابع</td>
-                    <td>المحور الرابع- محاسبة مالية 1</td>
+                    <td class="font-bold text-gray-900">محاسبة عملية تأسيس المؤسسة</td>
                     <td class="text-center">
-                        <span class="btn-download-pdf mx-auto inline-flex">
+                        <span class="btn-download-pdf mx-auto inline-flex disabled-btn-download">
+                            <i class="fa-solid fa-download"></i> تحميل الدرس
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">المحور الخامس</td>
+                    <td class="font-bold text-gray-900">دراسة حسابات الصنف الأول: نتيجة السنة، الترحيل من جديد، الاحتياطات</td>
+                    <td class="text-center">
+                        <span class="btn-download-pdf mx-auto inline-flex disabled-btn-download">
+                            <i class="fa-solid fa-download"></i> تحميل الدرس
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">المحور السادس</td>
+                    <td class="font-bold text-gray-900">محاسبة الرسم على القيمة المضافة</td>
+                    <td class="text-center">
+                        <span class="btn-download-pdf mx-auto inline-flex disabled-btn-download">
+                            <i class="fa-solid fa-download"></i> تحميل الدرس
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">المحور السابع</td>
+                    <td class="font-bold text-gray-900">محاسبة التثبيتات المعنوية والعينية: الاقتناء، الاهتلاك، التنازل والتخريب</td>
+                    <td class="text-center">
+                        <span class="btn-download-pdf mx-auto inline-flex disabled-btn-download">
+                            <i class="fa-solid fa-download"></i> تحميل الدرس
+                        </span>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">المحور الثامن</td>
+                    <td class="font-bold text-gray-900">محاسبة المخزونات: الشراء، الإنتاج، والبيع</td>
+                    <td class="text-center">
+                        <span class="btn-download-pdf mx-auto inline-flex disabled-btn-download">
                             <i class="fa-solid fa-download"></i> تحميل الدرس
                         </span>
                     </td>
