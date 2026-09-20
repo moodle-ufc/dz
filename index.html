@@ -236,12 +236,6 @@
             background-color: #b91c1c;
             box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
         }
-
-        /* جعل زر تحميل الدرس الخاص بالمحور الرابع شفافاً بنسبة 40% وغير مفعل */
-        .disabled-btn-download {
-            opacity: 0.4;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body id="main-body" class="cool-green-bg text-gray-800 antialiased min-h-screen flex flex-col justify-between transition-colors duration-700">
@@ -879,8 +873,8 @@
                     }
                 ],
                 courses: [
-                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "", coeff: 3, credit: 6, hasLessons: true },
-                    { unit: "الأساسية", name: "اقتصاد جزئي 1", prof: "", coeff: 3, credit: 6 },
+                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "", coeff: 3, credit: 6, hasLessons: true, lessonType: "accounting" },
+                    { unit: "الأساسية", name: "اقتصاد جزئي 1", prof: "", coeff: 3, credit: 6, hasLessons: true, lessonType: "microeconomics" },
                     { unit: "الأساسية", name: "مدخل للاقتصاد", prof: "", coeff: 2, credit: 5 },
                     { unit: "المنهجية", name: "رياضيات 1", prof: "", coeff: 2, credit: 4 },
                     { unit: "المنهجية", name: "إحصاء 1", prof: "", coeff: 2, credit: 4 },
@@ -942,8 +936,8 @@
                 appreciation: "مقبول",
                 previousRecords: [],
                 courses: [
-                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "لعكيزة ياسين", coeff: 3, credit: 6, hasLessons: true },
-                    { unit: "الأساسية", name: "اقتصاد جزئي 1", prof: "بليلة لمين", coeff: 3, credit: 6 },
+                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "لعكيزة ياسين", coeff: 3, credit: 6, hasLessons: true, lessonType: "accounting" },
+                    { unit: "الأساسية", name: "اقتصاد جزئي 1", prof: "بليلة لمين", coeff: 3, credit: 6, hasLessons: true, lessonType: "microeconomics" },
                     { unit: "الأساسية", name: "مدخل للاقتصاد", prof: "سويلم ليلى", coeff: 2, credit: 5 },
                     { unit: "المنهجية", name: "رياضيات 1", prof: "د/ فزازم محمد", coeff: 2, credit: 4 },
                     { unit: "المنهجية", name: "إحصاء 1", prof: "أمزيان أنيسة", coeff: 2, credit: 4 },
@@ -1493,7 +1487,7 @@
                         activeCourses.forEach(course => {
                             let lessonsCell = `-`;
                             if (course.hasLessons) {
-                                lessonsCell = `<button onclick="showAccountingLessons()" class="btn-lessons-trigger">إضغط هنا</button>`;
+                                lessonsCell = `<button onclick="showLessons('${course.lessonType}')" class="btn-lessons-trigger">إضغط هنا</button>`;
                             }
 
                             tbody.innerHTML += `
@@ -1527,85 +1521,201 @@
             }, 350);
         }
 
-        /* دالة إظهار جدول المحاور بأسماء واضحة 100% وزر تحميل شفاف 40% للمحور الرابع */
-        function showAccountingLessons() {
+        /* دالة عرض الدروس والمحاور حسب المقياس المختار */
+        function showLessons(type) {
             const container = document.getElementById('lessons-container');
-            document.getElementById('active-lesson-title').textContent = "المحاسبة المالية 1";
             const lBody = document.getElementById('lessons-table-body');
-            lBody.innerHTML = `
-                <tr>
-                    <td class="font-bold">المحور الأول</td>
-                    <td class="font-bold text-gray-900">مدخل عام لعلم المحاسبة</td>
-                    <td class="text-center">
-                        <a href="./المحور الأول- محاسبة مالية 1.pdf" download class="btn-download-pdf mx-auto">
-                            <i class="fa-solid fa-download"></i> تحميل الدرس
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="font-bold">المحور الثاني</td>
-                    <td class="font-bold text-gray-900">مفاهيم أساسية في المحاسبة المالية: التدفقات، الحساب، المستندات، الدورة المحاسبية، الفروض والمبادئ المحاسبية</td>
-                    <td class="text-center">
-                        <a href="./المحور الثاني- محاسبة مالية 1.pdf" download class="btn-download-pdf mx-auto">
-                            <i class="fa-solid fa-download"></i> تحميل الدرس
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="font-bold">المحور الثالث</td>
-                    <td class="font-bold text-gray-900">الدفاتر المحاسبية والكشوف المالية</td>
-                    <td class="text-center">
-                        <a href="./المحور الثالث- محاسبة مالية 1.pdf" download class="btn-download-pdf mx-auto">
-                            <i class="fa-solid fa-download"></i> تحميل الدرس
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="font-bold">المحور الرابع</td>
-                    <td class="font-bold text-gray-900">محاسبة عملية تأسيس المؤسسة</td>
-                    <td class="text-center">
-                        <span class="btn-download-pdf mx-auto inline-flex disabled-btn-download">
-                            <i class="fa-solid fa-download"></i> تحميل الدرس
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="font-bold">المحور الخامس</td>
-                    <td class="font-bold text-gray-900">دراسة حسابات الصنف الأول: نتيجة السنة، الترحيل من جديد، الاحتياطات</td>
-                    <td class="text-center">
-                        <span class="btn-download-pdf mx-auto inline-flex disabled-btn-download">
-                            <i class="fa-solid fa-download"></i> تحميل الدرس
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="font-bold">المحور السادس</td>
-                    <td class="font-bold text-gray-900">محاسبة الرسم على القيمة المضافة</td>
-                    <td class="text-center">
-                        <span class="btn-download-pdf mx-auto inline-flex disabled-btn-download">
-                            <i class="fa-solid fa-download"></i> تحميل الدرس
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="font-bold">المحور السابع</td>
-                    <td class="font-bold text-gray-900">محاسبة التثبيتات المعنوية والعينية: الاقتناء، الاهتلاك، التنازل والتخريب</td>
-                    <td class="text-center">
-                        <span class="btn-download-pdf mx-auto inline-flex disabled-btn-download">
-                            <i class="fa-solid fa-download"></i> تحميل الدرس
-                        </span>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="font-bold">المحور الثامن</td>
-                    <td class="font-bold text-gray-900">محاسبة المخزونات: الشراء، الإنتاج، والبيع</td>
-                    <td class="text-center">
-                        <span class="btn-download-pdf mx-auto inline-flex disabled-btn-download">
-                            <i class="fa-solid fa-download"></i> تحميل الدرس
-                        </span>
-                    </td>
-                </tr>
-            `;
+            lBody.innerHTML = '';
+
+            if (type === 'accounting') {
+                document.getElementById('active-lesson-title').textContent = "المحاسبة المالية 1";
+                lBody.innerHTML = `
+                    <tr>
+                        <td class="font-bold">المحور الأول</td>
+                        <td class="font-bold text-gray-900">مدخل عام لعلم المحاسبة</td>
+                        <td class="text-center">
+                            <a href="./المحور الأول- محاسبة مالية 1.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور الثاني</td>
+                        <td class="font-bold text-gray-900">مفاهيم أساسية في المحاسبة المالية: التدفقات، الحساب، المستندات، الدورة المحاسبية، الفروض والمبادئ المحاسبية</td>
+                        <td class="text-center">
+                            <a href="./المحور الثاني- محاسبة مالية 1.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور الثالث</td>
+                        <td class="font-bold text-gray-900">الدفاتر المحاسبية والكشوف المالية</td>
+                        <td class="text-center">
+                            <a href="./المحور الثالث- محاسبة مالية 1.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور الرابع</td>
+                        <td class="font-bold text-gray-900">محاسبة عملية تأسيس المؤسسة</td>
+                        <td class="text-center">
+                            <span class="btn-download-pdf mx-auto inline-flex opacity-40 pointer-events-none">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور الخامس</td>
+                        <td class="font-bold text-gray-900">دراسة حسابات الصنف الأول: نتيجة السنة، الترحيل من جديد، الاحتياطات</td>
+                        <td class="text-center">
+                            <span class="btn-download-pdf mx-auto inline-flex opacity-40 pointer-events-none">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور السادس</td>
+                        <td class="font-bold text-gray-900">محاسبة الرسم على القيمة المضافة</td>
+                        <td class="text-center">
+                            <span class="btn-download-pdf mx-auto inline-flex opacity-40 pointer-events-none">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور السابع</td>
+                        <td class="font-bold text-gray-900">محاسبة التثبيتات المعنوية والعينية: الاقتناء، الاهتلاك، التنازل والتخريب</td>
+                        <td class="text-center">
+                            <span class="btn-download-pdf mx-auto inline-flex opacity-40 pointer-events-none">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور الثامن</td>
+                        <td class="font-bold text-gray-900">محاسبة المخزونات: الشراء، الإنتاج، والبيع</td>
+                        <td class="text-center">
+                            <span class="btn-download-pdf mx-auto inline-flex opacity-40 pointer-events-none">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            } else if (type === 'microeconomics') {
+                document.getElementById('active-lesson-title').textContent = "اقتصاد جزئي 1";
+                lBody.innerHTML = `
+                    <tr>
+                        <td class="font-bold">المحور الأول</td>
+                        <td class="font-bold text-gray-900">لمحة تعريفية عن المشكلة الاقتصادية</td>
+                        <td class="text-center">
+                            <a href="./الدرس 1-م1-لمحة تعريفية عن المشكلة.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور الثاني</td>
+                        <td class="font-bold text-gray-900">تصورات حل المشكلة الاقتصادية</td>
+                        <td class="text-center">
+                            <a href="./الدرس 1-م2-تصورات حل المشكلة الاقت.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور الثالث</td>
+                        <td class="font-bold text-gray-900">المنفعة العددية 1</td>
+                        <td class="text-center">
+                            <a href="./الدرس 1-2-المنفعة العددية.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور الرابع</td>
+                        <td class="font-bold text-gray-900">المنفعة العددية 2</td>
+                        <td class="text-center">
+                            <a href="./الدرس 2-2-المنفعة العددية.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور الخامس</td>
+                        <td class="font-bold text-gray-900">المنفعة الترتيبية 1</td>
+                        <td class="text-center">
+                            <a href="./الدرس 1-3-المنفعة الترتيبية.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور السادس</td>
+                        <td class="font-bold text-gray-900">المنفعة الترتيبية 2</td>
+                        <td class="text-center">
+                            <a href="./الدرس 2-3-المنفعة الترتيبية.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور السابع</td>
+                        <td class="font-bold text-gray-900">المنفعة الترتيبية 3</td>
+                        <td class="text-center">
+                            <a href="./الدرس 3-3-المنفعة الترتيبية.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور الثامن</td>
+                        <td class="font-bold text-gray-900">المنفعة الترتيبية 4</td>
+                        <td class="text-center">
+                            <a href="./الدرس 4-3-المنفعة الترتيبية.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور التاسع</td>
+                        <td class="font-bold text-gray-900">تحليل طلب المستهلك 1</td>
+                        <td class="text-center">
+                            <a href="./الدرس 1-4-تحليل طلب المستهلك 1.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور العاشر</td>
+                        <td class="font-bold text-gray-900">تحليل طلب المستهلك 2</td>
+                        <td class="text-center">
+                            <a href="./الدرس 2-4-تحليل طلب المستهلك 2.pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور الحادي عشر</td>
+                        <td class="font-bold text-gray-900">تحليل سلوك المنتج في الفترة القصيرة 1</td>
+                        <td class="text-center">
+                            <a href="./الدرس 1-5-تحليل سلوك المنتج في الفترة .pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="font-bold">المحور الثاني عشر</td>
+                        <td class="font-bold text-gray-900">تحليل سلوك المنتج في الفترة القصيرة 2</td>
+                        <td class="text-center">
+                            <a href="./الدرس 2-5-تحليل سلوك المنتج في الفترة .pdf" download class="btn-download-pdf mx-auto">
+                                <i class="fa-solid fa-download"></i> تحميل الدرس
+                            </a>
+                        </td>
+                    </tr>
+                `;
+            }
 
             container.classList.remove('hidden');
             container.scrollIntoView({ behavior: 'smooth' });
