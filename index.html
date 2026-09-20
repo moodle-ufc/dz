@@ -187,7 +187,6 @@
             font-weight: bold;
         }
 
-        /* تلوين الصفوف المتناوب (سطر بلون وسطر بلون مختلف) */
         .courses-table-wrapper tr:nth-child(odd) {
             background-color: #ffffff;
         }
@@ -198,6 +197,52 @@
 
         .courses-table-wrapper tr:hover {
             background-color: #f1f3f5;
+        }
+
+        /* تنسيق زر "إضغط هنا" الخاص بالدروس */
+        .btn-lessons-trigger {
+            background-color: #991b1b;
+            color: #ffffff;
+            padding: 5px 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: inline-block;
+        }
+
+        .btn-lessons-trigger:hover {
+            background-color: #b91c1c;
+            transform: scale(1.05);
+        }
+
+        /* تنسيق أزرار تحميل الدرس المتوهجة والباردة */
+        .btn-download-pdf {
+            background-color: #dc2626;
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 5px rgba(220, 38, 38, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-download-pdf:hover {
+            background-color: #b91c1c;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.6);
+        }
+
+        /* المحور الرابع غير النشط بنسبة شفافية 40% */
+        .disabled-lesson {
+            opacity: 0.4;
+            pointer-events: none;
         }
     </style>
 </head>
@@ -617,7 +662,6 @@
                     </button>
                 </div>
 
-                <!-- بطاقة التنبيه الهام -->
                 <div class="animated-border-box shadow-md">
                     <div class="animated-border-inner p-4 text-center">
                         <div class="alert-blinking">
@@ -634,7 +678,6 @@
                     </div>
                 </div>
 
-                <!-- دليل المقاييس -->
                 <div class="bg-[#faf6eb] border border-stone-300/80 rounded-2xl p-4 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-start gap-3">
                     <button onclick="filterSchedule('all')" title="إعادة استخراج البرنامج كاملاً" class="flex items-center space-x-2 space-x-reverse bg-teal-600 hover:bg-teal-700 active:scale-95 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-sm transition cursor-pointer flex-shrink-0">
                         <span>دليل المقاييس</span>
@@ -671,7 +714,6 @@
                     </div>
                 </div>
 
-                <!-- جدول التوقيت الأسبوعي للمواد المدمجة -->
                 <div class="bg-[#faf6eb] border border-stone-300/80 rounded-3xl p-4 sm:p-6 shadow-sm overflow-x-auto">
                     <table class="w-full border-separate border-spacing-1.5 text-center text-xs font-sans-plain">
                         <thead>
@@ -695,7 +737,7 @@
 
             </div>
 
-            <!-- 🌟 8. بطاقة المقررات الدراسية النهائية -->
+            <!-- 🌟 8. بطاقة المقررات الدراسية مع نظام الدروس التفاعلي الجديد -->
             <div id="courses-info-card" class="hidden slide-up-enter max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4">
                 
                 <div class="flex justify-between items-center bg-white border border-stone-300/80 p-3 sm:p-4 rounded-2xl shadow-sm">
@@ -730,9 +772,28 @@
                                 </tr>
                             </thead>
                             <tbody id="courses-table-body">
-                                <!-- سيتم توليد الصفوف هنا مع تلوين متناوب وبدون عناوين وحدات كبرى -->
                             </tbody>
                         </table>
+                    </div>
+
+                    <!-- حاوية عرض جدول المحاور والدروس الخاصة بالمقياس عند الضغط -->
+                    <div id="lessons-container" class="hidden mt-6 transition-all duration-300">
+                        <div class="courses-table-wrapper border-2 border-red-800">
+                            <div class="bg-red-900 text-white p-3 font-bold text-sm text-center">
+                                دروس مقياس: <span id="active-lesson-title" class="text-amber-300"></span>
+                            </div>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>رقم المحور</th>
+                                        <th>عنوان المحور الدراسي</th>
+                                        <th class="text-center">تحميل الملف</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="lessons-table-body">
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
 
@@ -820,7 +881,7 @@
                     }
                 ],
                 courses: [
-                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "", coeff: 3, credit: 6 },
+                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "", coeff: 3, credit: 6, hasLessons: true },
                     { unit: "الأساسية", name: "اقتصاد جزئي 1", prof: "", coeff: 3, credit: 6 },
                     { unit: "الأساسية", name: "مدخل للاقتصاد", prof: "", coeff: 2, credit: 5 },
                     { unit: "المنهجية", name: "رياضيات 1", prof: "", coeff: 2, credit: 4 },
@@ -883,7 +944,7 @@
                 appreciation: "مقبول",
                 previousRecords: [],
                 courses: [
-                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "لعكيزة ياسين", coeff: 3, credit: 6 },
+                    { unit: "الأساسية", name: "المحاسبة المالية 1", prof: "لعكيزة ياسين", coeff: 3, credit: 6, hasLessons: true },
                     { unit: "الأساسية", name: "اقتصاد جزئي 1", prof: "بليلة لمين", coeff: 3, credit: 6 },
                     { unit: "الأساسية", name: "مدخل للاقتصاد", prof: "سويلم ليلى", coeff: 2, credit: 5 },
                     { unit: "المنهجية", name: "رياضيات 1", prof: "د/ فزازم محمد", coeff: 2, credit: 4 },
@@ -1189,13 +1250,11 @@
 
         function closePersonalInfo() {
             const pCard = document.getElementById('personal-info-card');
-            
             pCard.className = "fade-out-exit max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
 
             setTimeout(() => {
                 pCard.classList.add('hidden');
                 pCard.classList.remove('block');
-                
                 const beigeCard = document.getElementById('main-beige-card');
                 beigeCard.classList.remove('hidden');
                 setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
@@ -1224,7 +1283,6 @@
                         cardLoading.classList.remove('flex');
                         
                         const s = currentActiveStudent;
-                        
                         document.getElementById('acad-level-title').textContent = s.level;
                         document.getElementById('acad-univ-name').textContent = s.univ;
                         document.getElementById('acad-field-name').textContent = s.field;
@@ -1282,13 +1340,11 @@
 
         function closeAcademicInfo() {
             const acadCard = document.getElementById('academic-info-card');
-            
             acadCard.className = "fade-out-exit max-w-4xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
 
             setTimeout(() => {
                 acadCard.classList.add('hidden');
                 acadCard.classList.remove('block');
-                
                 const beigeCard = document.getElementById('main-beige-card');
                 beigeCard.classList.remove('hidden');
                 setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
@@ -1333,7 +1389,6 @@
 
                 times.forEach(t => {
                     const session = dayData[t];
-
                     const isVisible = session && (
                         filterType === 'all' || 
                         session.type === filterType || 
@@ -1381,7 +1436,6 @@
                     setTimeout(() => {
                         cardLoading.classList.add('hidden');
                         cardLoading.classList.remove('flex');
-
                         renderSchedule('all');
 
                         history.pushState({ step: 'schedule_details' }, '', '');
@@ -1400,20 +1454,17 @@
 
         function closeScheduleInfo() {
             const schedCard = document.getElementById('schedule-info-card');
-            
             schedCard.className = "fade-out-exit max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
 
             setTimeout(() => {
                 schedCard.classList.add('hidden');
                 schedCard.classList.remove('block');
-                
                 const beigeCard = document.getElementById('main-beige-card');
                 beigeCard.classList.remove('hidden');
                 setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
             }, 350);
         }
 
-        /* توليد الجدول بدون أسطر عناوين الوحدات الكبرى، بل المقاييس تحت بعض مع صفوف متناوبة الألوان */
         function openCoursesInfo() {
             const beigeCard = document.getElementById('main-beige-card');
             const cardLoading = document.getElementById('card-loading');
@@ -1437,11 +1488,16 @@
 
                         const tbody = document.getElementById('courses-table-body');
                         tbody.innerHTML = '';
+                        document.getElementById('lessons-container').classList.add('hidden');
 
-                        // تصفية المواد التي لا ينبغي إظهارها للطالب الحالي
                         const activeCourses = currentActiveStudent.courses.filter(c => !c.hiddenForElAchi);
 
                         activeCourses.forEach(course => {
+                            let lessonsCell = `-`;
+                            if (course.hasLessons) {
+                                lessonsCell = `<button onclick="showAccountingLessons()" class="btn-lessons-trigger">إضغط هنا</button>`;
+                            }
+
                             tbody.innerHTML += `
                                 <tr>
                                     <td>الأول</td>
@@ -1454,7 +1510,7 @@
                                     <td>50%</td>
                                     <td>-</td>
                                     <td>-</td>
-                                    <td></td>
+                                    <td>${lessonsCell}</td>
                                 </tr>
                             `;
                         });
@@ -1473,15 +1529,61 @@
             }, 350);
         }
 
+        /* دالة إظهار جدول المحاور والدروس الخاصة بمحاسبة المالية 1 عند الضغط على إضغط هنا */
+        function showAccountingLessons() {
+            const container = document.getElementById('lessons-container');
+            document.getElementById('active-lesson-title').textContent = "المحاسبة المالية 1";
+            const lBody = document.getElementById('lessons-table-body');
+            lBody.innerHTML = `
+                <tr>
+                    <td class="font-bold">المحور الأول</td>
+                    <td>المحور الأول- محاسبة مالية 1</td>
+                    <td class="text-center">
+                        <a href="./المحور الأول- محاسبة مالية 1.pdf" download class="btn-download-pdf mx-auto">
+                            <i class="fa-solid fa-download"></i> تحميل الدرس
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">المحور الثاني</td>
+                    <td>المحور الثاني- محاسبة مالية 1</td>
+                    <td class="text-center">
+                        <a href="./المحور الثاني- محاسبة مالية 1.pdf" download class="btn-download-pdf mx-auto">
+                            <i class="fa-solid fa-download"></i> تحميل الدرس
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="font-bold">المحور الثالث</td>
+                    <td>المحور الثالث- محاسبة مالية 1</td>
+                    <td class="text-center">
+                        <a href="./المحور الثالث- محاسبة مالية 1.pdf" download class="btn-download-pdf mx-auto">
+                            <i class="fa-solid fa-download"></i> تحميل الدرس
+                        </a>
+                    </td>
+                </tr>
+                <tr class="disabled-lesson">
+                    <td class="font-bold">المحور الرابع</td>
+                    <td>المحور الرابع- محاسبة مالية 1</td>
+                    <td class="text-center">
+                        <span class="btn-download-pdf mx-auto inline-flex">
+                            <i class="fa-solid fa-download"></i> تحميل الدرس
+                        </span>
+                    </td>
+                </tr>
+            `;
+
+            container.classList.remove('hidden');
+            container.scrollIntoView({ behavior: 'smooth' });
+        }
+
         function closeCoursesInfo() {
             const coursesCard = document.getElementById('courses-info-card');
-            
             coursesCard.className = "fade-out-exit max-w-6xl mx-auto w-full mt-2 mb-6 font-sans-plain space-y-4 block";
 
             setTimeout(() => {
                 coursesCard.classList.add('hidden');
                 coursesCard.classList.remove('block');
-                
                 const beigeCard = document.getElementById('main-beige-card');
                 beigeCard.classList.remove('hidden');
                 setTimeout(() => beigeCard.classList.remove('opacity-0'), 50);
